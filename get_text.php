@@ -1,12 +1,10 @@
 <?php
+include 'connect.php';
 //echo "hell yeah";
-define('HOST','localhost');
-define('USER','root') ;
-define('DB','gargaiafl');
-define('PASS','qwerty');
-$con = mysqli_connect(HOST,USER,PASS,DB);
 
-if($con){
+
+if(open_con()){
   echo "connected";
 }
+header("Location: http://stackoverflow.com");
 ?>
