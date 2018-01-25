@@ -2,6 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link rel="stylesheet" type="text/css" href="style.css">
     <title>yazı ekle</title>
   </head>
@@ -9,8 +10,9 @@
     <form class="qwe" action="get_text.php" method="post">
 
       mahlas: <input type="text" name="mahlas"><br><br>
-      yazı: <input type="text" name="yazi" class="qwe"><br>
-      <input type="submit" value="gönder">
+      yazı:   <input type="text" name="yazi" class="qwe"><br>
+              <input type="hidden" name="actualDate" id="actualDate">
+              <input type="submit" value="gönder">
 
     </form>
   </body>
