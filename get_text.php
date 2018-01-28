@@ -34,7 +34,7 @@ if($result['mahlas']==$mahlas){//mahlas kullanıldı ise
   $cookie_name = "if_used_mahlas";
   $cookie_value = "false";
   setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); // 86400 = 1 day
-  mysqli_query($conn,"INSERT INTO texts(tarih,mahlas,metin) VALUES (now(),'$mahlas','$metin')");
+  mysqli_query($conn,"INSERT INTO texts(tarih,mahlas,metin,level) VALUES (now(),'$mahlas','$metin','0')");
   header("Location: http://localhost/gargaiafl/submission_success.html");
 
 }
