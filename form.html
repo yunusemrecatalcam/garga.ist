@@ -7,13 +7,34 @@
     <title>yazı ekle</title>
   </head>
   <body>
-    <form class="qwe" action="get_text.php" method="post">
 
-      mahlas: <input type="text" name="mahlas"><br><br>
-      yazı:   <input type="text" name="yazi" class="qwe"><br>
-              <input type="hidden" name="actualDate" id="actualDate">
-              <input type="submit" value="gönder">
+    
+      <form class="qwe" action="get_text.php" method="post">
 
-    </form>
+        mahlas: <input type="text" name="mahlas"><br><br>
+
+        yazı:   <input type="text" name="yazi" class="qwe" value="<?php
+        if(isset($_COOKIE['metin'])){
+          echo $_COOKIE['metin'];}
+          else{
+            echo "";
+          } ?>"><br>
+
+                <input type="hidden" name="actualDate" id="actualDate">
+                <input type="submit" value="gönder">
+
+      </form>
+
+
+
+    <div class="xyz">
+      <?php
+      if (isset($_COOKIE['if_used_mahlas'])) {
+        if ($_COOKIE['if_used_mahlas']=='true') {
+          echo "holy hell,mahlas daha önce kullanılmış";
+        }
+      }
+      ?>
+    </div>
   </body>
 </html>

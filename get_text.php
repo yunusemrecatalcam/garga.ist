@@ -8,7 +8,7 @@ if(open_con()){
   echo "<br/>";
 }
 $conn=open_con();
-mysql_query("SET NAMES UTF8");
+mysqli_query($conn,"SET NAMES UTF8");
 //header("Location: http://stackoverflow.com");
 $mahlas= mysqli_real_escape_string($conn, $_POST['mahlas']);
 $metin= mysqli_real_escape_string($conn,$_POST['yazi']);
@@ -16,13 +16,31 @@ $metin= mysqli_real_escape_string($conn,$_POST['yazi']);
 
 
 //echo $tarih;
-if(mysqli_query($conn,"SELECT * FROM texts WHERE mahlas='$mahlas' ")){
-  header("Location: http://stackoverflow.com");
+$try=mysqli_query($conn,"SELECT * FROM texts WHERE mahlas='$mahlas' ");
+$result=mysqli_fetch_assoc($try);
+
+if($result['mahlas']==$mahlas){//mahlas kullanıldı ise
+  $cookie_name = "metin";
+  $cookie_value = $metin;
+  setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); // 86400 = 1 day
+
+  $cookie_name = "if_used_mahlas";
+  $cookie_value = "true";
+  setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); // 86400 = 1 day
+  header("Location: http://localhost/gargaiafl/form.html");
+
+}else {//temiz mahlassa
+
+  $cookie_name = "if_used_mahlas";
+  $cookie_value = "false";
+  setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); // 86400 = 1 day
+  mysqli_query($conn,"INSERT INTO texts(tarih,mahlas,metin) VALUES (now(),'$mahlas','$metin')");
+  header("Location: http://localhost/gargaiafl/submission_success.html");
 
 }
 
-$kayit=mysqli_query($conn,"INSERT INTO texts(tarih,mahlas,metin) VALUES (now(),'$mahlas','$metin')");
-$try=mysqli_query($conn,"SELECT * FROM texts WHERE 1 ");
+//$kayit=mysqli_query($conn,"INSERT INTO texts(tarih,mahlas,metin) VALUES (now(),'$mahlas','$metin')");
+//$try=mysqli_query($conn,"SELECT * FROM texts WHERE 1 ");
 
 
 

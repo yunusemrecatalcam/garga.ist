@@ -1,5 +1,11 @@
 .qwe{
-  width: 500px;
+  width: 800px;
   height: 500px;
+  background-color: #66ff33;
+}
 
+.xyz{
+  align-self: auto;
+  align-items: flex-end;
+  align-content: flex-end;
 }
