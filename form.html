@@ -3,17 +3,25 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="http://localhost/gargaiafl/style.css">
     <title>yazı ekle</title>
   </head>
   <body>
 
-    
-      <form class="qwe" action="get_text.php" method="post">
+      <h1> yazı ekle </h1>
+      <form action="get_text.php" method="post">
 
-        mahlas: <input type="text" name="mahlas"><br><br>
-
-        yazı:   <input type="text" name="yazi" class="qwe" value="<?php
+        mahlas: <input class="mahlas" type="text" name="mahlas" value="
+        <?php
+        if(isset($_COOKIE['mahlas'])){
+          echo $_COOKIE['mahlas'];}
+          else{
+            echo "";
+          }
+        ?>
+        "><br><br>
+        sifre: <input type="password" name="password" value=""> <br><br>
+        yazı:   <input class="qwe" type="text" name="yazi" class="qwe" value="<?php
         if(isset($_COOKIE['metin'])){
           echo $_COOKIE['metin'];}
           else{
@@ -29,9 +37,10 @@
 
     <div class="xyz">
       <?php
-      if (isset($_COOKIE['if_used_mahlas'])) {
-        if ($_COOKIE['if_used_mahlas']=='true') {
-          echo "holy hell,mahlas daha önce kullanılmış";
+
+      if (isset($_COOKIE['if_pass_wrong'])) {
+        if ($_COOKIE['if_pass_wrong']=='true') {
+          echo "mahlas kullanımda ve girdiğin şifre yanlış";
         }
       }
       ?>

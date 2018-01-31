@@ -1,8 +1,8 @@
 <?php
 define('HOST','localhost');
-define('USER','root') ;
+define('USER','insert_only') ;
 define('DB','gargaiafl');
-define('PASS','qwerty');
+define('PASS','123456');
 
 function open_con(){
 

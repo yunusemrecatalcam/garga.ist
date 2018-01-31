@@ -12,40 +12,59 @@ mysqli_query($conn,"SET NAMES UTF8");
 //header("Location: http://stackoverflow.com");
 $mahlas= mysqli_real_escape_string($conn, $_POST['mahlas']);
 $metin= mysqli_real_escape_string($conn,$_POST['yazi']);
-//$tarih=mysqli_real_escape_string($conn,$_POST['actualDate']);
+$password= mysqli_real_escape_string($conn,$_POST['password']);
+$hashed_password=password_hash($password,PASSWORD_DEFAULT);
+
+$cookie_name = "mahlas";
+$cookie_value = $mahlas;
+setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); // 86400 = 1 day
 
 
-//echo $tarih;
-$try=mysqli_query($conn,"SELECT * FROM texts WHERE mahlas='$mahlas' ");
+$try=mysqli_query($conn,"SELECT * FROM writers WHERE mahlas='$mahlas' ");
 $result=mysqli_fetch_assoc($try);
 
-if($result['mahlas']==$mahlas){//mahlas kullanıldı ise
-  $cookie_name = "metin";
-  $cookie_value = $metin;
-  setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); // 86400 = 1 day
+if($result['mahlas']==$mahlas && password_verify($password,$result['password'])){//used mahlas and true password
 
-  $cookie_name = "if_used_mahlas";
-  $cookie_value = "true";
-  setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); // 86400 = 1 day
-  header("Location: http://localhost/gargaiafl/form.html");
+    $cookie_name = "if_pass_wrong";
+    $cookie_value = "false";
+    setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); // 86400 = 1 day
 
-}else {//temiz mahlassa
+    mysqli_query($conn,"INSERT INTO texts(tarih,mahlas,metin,level) VALUES (now(),'$mahlas','$metin','1')");
+    header("Location: http://localhost/gargaiafl/submission_success.html");
+    //echo "1";
 
-  $cookie_name = "if_used_mahlas";
-  $cookie_value = "false";
-  setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); // 86400 = 1 day
-  mysqli_query($conn,"INSERT INTO texts(tarih,mahlas,metin,level) VALUES (now(),'$mahlas','$metin','0')");
-  header("Location: http://localhost/gargaiafl/submission_success.html");
+}elseif ($result['mahlas']==$mahlas && !password_verify($password,$result['password']) && $password !='') {//used mahlas and wrong password
 
+    $cookie_name = "metin";
+    $cookie_value = $metin;
+    setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); // 86400 = 1 day
+    echo "</br>";
+    echo "oleeeyy";
+
+    $cookie_name = "if_pass_wrong";
+    $cookie_value = "true";
+    setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); // 86400 = 1 day
+    //echo "2";
+    header("Location: http://localhost/gargaiafl/form.html");
+
+}elseif ($result['mahlas'] != $mahlas) {//new mahlas
+
+    $cookie_name = "if_used_mahlas";
+    $cookie_value = "false";
+    setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); // 86400 = 1 day
+
+    $cookie_name = "if_pass_wrong";
+    $cookie_value = "false";
+    setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); // 86400 = 1 day
+
+    mysqli_query($conn,"INSERT INTO texts(tarih,mahlas,metin,level) VALUES (now(),'$mahlas','$metin','1')");
+    mysqli_query($conn,"INSERT INTO writers(mahlas,password) VALUES ('$mahlas','$hashed_password')");
+    header("Location: http://localhost/gargaiafl/submission_success.html");
+    //echo "3";
 }
 
 //$kayit=mysqli_query($conn,"INSERT INTO texts(tarih,mahlas,metin) VALUES (now(),'$mahlas','$metin')");
 //$try=mysqli_query($conn,"SELECT * FROM texts WHERE 1 ");
-
-
-
-
-
 
 
 ?>

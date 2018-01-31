@@ -1,11 +1,19 @@
 .qwe{
   width: 800px;
-  height: 500px;
-  background-color: #66ff33;
+  height: 600px;
+  background-color: rgb(255, 159, 0);
+  font-size: 20px;
+
+
 }
 
 .xyz{
-  align-self: auto;
-  align-items: flex-end;
-  align-content: flex-end;
+
+  color: red;
+  font-size: 30px;
+}
+
+.mahlas{
+  color: green;
+  align-items: flex-start;
 }
