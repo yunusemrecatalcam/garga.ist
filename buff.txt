@@ -1,0 +1,14 @@
+/*echo $ip;
+  if ($ip=='176.55.157.93') {
+    echo "başarılı";
+  }else {
+    echo "access denied,holy hell";
+  }
+$msg="asdfasfadg";
+$msg=wordwrap($msg,70);
+$headers =  'MIME-Version: 1.0' . "\r\n";
+$headers .= 'From: Your name <info@address.com>' . "\r\n";
+$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+
+mail("yunusemrecatalcam@gmail.com", "sub", $msg, $headers);
+mail("yunusemrecatalcam@gmail.com","subject",$msg);*/

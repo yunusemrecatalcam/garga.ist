@@ -9,7 +9,7 @@
   <body>
 
       <h1> yazı ekle </h1>
-      <form action="get_text.php" method="post">
+      <form action="get_text.php" method="post" class="form">
 
         mahlas: <input class="mahlas" type="text" name="mahlas" value="
         <?php
@@ -20,7 +20,7 @@
           }
         ?>
         "><br><br>
-        sifre: <input type="password" name="password" value=""> <br><br>
+        sifre: <input type="password" name="password" value="" class="sifre"> <br><br>
         yazı:   <input class="qwe" type="text" name="yazi" class="qwe" value="<?php
         if(isset($_COOKIE['metin'])){
           echo $_COOKIE['metin'];}

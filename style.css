@@ -16,4 +16,16 @@
 .mahlas{
   color: green;
   align-items: flex-start;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 300px;
+  margin: auto;
+}
+
+.sifre{
+  margin: auto;
+}
+
+.form{
+  font-size: 24px;
 }
