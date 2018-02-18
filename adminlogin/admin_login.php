@@ -14,39 +14,60 @@ $ip=$_SERVER['REMOTE_ADDR'];
 $username= mysqli_real_escape_string($conn, $_POST['username']);
 $password= mysqli_real_escape_string($conn,$_POST['password']);
 $email= mysqli_real_escape_string($conn,$_POST['email']);
+$hashed_password=password_hash($password,PASSWORD_DEFAULT);
 
-//$try=mysqli_query($conn,"SELECT * FROM admins WHERE username='$username' ");
-//$result=mysqli_fetch_assoc($try);
+$try=mysqli_query($conn,"SELECT * FROM admins WHERE username='$username' ");
+$result=mysqli_fetch_assoc($try);
 
 echo $username."</br>".$password."</br>".$email."</br>";
 
-/*
+
 $length=12;
 $random= substr(str_shuffle(str_repeat($x='0123456789abcdefghijklmnopqrstuvwxyzABCDE
 FGHIJKLMNOPQRSTUVWXYZ', ceil($length/strlen($x)) )),1,$length);
 
-$to="yunusemrecatalcam@gmail.com";
+$to=$email;
 //echo md5($random)
 $msg=md5($random);
 $msg=wordwrap($msg,70);
+
 $headers =  'MIME-Version: 1.0' . "\r\n";
-$headers .= 'From: garga.ist <info@garga.ist>' . "\r\n";
+$headers .= 'From: garga  <info@garga.ist>' . "\r\n";
 $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 
-if (mail($to, "login verification", $msg, $headers)) {
-  echo "mail attim";
-}else {
-  echo "</br>"."shit"."</br>";
-}
+
+
 
 
 if ($result['password']==$password ) {
-  echo "şifre tuttu";
-  echo "your ip: "."</br>";
-  echo $ip;
-  echo "dbdeki ip: "."</br>";
-  echo $result['ip'];
+  $cookie_name = "wrong";
+  $cookie_value = "0";
+  setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); // 86400 = 1 day
+  echo "şifre tuttu,holaaaa"."</br>";
+  if (mail($to, "login verification", $msg, $headers)) {
+    echo "mail attim";
+  }else {
+    echo "</br>"."shit"."</br>";
+  }
+  $in=mysqli_query($conn,"INSERT INTO adminolos(usernamei, hashedpassi, maili, lasthashi, lastlogini) VALUES ('$username','$hashed_password','$email','$msg',now())");
+  if ($in) {
+    $cookie_name = "username";
+    $cookie_value = $username;
+    setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); // 86400 = 1 day
+    header("Location: http://garga.ist/beta/adminlogin/verificate.html");
+  }else {
+    echo "olmaması gereken problemler yaşandı";
+  }
+
+
+
 }else {
-  echo "bi bok tutmadı napıyosun";
-}*/
+  $cookie_name = "wrong";
+  $cookie_value = "1";
+  setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); // 86400 = 1 day
+
+
+
+  header("Location: http://garga.ist/beta/adminlogin/index.html");
+}
  ?>
