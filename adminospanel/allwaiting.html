@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>bekleyenler</title>
+  </head>
+  <body>
+    <?php
+    include ($_SERVER['DOCUMENT_ROOT'].'/beta/connect_daddy.php');
+    $conn=open_con();
+
+    $tryi=mysqli_query($conn,"SELECT * FROM texts WHERE level='1' ");
+    if($tryi){
+      while ($result=mysqli_fetch_assoc($tryi)) {
+        echo $result['mahlas'];
+        echo "    ";
+        echo '<a href="https://www.w3schools.com">Visit W3Schools</a>';
+      }
+    }
+    ?>
+  </body>
+</html>

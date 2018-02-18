@@ -31,11 +31,11 @@ if($result['mahlas']==$mahlas && password_verify($password,$result['password']))
     $cookie_value = "false";
     setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); // 86400 = 1 day
 
-    mysqli_query($conn,"INSERT INTO texts(tarih,mahlas,metin,level) VALUES (now(),'$mahlas','$metin','1')");
+    mysqli_query($conn,"INSERT INTO texts(tarih,mahlas,metin,level,metinadi) VALUES (now(),'$mahlas','$metin','1','$metinadi')");
     header("Location: http://garga.ist/beta/yaziver/submission_success.html");
     //echo "1";
 
-}elseif ($result['mahlas']==$mahlas && !password_verify($password,$result['password']) && $password !='') {//used mahlas and wrong password
+}elseif ($result['mahlas']==$mahlas && !password_verify($password,$result['password']) ) {//used mahlas and wrong password
 
     $cookie_name = "metin";
     $cookie_value = $metin;
@@ -59,7 +59,7 @@ if($result['mahlas']==$mahlas && password_verify($password,$result['password']))
     $cookie_value = "false";
     setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); // 86400 = 1 day
 
-    mysqli_query($conn,"INSERT INTO texts(tarih,mahlas,metin,level) VALUES (now(),'$mahlas','$metin','1')");
+    mysqli_query($conn,"INSERT INTO texts(tarih,mahlas,metin,level,metinadi) VALUES (now(),'$mahlas','$metin','1','$metinadi')");
     mysqli_query($conn,"INSERT INTO writers(mahlas,password) VALUES ('$mahlas','$hashed_password')");
     header("Location: http://garga.ist/beta/yaziver/submission_success.html");
     //echo "3";
