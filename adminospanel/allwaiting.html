@@ -2,6 +2,19 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <script>
+$(document).ready(function(){
+    $("button").click(function(){
+        $.get("gettest.php", function(data, status){
+            alert("Data: " + data + "\nStatus: " + status);
+            document.write("hell");
+        });
+    });
+});
+</script>
+
     <title>bekleyenler</title>
   </head>
   <body>
@@ -11,10 +24,17 @@
 
     $tryi=mysqli_query($conn,"SELECT * FROM texts WHERE level='1' ");
     if($tryi){
+        echo "MAHLAS"."    ";
+        echo "METİN ADI"."    ";
+        echo "TARİH"."</br>";
       while ($result=mysqli_fetch_assoc($tryi)) {
         echo $result['mahlas'];
         echo "    ";
-        echo '<a href="https://www.w3schools.com">Visit W3Schools</a>';
+        //echo '<a href="https://www.w3schools.com">'.'Visit W3Schools</a>';
+        echo $result['metinadi']."    ";
+        echo $result['tarih']."    ";
+        echo '<button type="button" '.'name="button">holy hell</button>';
+        echo "</br>";
       }
     }
     ?>
