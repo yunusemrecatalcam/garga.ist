@@ -41,20 +41,20 @@
 
     <script type="text/javascript">
 
-    document.getElementById("trek").onclick=function(){
+    //document.getElementById("trek").onclick=function(){
        //window.alert("bak bu oluyor");
       // document.write("wqeqew");
       $(document).ready(function(){
           $("button").click(function(){
-
+            var id=this.id;
       $.get( "gettest.php", { username: "John"} )
         .done(function( data ) {
-          alert( "Data Loaded: " + data );
+          alert( id +" Data Loaded: " + data  );
         });
           });});
           //document.write("hell");
 
-     }
+    // }
 
     </script>
 
