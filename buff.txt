@@ -12,3 +12,22 @@ $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 
 mail("yunusemrecatalcam@gmail.com", "sub", $msg, $headers);
 mail("yunusemrecatalcam@gmail.com","subject",$msg);*/
+
+
+<script type="text/javascript">
+document.write("heltol");
+$.get("gettest.php", function(data){
+alert("Data: " + data);
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+    $("button").click(function(){
+
+$.get( "gettest.php", { username: "John"} )
+  .done(function( data ) {
+    alert( "Data Loaded: " + data );
+  });
+  });});
+</script>

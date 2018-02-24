@@ -5,14 +5,14 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
     <script>
-$(document).ready(function(){
+/*$(document).ready(function(){
     $("button").click(function(){
         $.get("gettest.php", function(data, status){
             alert("Data: " + data + "\nStatus: " + status);
-            document.write("hell");
+            //document.write("hell");
         });
     });
-});
+});*/
 </script>
 
     <title>bekleyenler</title>
@@ -33,10 +33,30 @@ $(document).ready(function(){
         //echo '<a href="https://www.w3schools.com">'.'Visit W3Schools</a>';
         echo $result['metinadi']."    ";
         echo $result['tarih']."    ";
-        echo '<button type="button" '.'name="button">holy hell</button>';
+        echo '<button id="trek" type="button" '.'name="button">'.$result['metinadi'].'</button>';
         echo "</br>";
       }
     }
     ?>
+
+    <script type="text/javascript">
+
+    document.getElementById("trek").onclick=function(){
+       //window.alert("bak bu oluyor");
+      // document.write("wqeqew");
+      $(document).ready(function(){
+          $("button").click(function(){
+
+      $.get( "gettest.php", { username: "John"} )
+        .done(function( data ) {
+          alert( "Data Loaded: " + data );
+        });
+          });});
+          //document.write("hell");
+
+     }
+
+    </script>
+
   </body>
 </html>
