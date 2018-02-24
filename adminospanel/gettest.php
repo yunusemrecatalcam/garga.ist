@@ -3,9 +3,12 @@
 include ($_SERVER['DOCUMENT_ROOT'].'/beta/connect_daddy.php');
 $conn=open_con();
 
-$qwe=$_GET['username'];
+$id=mysqli_real_escape_string($conn,$_GET['idsi']);
 
-echo $qwe." holy holy holy shit oksholy holy holy shit oksholy holy holy shit oksholy holy holy shit oksholy holy holy shit oksholy holy holy shit oksholy holy holy shit oksholy holy holy shit oksholy holy holy shit oksholy holy holy shit oksholy holy holy shit oks";
+$try=mysqli_query($conn,"SELECT * FROM texts WHERE id='$id' ");
+$result=mysqli_fetch_assoc($try);
+
+echo $result['metin'];
 
 $cookie_name = "js";
 $cookie_value = "bakalim";

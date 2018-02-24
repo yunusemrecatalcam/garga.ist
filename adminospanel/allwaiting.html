@@ -60,9 +60,9 @@
       $(document).ready(function(){
           $("button").click(function(){
             var id=this.id;
-      $.get( "gettest.php", { username: "John"} )
+      $.get( "gettest.php", { idsi: id} )
         .done(function( data ) {
-          alert( id +" Data Loaded: " + data  );
+          alert( id +" Data x Loaded: " + data  );
         });
           });});
 
