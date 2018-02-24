@@ -4,46 +4,59 @@
     <meta charset="utf-8">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-    <script>
-/*$(document).ready(function(){
-    $("button").click(function(){
-        $.get("gettest.php", function(data, status){
-            alert("Data: " + data + "\nStatus: " + status);
-            //document.write("hell");
-        });
-    });
-});*/
-</script>
+    <link rel="stylesheet" href="style.css">
 
     <title>bekleyenler</title>
+
   </head>
   <body>
+    <table>
     <?php
     include ($_SERVER['DOCUMENT_ROOT'].'/beta/connect_daddy.php');
     $conn=open_con();
 
     $tryi=mysqli_query($conn,"SELECT * FROM texts WHERE level='1' ");
     if($tryi){
+        echo "<tr>";
+        echo "<th>";
         echo "MAHLAS"."    ";
+        echo "</th>";
+        echo "<th>";
         echo "METİN ADI"."    ";
+        echo "</th>";
+        echo "<th>";
         echo "TARİH"."</br>";
+        echo "</th>";
+        echo "<th>";
+        echo "metini aç"."    ";
+        echo "</th>";
       while ($result=mysqli_fetch_assoc($tryi)) {
+        echo "<tr>";
+
+        echo "<th>";
         echo $result['mahlas'];
-        echo "    ";
+        echo "</th>";
         //echo '<a href="https://www.w3schools.com">'.'Visit W3Schools</a>';
+        echo "<th>";
         echo $result['metinadi']."    ";
+        echo "</th>";
+
+        echo "<th>";
         echo $result['tarih']."    ";
-        echo '<button id="trek" type="button" '.'name="button">'.$result['metinadi'].'</button>';
+        echo "</th>";
+
+        echo "<th>";
+        echo '<button id="'.$result['id'].'" type="button" '.'name="button">'.$result['metinadi'].'</button>';
+        echo "</th>";
+
         echo "</br>";
       }
     }
     ?>
+    </table>
 
     <script type="text/javascript">
 
-    //document.getElementById("trek").onclick=function(){
-       //window.alert("bak bu oluyor");
-      // document.write("wqeqew");
       $(document).ready(function(){
           $("button").click(function(){
             var id=this.id;
@@ -52,9 +65,6 @@
           alert( id +" Data Loaded: " + data  );
         });
           });});
-          //document.write("hell");
-
-    // }
 
     </script>
 
