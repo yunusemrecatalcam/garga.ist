@@ -10,7 +10,7 @@
 
   </head>
   <body>
-    <table>
+    <table id="customers">
     <?php
     include ($_SERVER['DOCUMENT_ROOT'].'/beta/connect_daddy.php');
     $conn=open_con();
@@ -27,27 +27,29 @@
         echo "<th>";
         echo "TARİH"."</br>";
         echo "</th>";
-        echo "<th>";
-        echo "metini aç"."    ";
-        echo "</th>";
+        //echo "<th>";
+        //echo "METNİ OKU"."    ";
+        //echo "</th>";
       while ($result=mysqli_fetch_assoc($tryi)) {
         echo "<tr>";
 
-        echo "<th>";
+        echo "<td>";
         echo $result['mahlas'];
-        echo "</th>";
+        echo "</td>";
         //echo '<a href="https://www.w3schools.com">'.'Visit W3Schools</a>';
-        echo "<th>";
+        /*echo "<td>";
         echo $result['metinadi']."    ";
-        echo "</th>";
+        echo "</td>";*/
 
-        echo "<th>";
-        echo $result['tarih']."    ";
-        echo "</th>";
-
-        echo "<th>";
+        echo "<td>";
         echo '<button id="'.$result['id'].'" type="button" '.'name="button">'.$result['metinadi'].'</button>';
-        echo "</th>";
+        echo "</td>";
+
+
+        echo "<td>";
+        echo $result['tarih']."    ";
+        echo "</td>";
+
 
         echo "</br>";
       }
@@ -55,6 +57,9 @@
     ?>
     </table>
 
+    <div class="textarea">
+      <p id="textyyy"></p>
+    </div>
     <script type="text/javascript">
 
       $(document).ready(function(){
@@ -62,7 +67,8 @@
             var id=this.id;
       $.get( "gettest.php", { idsi: id} )
         .done(function( data ) {
-          alert( id +" Data x Loaded: " + data  );
+          //alert( id +" Data x Loaded: " + data  );
+          document.getElementById("textyyy").innerHTML=data;
         });
           });});
 
