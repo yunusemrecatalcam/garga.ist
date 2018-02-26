@@ -1,65 +1,74 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link rel="stylesheet" href="newstyle.css">
     <meta charset="utf-8">
-    <title>garga yazi koy</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>yazi ver</title>
+      <script type="text/javascript">
+        function submity(){
+          document.getElementById('form1').submit();
 
-
-    <script type="text/javascript">
-      function submity(){
-        document.getElementById('form1').submit();
-
-        alert("holy awesome");
-      }
-    </script>
+          alert("holy awesome");
+        }
+      </script>
   </head>
   <body>
-    <div class="container">
-      <form id="contact" action="get_text.php" method="post">
-        <h3>Gargaya yazı koy</h3>
-        <h4>Daha önceki mahlasınla yazı koymak istiyorsanız önceki şifrenizi girmelisiniz,yeni mahlas kullanacaksanız yeni şifre belirlemelisiniz.</h4>
-        <fieldset>
-          <input placeholder="Mahlas" type="text" name="mahlas" value="<?php
-          if(isset($_COOKIE['mahlas'])){
-            echo $_COOKIE['mahlas'];}
-            else{
-              //echo "";
-            }
-          ?>" tabindex="1" required autofocus>
-        </fieldset>
-        <fieldset>
-          <input placeholder="Şifre" type="password" name="password" tabindex="2" required>
-        </fieldset>
-        <fieldset>
-          <input placeholder="Metin adı" type="text" name="metinadi" tabindex="3" required>
-        </fieldset>
-        <fieldset>
-          <textarea class="textarea" name="yazi"  placeholder="Yazınızı buraya yapıştırın" tabindex="4" required>
-            <?php
-            if(isset($_COOKIE['metin'])){
-              echo $_COOKIE['metin'];}
-              else{
-                //echo "";
-              } ?>
-            </textarea>
-        </fieldset>
-        <fieldset>
-          <button name="submit" type="submit" id="contact-submit" data-submit="...Sending" onclick="submity()">Submit</button>
-        </fieldset>
-        <fieldset>
-          <div class="red">
-            <?php
 
-            if (isset($_COOKIE['if_pass_wrong'])) {
-              if ($_COOKIE['if_pass_wrong']=='true') {
-                echo "mahlas kullanımda ve girdiğin şifre yanlış";
-              }
-            }
-            ?>
-          </div>
-        </fieldset>
-      </form>
-    </div>
+      <div class="era" id="era">
+
+          <form class="yaziver" id="form1" action="get_text.php" method="post">
+
+            <p>
+              <label>Mahlas</label><br><br>
+              <input  type="text" name="mahlas" value="" placeholder="">
+            </p>
+
+            <p>
+              <label>Şifre</label><br><br>
+              <input type="password" name="password" value="" placeholder="">
+            </p>
+
+            <p>
+            <label>Metin Adı</label><br><br>
+            <input type="text" name="metinadi" value="">
+            </p>
+            <p>
+              <label>Metin</label><br><br>
+              <script  src="autosize.js">  </script>
+
+              <textarea name="yazi" id="note" >
+                <?php
+                if(isset($_COOKIE['metin'])){
+                  echo $_COOKIE['metin'];}
+                  else{
+                    //echo "";
+                  } ?>
+                </textarea>
+              <script type="text/javascript">
+                autosize(document.getElementById("note"));
+                function submity(){
+                  document.getElementById('form1').submit();
+
+                  window.alert("holy awesome");
+                }
+              </script>
+            </p>
+            <button type="button" value="Gönder" onclick="submity()" name="button">Gönder</button>
+          </form>
+
+      </div>
+
+      <div class="red">
+        advgdv
+        <?php
+
+        if (isset($_COOKIE['if_pass_wrong'])) {
+          if ($_COOKIE['if_pass_wrong']=='true') {
+            echo "mahlas kullanımda ve girdiğin şifre yanlış";
+          }
+        }
+        ?>
+      </div>
+
   </body>
 </html>

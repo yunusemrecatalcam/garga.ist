@@ -10,53 +10,55 @@
 
   </head>
   <body>
-    <table id="customers">
-    <?php
-    include ($_SERVER['DOCUMENT_ROOT'].'/beta/connect_daddy.php');
-    $conn=open_con();
+    <div class="tabler">
+      <table id="customers">
+      <?php
+      include ($_SERVER['DOCUMENT_ROOT'].'/beta/connect_daddy.php');
+      $conn=open_con();
 
-    $tryi=mysqli_query($conn,"SELECT * FROM texts WHERE level='1' ");
-    if($tryi){
-        echo "<tr>";
-        echo "<th>";
-        echo "MAHLAS"."    ";
-        echo "</th>";
-        echo "<th>";
-        echo "METİN ADI"."    ";
-        echo "</th>";
-        echo "<th>";
-        echo "TARİH"."</br>";
-        echo "</th>";
-        //echo "<th>";
-        //echo "METNİ OKU"."    ";
-        //echo "</th>";
-      while ($result=mysqli_fetch_assoc($tryi)) {
-        echo "<tr>";
+      $tryi=mysqli_query($conn,"SELECT * FROM texts WHERE level='1' ");
+      if($tryi){
+          echo "<tr>";
+          echo "<th>";
+          echo "MAHLAS"."    ";
+          echo "</th>";
+          echo "<th>";
+          echo "METİN ADI"."    ";
+          echo "</th>";
+          echo "<th>";
+          echo "TARİH"."</br>";
+          echo "</th>";
+          //echo "<th>";
+          //echo "METNİ OKU"."    ";
+          //echo "</th>";
+        while ($result=mysqli_fetch_assoc($tryi)) {
+          echo "<tr>";
 
-        echo "<td>";
-        echo $result['mahlas'];
-        echo "</td>";
-        //echo '<a href="https://www.w3schools.com">'.'Visit W3Schools</a>';
-        /*echo "<td>";
-        echo $result['metinadi']."    ";
-        echo "</td>";*/
+          echo "<td>";
+          echo $result['mahlas'];
+          echo "</td>";
+          //echo '<a href="https://www.w3schools.com">'.'Visit W3Schools</a>';
+          /*echo "<td>";
+          echo $result['metinadi']."    ";
+          echo "</td>";*/
 
-        echo "<td>";
-        echo '<button id="'.$result['id'].'" type="button" '.'name="button">'.$result['metinadi'].'</button>';
-        echo "</td>";
-
-
-        echo "<td>";
-        echo $result['tarih']."    ";
-        echo "</td>";
+          echo "<td>";
+          echo '<button id="'.$result['id'].'" type="button" '.'name="button">'.$result['metinadi'].'</button>';
+          echo "</td>";
 
 
-        echo "</br>";
+          echo "<td>";
+          echo $result['tarih']."    ";
+          echo "</td>";
+
+
+          echo "</br>";
+        }
       }
-    }
-    ?>
-    </table>
+      ?>
+      </table>
 
+    </div>
     <div class="textarea">
       <p id="textyyy"></p>
     </div>

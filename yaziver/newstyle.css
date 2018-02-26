@@ -7,6 +7,7 @@ input{
   align-items: center;
   text-align: center;
   border-top: none;
+  max-width: 500px;
 }
 
 label{
@@ -14,10 +15,17 @@ label{
   text-align: center;
   color: black;#009933;
 }
-label,input{
+label,input,button{
   font-size: 30px;
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+}
+button{
+  border-radius: 10px;
+  width: 150px;
+  height: 100px;
 }
 
+}
 #era{
 
   text-align: left
@@ -37,9 +45,14 @@ textarea{
   min-height: 40%;
 }
 
-@media only screen and (orientation: portrait) {
+@media (max-width:1080px) {
   label,input{
     font-size: 50px;
+  }
+  button{
+    border-radius: 10px;
+    width: 150px;
+    height: 100px;
   }
 
 }

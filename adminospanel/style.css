@@ -23,6 +23,7 @@ table,th,td,button{
     body {
         background-color: lightblue;
         font-size: 100px;
+        vertical-align: top;
     }
     table,th,td,button{
       font-size: 50px;
@@ -30,8 +31,12 @@ table,th,td,button{
     #textyyy{
       font-size: 50px;
     }
+
   }
 
+  table td, table td * {
+      vertical-align: top;
+  }
 
 table, th, td {
   border: 0px solid white;
@@ -42,6 +47,8 @@ table{
   width: 100%;
   font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
   border-collapse: collapse;
+  vertical-align: top;
+
 }
 
 th,td{
@@ -57,6 +64,7 @@ th{
     text-align: left;
     background-color: #4CAF50;
     color: white;
+    vertical-align:top;
 }
 
 button{
