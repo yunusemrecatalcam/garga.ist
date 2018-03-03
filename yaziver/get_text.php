@@ -61,7 +61,9 @@ if($result['mahlas']==$mahlas && password_verify($password,$result['password']))
 
     mysqli_query($conn,"INSERT INTO texts(tarih,mahlas,metin,level,metinadi) VALUES (now(),'$mahlas','$metin','1','$metinadi')");
     mysqli_query($conn,"INSERT INTO writers(mahlas,password) VALUES ('$mahlas','$hashed_password')");
-    header("Location: http://garga.ist/beta/yaziver/submission_success.html");
+    mysqli_query($conn,"INSERT INTO textstate(id)  SELECT MAX(id) FROM texts WHERE 1");
+
+    //header("Location: http://garga.ist/beta/yaziver/submission_success.html");
     //echo "3";
 }
 
