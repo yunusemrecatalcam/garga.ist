@@ -57,7 +57,7 @@
       }
       ?>
       </table>
-
+      <button type="button" id="onay" name="button">lol</button>
     </div>
     <div class="textarea">
       <p id="textyyy"></p>
@@ -65,14 +65,23 @@
     <script type="text/javascript">
 
       $(document).ready(function(){
+          var clicked="false";
+
           $("button").click(function(){
+            var inner= document.getElementById("textyyy").innerHTML;
             var id=this.id;
-      $.get( "gettest.php", { idsi: id} )
-        .done(function( data ) {
-          //alert( id +" Data x Loaded: " + data  );
-          document.getElementById("textyyy").innerHTML=data;
-        });
-          });});
+            if(id=="onay" && inner ){
+              alert("shett");
+            }else {
+              clicked="true";
+              $.get( "gettest.php", { idsi: id} )
+              .done(function( data ) {
+                //alert( id +" Data x Loaded: " + data  );
+                document.getElementById("textyyy").innerHTML=data;
+              });
+            }
+          });
+      });
 
     </script>
 
