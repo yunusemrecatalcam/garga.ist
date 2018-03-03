@@ -66,18 +66,22 @@
 
       $(document).ready(function(){
           var clicked="false";
-
+          var textindex="a";
           $("button").click(function(){
             var inner= document.getElementById("textyyy").innerHTML;
             var id=this.id;
-            if(id=="onay" && inner ){
-              alert("shett");
+
+            if(id=="onay" && inner){
+              if (confirm(textindex)) {
+
+              }
             }else {
               clicked="true";
+              textindex=this.id;
               $.get( "gettest.php", { idsi: id} )
               .done(function( data ) {
                 //alert( id +" Data x Loaded: " + data  );
-                document.getElementById("textyyy").innerHTML=data;
+                document.getElementById("textyyy").innerHTML=textindex+data;
               });
             }
           });
