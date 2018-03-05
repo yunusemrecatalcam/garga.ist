@@ -10,7 +10,7 @@ if (isset($_COOKIE['username'])) {
 $username=$_COOKIE['username'];
 
 
-$try=mysqli_query($conn,"SELECT * FROM adminolos WHERE usernamei='$username' ");
+$try=mysqli_query($conn,"SELECT * FROM adminolos WHERE usernamei='$username' "); 
 $result=mysqli_fetch_assoc($try);
 
 if ($result['lasthashi']==$kod) {

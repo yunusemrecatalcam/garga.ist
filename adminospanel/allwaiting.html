@@ -114,6 +114,7 @@
               .done(function( data ) {
                 //alert( id +" Data x Loaded: " + data  );
                 document.getElementById("textyyy").innerHTML=textindex+data;
+                $("p").get(0).scrollIntoView();
               });
             }
           });
