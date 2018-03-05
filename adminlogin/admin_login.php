@@ -54,6 +54,12 @@ if ($result['password']==$password ) {
     $cookie_name = "username";
     $cookie_value = $username;
     setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); // 86400 = 1 day
+
+    $cookie_name = "password";
+    $cookie_value = $password;
+    setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); // 86400 = 1 day
+
+
     header("Location: http://garga.ist/beta/adminlogin/verificate.html");
   }else {
     echo "olmaması gereken problemler yaşandı";

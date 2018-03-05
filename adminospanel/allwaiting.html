@@ -15,9 +15,33 @@
       <?php
       include ($_SERVER['DOCUMENT_ROOT'].'/beta/connect_daddy.php');
       $conn=open_con();
+      
+      if (isset($_COOKIE['username']) && isset($_COOKIE['password'])  ){
+
+        $lol=$_COOKIE['username'];
+        $try=mysqli_query($conn,"SELECT * FROM adminolos WHERE usernamei='$lol' ");
+        $result=mysqli_fetch_assoc($try);
+        if (password_verify($_COOKIE['password'],$result['hashedpassi']) && $result['lasthashi']==$_COOKIE['hash']) {
+          echo "1";
+          while(1);
+          //header("Location: http://facebook.com");
+        } else {
+          echo "2";
+          echo $result['lasthashi']."lol";
+          header("Location: http://garga.ist");
+        }
+
+
+      }else{
+        header("Location: http://garga.ist");
+        echo "3";
+      }
+
+
 
       $tryi=mysqli_query($conn,"SELECT * FROM texts WHERE level='1' ");
       if($tryi){
+
           echo "<tr>";
           echo "<th>";
           echo "MAHLAS"."    ";
@@ -28,33 +52,25 @@
           echo "<th>";
           echo "TARİH"."</br>";
           echo "</th>";
-          //echo "<th>";
-          //echo "METNİ OKU"."    ";
-          //echo "</th>";
+
         while ($result=mysqli_fetch_assoc($tryi)) {
           echo "<tr>";
-
           echo "<td>";
           echo $result['mahlas'];
           echo "</td>";
-          //echo '<a href="https://www.w3schools.com">'.'Visit W3Schools</a>';
-          /*echo "<td>";
-          echo $result['metinadi']."    ";
-          echo "</td>";*/
 
           echo "<td>";
           echo '<button id="'.$result['id'].'" type="button" '.'name="button">'.$result['metinadi'].'</button>';
           echo "</td>";
 
-
           echo "<td>";
           echo $result['tarih']."    ";
           echo "</td>";
 
-
           echo "</br>";
         }
       }
+
       ?>
       </table>
       <button type="button" id="onay" name="button">lol</button>
