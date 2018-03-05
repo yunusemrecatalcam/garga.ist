@@ -77,6 +77,22 @@
     </div>
     <script type="text/javascript">
 
+    function getCookie(cname) {
+      var name = cname + "=";
+      var decodedCookie = decodeURIComponent(document.cookie);
+      var ca = decodedCookie.split(';');
+      for(var i = 0; i <ca.length; i++) {
+          var c = ca[i];
+          while (c.charAt(0) == ' ') {
+              c = c.substring(1);
+          }
+          if (c.indexOf(name) == 0) {
+              return c.substring(name.length, c.length);
+          }
+      }
+      return "";
+  }
+
       $(document).ready(function(){
           var clicked="false";
           var textindex="a";
@@ -85,7 +101,7 @@
             var id=this.id;
 
             if(id=="onay" && inner){
-              if (confirm(textindex)) {
+              if (confirm(getCookie("hash"))) {
                 $.get( "gettest.php", { idsi: id} )
                   .done(function( data ) {
                   alert("onayladın lol");
