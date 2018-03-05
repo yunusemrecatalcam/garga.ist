@@ -15,7 +15,7 @@
       <?php
       include ($_SERVER['DOCUMENT_ROOT'].'/beta/connect_daddy.php');
       $conn=open_con();
-      
+
       if (isset($_COOKIE['username']) && isset($_COOKIE['password'])  ){
 
         $lol=$_COOKIE['username'];
@@ -23,11 +23,8 @@
         $result=mysqli_fetch_assoc($try);
         if (password_verify($_COOKIE['password'],$result['hashedpassi']) && $result['lasthashi']==$_COOKIE['hash']) {
           echo "1";
-          while(1);
-          //header("Location: http://facebook.com");
         } else {
           echo "2";
-          echo $result['lasthashi']."lol";
           header("Location: http://garga.ist");
         }
 
@@ -89,7 +86,10 @@
 
             if(id=="onay" && inner){
               if (confirm(textindex)) {
-
+                $.get( "gettest.php", { idsi: id} )
+                  .done(function( data ) {
+                  alert("onayladın lol");
+                });
               }
             }else {
               clicked="true";
