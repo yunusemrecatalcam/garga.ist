@@ -46,6 +46,7 @@ body{
   background-color: #a3a375;
   background-image: url("crow.jpg");
   background-repeat: no-repeat;
+  background-size: cover;
 }
 
 textarea{
