@@ -1,9 +1,22 @@
 #customers tr:nth-child(even){background-color: #f2f2f2;}
-
+#customers tr:nth-child(odd){background-color: #a3a375;}
 #customers tr:hover {background-color: #ddd;}
 
 table,th,td,button{
   font-size: 20px;
+}
+
+body{
+  background-color: white;#a3a375;
+  color: green;
+}
+
+.tabler{
+  position: absolute;
+  left: 0;
+  top: 0;
+  align-items: flex-start;
+  vertical-align: top;
 }
 
 #textyyy{
