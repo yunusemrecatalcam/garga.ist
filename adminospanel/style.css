@@ -20,8 +20,9 @@ table,th,td,button{
 
 #onay{
   border-width: 4px;
-  background-color: blue;
+  background-color: green;
   outline: green;
+  max-width: 100px;
 }
 
 @media only screen and (orientation: portrait) {

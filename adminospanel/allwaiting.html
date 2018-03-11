@@ -70,11 +70,12 @@
 
       ?>
       </table>
-      <button type="button" id="onay" name="button">lol</button>
+
     </div>
     <div class="textarea">
       <p id="textyyy"></p>
     </div>
+    <button type="button" id="onay" name="button">onayla</button>
     <script type="text/javascript">
 
     function getCookie(cname) {
@@ -96,13 +97,14 @@
       $(document).ready(function(){
           var clicked="false";
           var textindex="a";
+          var textname="lol";
           $("button").click(function(){
             var inner= document.getElementById("textyyy").innerHTML;
             var id=this.id;
 
             if(id=="onay" && inner){
               if (confirm(getCookie("hash"))) {
-                $.get( "gettest.php", { idsi: id} )
+                $.get( "onay.php", { idsi: id} )
                   .done(function( data ) {
                   alert("onayladın lol");
                 });
@@ -110,10 +112,11 @@
             }else {
               clicked="true";
               textindex=this.id;
+              textname=this.innerHTML;
               $.get( "gettest.php", { idsi: id} )
               .done(function( data ) {
                 //alert( id +" Data x Loaded: " + data  );
-                document.getElementById("textyyy").innerHTML=textindex+data;
+                document.getElementById("textyyy").innerHTML=textindex+"</br> "+textname+"</br> "+data;
                 $("p").get(0).scrollIntoView();
               });
             }
