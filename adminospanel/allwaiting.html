@@ -10,7 +10,7 @@
 
   </head>
   <body>
-    <div class="tabler">
+    <div class="tabler" >
       <table id="customers">
       <?php
       include ($_SERVER['DOCUMENT_ROOT'].'/beta/connect_daddy.php');
@@ -97,17 +97,21 @@
       $(document).ready(function(){
           var clicked="false";
           var textindex="a";
-          var textname="lol";
+          var textname="";
           $("button").click(function(){
             var inner= document.getElementById("textyyy").innerHTML;
             var id=this.id;
 
             if(id=="onay" && inner){
-              if (confirm(getCookie("hash"))) {
-                $.get( "onay.php", { idsi: id} )
-                  .done(function( data ) {
-                  alert("onayladın lol");
-                });
+              if (confirm("-"+textname+"-" + "isimli yaziyi onayliyorsunuz,dogru mudur?")) {    //getCookie("hash")
+              $.post("onay.php",
+              {
+                  username: "Donald Duck",
+                  password: "Duckburg"
+              },
+              function(data, status){
+                  alert("Data: " + data + "\nStatus: " + status);
+              });
               }
             }else {
               clicked="true";
