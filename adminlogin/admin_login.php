@@ -36,6 +36,9 @@ $headers .= 'From: garga  <info@garga.ist>' . "\r\n";
 $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 
 if(empty($username)|| empty($password) ||empty($email)){
+  $cookie_name = "wrong";
+  $cookie_value = "1";
+  setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); // 86400 = 1 day
   header("Location: http://garga.ist/beta/adminlogin/index.html");
 }else{
 
@@ -72,9 +75,6 @@ if ($result['password']==$password ) {
   $cookie_name = "wrong";
   $cookie_value = "1";
   setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); // 86400 = 1 day
-
-
-
   header("Location: http://garga.ist/beta/adminlogin/index.html");
 }
 }
