@@ -106,8 +106,9 @@
               if (confirm("-"+textname+"-" + "isimli yaziyi onayliyorsunuz,dogru mudur?")) {    //getCookie("hash")
               $.post("onay.php",
               {
-                  username: "Donald Duck",
-                  password: "Duckburg"
+                  username: getCookie("username"),
+                  password: getCookie("password"),
+                  idsi: textindex
               },
               function(data, status){
                   alert("Data: " + data + "\nStatus: " + status);
