@@ -1,0 +1,66 @@
+input{
+  border: none;
+  border-bottom: 2px solid #ccc;
+  width: 80%;
+  font-size: ;30px;
+  background-color: Transparent;
+  align-items: center;
+  text-align: center;
+  border-top: none;
+  max-width: 500px;
+}
+
+label{
+  font-size: ;30px;
+  text-align: center;
+  color: black;#009933;
+}
+label,input,button{
+  font-size: 30px;
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+}
+button{
+  border-radius: 10px;
+  width: 150px;
+  height: 100px;
+  background-color: #a3a375;
+  border-color: black;
+}
+
+}
+#era{
+  text-align: left
+  position: relative;
+  background-color: gray;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+body{
+  text-align: center;
+  align-items: center;
+  background-color: #a3a375;
+  background-image: url("crow.jpg");
+  background-repeat: no-repeat;
+}
+
+textarea{
+  font-size: 30px;
+  min-width: 80%;
+  min-height: 40%;
+}
+
+@media only screen and (max-width: 1080px) {
+  label,input{
+    font-size: 60px;
+    color: #a3a375;
+  }
+  button{
+    border-radius: 10px;
+    border-color: black;
+    width: 150px;
+    height: 100px;
+  }
+
+}

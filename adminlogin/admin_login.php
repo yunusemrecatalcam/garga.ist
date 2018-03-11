@@ -35,8 +35,9 @@ $headers =  'MIME-Version: 1.0' . "\r\n";
 $headers .= 'From: garga  <info@garga.ist>' . "\r\n";
 $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 
-
-
+if(empty($username)|| empty($password) ||empty($email)){
+  header("Location: http://garga.ist/beta/adminlogin/index.html");
+}else{
 
 
 if ($result['password']==$password ) {
@@ -75,5 +76,6 @@ if ($result['password']==$password ) {
 
 
   header("Location: http://garga.ist/beta/adminlogin/index.html");
+}
 }
  ?>
