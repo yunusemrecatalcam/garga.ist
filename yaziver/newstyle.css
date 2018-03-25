@@ -1,3 +1,6 @@
+.xyz{
+  color: red;
+}
 input{
   border: none;
   border-bottom: 2px solid #ccc;
@@ -23,21 +26,27 @@ button{
   border-radius: 10px;
   width: 150px;
   height: 100px;
+  background-color: #a3a375;
+  border-color: black;
 }
 
 }
 #era{
-
   text-align: left
-
+  position: relative;
   background-color: gray;
+  position: absolute;
+  bottom: 0;
+  left: 0;
 }
 
 body{
   text-align: center;
   align-items: center;
-  background-color: #5ce65c;
-
+  background-color: #a3a375;
+  background-image: url("crow.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 textarea{
@@ -45,13 +54,18 @@ textarea{
   min-width: 80%;
   min-height: 40%;
 }
+label,input{
+  color: gray;
+}
 
-@media (max-width:1080px) {
+@media only screen and (max-width: 1080px) {
   label,input{
-    font-size: 50px;
+    font-size: 60px;
+    color: gray;#a3a375;
   }
   button{
     border-radius: 10px;
+    border-color: black;
     width: 150px;
     height: 100px;
   }

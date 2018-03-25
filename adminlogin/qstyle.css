@@ -54,11 +54,13 @@ textarea{
   min-width: 80%;
   min-height: 40%;
 }
-
+label,input{
+  color: gray;
+}
 @media only screen and (max-width: 1080px) {
   label,input{
     font-size: 60px;
-    color: #a3a375;
+    color: gray;#a3a375;
   }
   button{
     border-radius: 10px;
