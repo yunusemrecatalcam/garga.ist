@@ -9,9 +9,11 @@ table{
 
 position: relative;
 vertical-align: top;
+}
+#tablerlol{
+  max-width: 1080px;
 
 }
-
 body{
   background-color: white;#a3a375;
   color: green;
@@ -22,7 +24,8 @@ body{
   position: relative;
   vertical-align: top;
   align-items: flex-start;
-  width: 100%;
+  max-width: 1080px;
+
 }
 
 #textyyy{
@@ -31,7 +34,7 @@ body{
   font-size: 20px;
   text-align: center;
   align-content: center;
-  background-color: #ff8080;
+  background-color: #cccccc;
   align: center;
   font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
   min-height: 30%;
@@ -42,7 +45,7 @@ body{
   border-width: 4px;
   background-color: green;
   outline: green;
-  max-width: 100px;
+  max-width: 220px;
   vertical-align: bottom;
 }
 
@@ -53,10 +56,11 @@ body{
         vertical-align: top;
     }
     table,th,td,button{
-      font-size: 50px;
+      font-size: 45px;
+      color: black;
     }
     #textyyy{
-      font-size: 50px;
+      font-size: 35px;
     }
 
   }
