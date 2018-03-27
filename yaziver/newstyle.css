@@ -35,9 +35,7 @@ button{
   text-align: left
   position: relative;
   background-color: gray;
-  position: absolute;
-  bottom: 0;
-  left: 0;
+  position: relative;
 }
 
 body{

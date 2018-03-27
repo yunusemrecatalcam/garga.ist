@@ -24,14 +24,14 @@
         if (password_verify($_COOKIE['password'],$result['hashedpassi']) && $result['lasthashi']==$_COOKIE['hash']) {
           echo "1";
         } else {
-          echo "2";
-          header("Location: http://garga.ist");
+          //echo "2";
+          //header("Location: http://garga.ist");
         }
 
 
       }else{
-        header("Location: http://garga.ist");
-        echo "3";
+        //header("Location: http://garga.ist");
+        //echo "3";
       }
 
 
@@ -64,7 +64,7 @@
           echo $result['tarih']."    ";
           echo "</td>";
 
-          echo "</br>";
+          //echo "</br>";
         }
       }
 
@@ -76,7 +76,7 @@
 
       <p id="textyyy"></p>
         <button type="button" id="onay" name="button">onayla</button>
-    
+
 
     <script type="text/javascript">
 

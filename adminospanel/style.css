@@ -1,5 +1,5 @@
 #customers tr:nth-child(even){background-color: #f2f2f2;}
-#customers tr:nth-child(odd){background-color: #a3a375;}
+#customers tr:nth-child(odd){background-color: #cccccc;}
 #customers tr:hover {background-color: #ddd;}
 
 table,th,td,button{
@@ -7,8 +7,8 @@ table,th,td,button{
 }
 table{
 
-  position: absolute;
-  top: 40px;
+position: relative;
+vertical-align: top;
 
 }
 
@@ -19,9 +19,8 @@ body{
 }
 
 .tabler{
-  position: absolute;
-  left: 0;
-  top: 0;
+  position: relative;
+  vertical-align: top;
   align-items: flex-start;
   width: 100%;
 }
@@ -44,13 +43,12 @@ body{
   background-color: green;
   outline: green;
   max-width: 100px;
-  position: absolute;
   vertical-align: bottom;
 }
 
 @media only screen and (max-width: 1080px) {
     body {
-        background-color: lightblue;
+
         font-size: 100px;
         vertical-align: top;
     }
