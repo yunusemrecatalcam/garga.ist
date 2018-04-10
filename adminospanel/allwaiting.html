@@ -110,7 +110,8 @@
               {
                   username: getCookie("username"),
                   password: getCookie("password"),
-                  idsi: textindex
+                  hash:     getCookie("hash"),
+                  idsi:     textindex
               },
               function(data, status){
                   alert("Data: " + data + "\nStatus: " + status);
