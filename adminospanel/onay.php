@@ -14,13 +14,17 @@ $hash = mysqli_real_escape_string($conn, $_POST['hash']);
 $try=mysqli_query($conn,"SELECT * FROM adminolos WHERE usernamei='$username' ");
 $result=mysqli_fetch_assoc($try);
 //echo $hash;
+$lolnumi ="numan";
 
 if($result['usernamei']==$username && password_verify($password,$result['hashedpassi'])
-    && $result['lasthashi']==$hash ){
+&& $result['lasthashi']==$hash ){
+  $lk=mysqli_query($conn,"UPDATE textstate SET $lolnumi='2' WHERE id=$id");
+  if ($lk) {
+    echo "qwsss";
+  }
   echo "lol,it worked-- ".$id;
 }else{
   echo "fluff";
-
 }
 
 
