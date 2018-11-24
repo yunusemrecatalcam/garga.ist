@@ -6,12 +6,12 @@
 body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
-  background-color : #d7d8cd;;#D8F0EB;#7e7f82;
+  background-color : #84855D;;#D8F0EB;#7e7f82;
 }
 
 .topnav {
   overflow: hidden;
-  background-color: #262624;#333;
+  background-color: #4A463A;#333;
   position : fixed;
   top: 0;
   width : 100vw;
@@ -69,12 +69,12 @@ body {
 }
 
 .topnav a.active {
-  background-color: #F35848;#D82825;#4CAF50;
+  background-color: #91876E;#D82825;#4CAF50;
   color: white;
 }
 
 .text_view {
-   background-color: transparent;#4CAF50;
+   background-color: #A4A375;#4CAF50;
    border: 3px;
    border-color: #262624;
    border-style: dashed;

@@ -6,7 +6,7 @@
 body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
-  background-color : #d7d8cd;;#D8F0EB;#7e7f82;
+  background-color : #C0C1BA;;#D8F0EB;#7e7f82;
 }
 
 .topnav {
@@ -33,7 +33,7 @@ body {
 }
 .topnav h2 {
   text-align: center;
-  color: #D8F0EB;
+  color: #0c7008;
   max-height:5vh;
   font-size: 50px;
   font-family: Nexa_Bold;
@@ -69,7 +69,7 @@ body {
 }
 
 .topnav a.active {
-  background-color: #F35848;#D82825;#4CAF50;
+  background-color: #0c7008;#D82825;#4CAF50;
   color: white;
 }
 
