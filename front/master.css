@@ -21,6 +21,7 @@ body {
 }
 
 .topnav a {
+
   float: left;
   color: #f2f2f2;
   text-align: center;
@@ -30,6 +31,22 @@ body {
   left : 10vh;
   position: relative;
   font-family: Nexa_Bold;
+}
+.topnav a.svg1{
+  background-image: url(garga.svg);
+  background-size:contain;
+  background-repeat: no-repeat;
+  min-width: 50px;
+  min-height: 50px;
+  align-items: left;
+}
+.topnav a.svg2{
+  background-image: url(crow.svg);
+  background-size:contain;
+  background-repeat: no-repeat;
+  min-width: 50px;
+  min-height: 50px;
+  align-items: left;
 }
 .topnav h2 {
   text-align: center;
@@ -92,15 +109,6 @@ p,h3{
   margin-left: 10px;
   margin-right: 10px;
   font-family: Nexa_Bold;
-}
-
-.topnav img{
-  position: fixed;
-  top: 6px;
-  left: 10px;
-  align: left;
-  max-height : 6vh;
-
 }
 
 .sentence_view {
