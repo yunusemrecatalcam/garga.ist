@@ -40,6 +40,9 @@ body {
   min-height: 50px;
   align-items: left;
 }
+.topnav a.svg1:hover{
+  background-image: url(garga_on_hover.svg);
+}
 .topnav a.svg2{
   background-image: url(crow.svg);
   background-size:contain;
@@ -47,6 +50,9 @@ body {
   min-width: 50px;
   min-height: 50px;
   align-items: left;
+}
+.topnav a.svg2:hover{
+  background-image: url(crow_on_hover.svg);
 }
 .topnav h2 {
   text-align: center;
