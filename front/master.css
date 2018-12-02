@@ -6,7 +6,7 @@
 body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
-  background-color : #d7d8cd;;#D8F0EB;#7e7f82;
+  background-color : #d7d8cd;
 }
 
 .topnav {
@@ -38,7 +38,8 @@ body {
   background-repeat: no-repeat;
   min-width: 50px;
   min-height: 50px;
-  align-items: left;
+  align: left;
+  left: 10px;
 }
 .topnav a.svg1:hover{
   background-image: url(garga_on_hover.svg);
@@ -49,14 +50,16 @@ body {
   background-repeat: no-repeat;
   min-width: 50px;
   min-height: 50px;
-  align-items: left;
+  margin: 2px;
+  align: right;
+  right: 10px;
 }
 .topnav a.svg2:hover{
   background-image: url(crow_on_hover.svg);
 }
 .topnav h2 {
   text-align: center;
-  color: #D8F0EB;
+  color: #d7d8cd;#D8F0EB;
   max-height:5vh;
   font-size: 50px;
   font-family: Nexa_Bold;
