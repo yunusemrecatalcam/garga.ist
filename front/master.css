@@ -24,20 +24,19 @@ body {
 
   float: left;
   color: #f2f2f2;
-  text-align: center;
   padding: 14px 20px;
   text-decoration: none;
   font-size: 17px;
-  left : 10vh;
-  position: relative;
   font-family: Nexa_Bold;
 }
 .topnav a.svg1{
   background-image: url(garga.svg);
   background-size:contain;
   background-repeat: no-repeat;
-  min-width: 50px;
-  min-height: 50px;
+  order: 1;
+  margin-left: 10px;
+  min-width: 40px;
+  min-height: 40px;
 }
 .topnav a.svg1:hover{
   background-image: url(garga_on_hover.svg);
@@ -46,18 +45,23 @@ body {
   background-image: url(crow.svg);
   background-size:contain;
   background-repeat: no-repeat;
-  min-width: 50px;
-  min-height: 50px;
-  margin: 2px;
+  order: 3;
+  margin-right: 10px;
+  min-width: 40px;
+  min-height: 40px;
 }
 .topnav a.svg2:hover{
   background-image: url(crow_on_hover.svg);
 }
-
-.align_right{
-  margin: auto;
-  position: relative;
-  text-align: right;
+.flex_box{
+  display: flex;
+  align-content: stretch;
+  justify-content: space-between;
+}
+.menus{
+  order: 2;
+  flex-grow: 0.3;
+  text-align: center;
 }
 
 .topnav h2 {
@@ -69,27 +73,6 @@ body {
   position: relative;
   margin-top: 10px;
   margin-bottom: 30px;
-}
-.topnav p{
-  font-size: 14px;
-  align: center;
-  text-align: right;
-  color: #D8F0EB;
-  max-height:5vh;
-  font-family: Nexa_Bold;
-  font-style: italic;
-  position: relative;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  margin-right: 20px;
-}
-.topnav input[type=text] {
-    width: 90%;
-    horizontal-align: center;
-    border: none;
-    margin-top: 8px;
-    margin-right: 16px;
-    font-size: 17px;
 }
 
 .topnav a:hover {
