@@ -6,7 +6,7 @@
 body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
-  background-color : #d7d8cd;
+  background-color : #d7d8cd;;#D8F0EB;#7e7f82;
 }
 
 .topnav {
@@ -38,8 +38,6 @@ body {
   background-repeat: no-repeat;
   min-width: 50px;
   min-height: 50px;
-  align: left;
-  left: 10px;
 }
 .topnav a.svg1:hover{
   background-image: url(garga_on_hover.svg);
@@ -51,15 +49,20 @@ body {
   min-width: 50px;
   min-height: 50px;
   margin: 2px;
-  align: right;
-  right: 10px;
 }
 .topnav a.svg2:hover{
   background-image: url(crow_on_hover.svg);
 }
+
+.align_right{
+  margin: auto;
+  position: relative;
+  text-align: right;
+}
+
 .topnav h2 {
   text-align: center;
-  color: #d7d8cd;#D8F0EB;
+  color: #D8F0EB;
   max-height:5vh;
   font-size: 50px;
   font-family: Nexa_Bold;
