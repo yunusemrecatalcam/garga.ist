@@ -14,16 +14,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
     <link rel="stylesheet" href="master.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 </head>
 
 <body>
 
     <div class="topnav">
-        <h2>GARGA</h2>
         <div class="flex_box">
+          <h2>GARGA</h2>
           <a class="svg1" ></a>
-          <a class="menus">V</a>
+
+          <div class="dropdown">
+           <button class="dropbtn" onclick="myFunction()">MENÜ
+             <i class="fa fa-caret-down"></i>
+           </button>
+           <div class="dropdown-content" id="myDropdown">
+             <a href="#">Biz Kimiz?</a>
+             <a href="#">Kılavuz</a>
+             <a href="#">İletişim</a>
+           </div>
+         </div>
+
           <a class="svg2" ></a>
+
         </div>
     </div>
 
@@ -71,5 +85,21 @@
       <p>Yazının başlangıcından bir kısım...</p>
     </div>
     <br>
+
+    <script type="text/javascript">
+
+    function myFunction() {
+    document.getElementById("myDropdown").classList.toggle("show");
+    }
+
+    // Close the dropdown if the user clicks outside of it
+    window.onclick = function(e) {
+      if (!e.target.matches('.dropbtn')) {
+        if (myDropdown.classList.contains('show')) {
+          myDropdown.classList.remove('show');
+        }
+      }
+    }
+    </script>
 </body>
 </html>
