@@ -22,19 +22,27 @@
 
     <div class="topnav">
       <h2>GARGA</h2>
-      
+
         <div class="flex_box">
-          <a class="svg1" ></a>
+
+          <div class="menu1">
+              <a class="svg1" onclick="midmenu('menu1_content')" ></a>
+              <div class="dropdown-content" id="menu1_content">
+                <a href="#">Biz Kimiz?</a>
+                <a href="#">Kılavuz</a>
+                <a href="#">İletişim</a>
+              </div>
+          </div>
 
           <div class="dropdown">
-           <button class="dropbtn" onclick="myFunction()">MENÜ
-             <i class="fa fa-caret-down"></i>
-           </button>
-           <div class="dropdown-content" id="myDropdown">
-             <a href="#">Biz Kimiz?</a>
-             <a href="#">Kılavuz</a>
-             <a href="#">İletişim</a>
-           </div>
+             <button class="dropbtn" onclick="midmenu('myDropdown')">MENÜ
+               <i class="fa fa-caret-down"></i>
+             </button>
+             <div class="dropdown-content" id="myDropdown">
+               <a href="#">Biz Kimiz?</a>
+               <a href="#">Kılavuz</a>
+               <a href="#">İletişim</a>
+             </div>
          </div>
 
           <a class="svg2" ></a>
@@ -89,8 +97,8 @@
 
     <script type="text/javascript">
 
-    function myFunction() {
-    document.getElementById("myDropdown").classList.toggle("show");
+    function midmenu(content_id) {
+    document.getElementById(content_id).classList.toggle("show");
     }
 
     // Close the dropdown if the user clicks outside of it
@@ -98,6 +106,11 @@
       if (!e.target.matches('.dropbtn')) {
         if (myDropdown.classList.contains('show')) {
           myDropdown.classList.remove('show');
+        }
+      }
+     if (!e.target.matches('.svg1')) {
+        if (menu1_content.classList.contains('show')) {
+          menu1_content.classList.remove('show');
         }
       }
     }
