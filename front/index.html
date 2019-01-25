@@ -20,7 +20,7 @@
 
 <body>
 
-    <div class="topnav">
+    <div class="topnav" id="topnav">
       <h2>GARGA</h2>
 
         <div class="flex_box">
@@ -28,9 +28,9 @@
           <div class="menu1">
               <a class="svg1" onclick="midmenu('menu1_content')" ></a>
               <div class="dropdown-content" id="menu1_content">
-                <a href="#">Biz Kimiz?</a>
-                <a href="#">Kılavuz</a>
-                <a href="#">İletişim</a>
+                <a href="#">Düz Yazı</a>
+                <a href="#">Şiir</a>
+                <a href="#">Fotoğraf</a>
               </div>
           </div>
 
@@ -45,7 +45,14 @@
              </div>
          </div>
 
-          <a class="svg2" ></a>
+         <div class="menu2">
+             <a class="svg2" onclick="midmenu('menu2_content')" ></a>
+             <div class="dropdown-content" id="menu2_content">
+               <a href="#">Sinema</a>
+               <a href="#">Tiyatro</a>
+               <a href="#">Dizi</a>
+             </div>
+         </div>
 
         </div>
     </div>
@@ -97,8 +104,26 @@
 
     <script type="text/javascript">
 
+    window.onresize = calc_pos;
+    window.onload   = calc_pos;
+
+    function calc_pos(){
+      var topnav = document.getElementById("topnav");
+      var one =document.getElementsByClassName("dropdown-content");
+      var len = topnav.offsetHeight + "px";
+
+      Array.from(one).forEach(function(element){
+        element.style.top = len;
+        console.log("as");
+      });
+      //for (var i = 0; i <3; i++) {
+        //one.style.top = len;// topnav.offsetHeight;
+        //}
+      //window.alert(one.length);
+
+    }
     function midmenu(content_id) {
-    document.getElementById(content_id).classList.toggle("show");
+      document.getElementById(content_id).classList.toggle("show");
     }
 
     // Close the dropdown if the user clicks outside of it
@@ -108,11 +133,17 @@
           myDropdown.classList.remove('show');
         }
       }
-     if (!e.target.matches('.svg1')) {
+      if (!e.target.matches('.svg1')) {
         if (menu1_content.classList.contains('show')) {
           menu1_content.classList.remove('show');
         }
       }
+      if (!e.target.matches('.svg2')) {
+         if (menu2_content.classList.contains('show')) {
+           menu2_content.classList.remove('show');
+         }
+      }
+
     }
     </script>
 </body>
