@@ -12,11 +12,11 @@ function calc_pos(){
     console.log(element.style.width);
   });
 
-  var dropbtn = $("#dropbtn");
-  var menu    = $("#myDropdown");
+  document.getElementById("myDropdown").style.left = (($("#dropbtn").position().left)+($("#dropbtn").outerWidth()-$("#myDropdown").outerWidth())/2) + "px";//horizontal align
+  document.getElementById("menu1_content").style.left = (($("#svg1").position().left)+($("#svg1").outerWidth()-$("#menu1_content").outerWidth())/2) + "px";//horizontal align
+  document.getElementById("menu2_content").style.left = (($("#svg2").position().left)+($("#svg2").outerWidth()-$("#menu2_content").outerWidth())/2) + "px";//horizontal align
 
-  document.getElementById("myDropdown").style.left = (($(window).width()/2)-menu.width()/2) + "px";//horizontal align of mid menu
-  //window.alert($(window).width());
+  //window.alert((($("#svg1").offset().left)/2));
 }
 
 function midmenu(content_id) {

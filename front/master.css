@@ -15,7 +15,7 @@ body {
   position : fixed;
   top: 0;
   width : 100vw;
-  max-height: 30vh;
+  max-height: 40vh;
   z-index: 1;
   display: inline-block;
   align-items: center;
@@ -35,6 +35,8 @@ body {
   font-family: Nexa_Bold;
   color: black;
   cursor: pointer;
+  margin-bottom: 5px;
+  -webkit-tap-highlight-color:  rgba(255, 255, 255, 0);
 }
 .topnav a.svg1:hover{
   /*background-image: url(garga_on_hover.svg);*/
@@ -53,6 +55,8 @@ body {
   font-family: Nexa_Bold;
   color: black;
   cursor: pointer;
+  margin-bottom: 5px;
+  -webkit-tap-highlight-color:  rgba(255, 255, 255, 0);
 }
 .topnav a.svg2:hover{
   /*background-image: url(crow_on_hover.svg);*/
@@ -131,6 +135,7 @@ p,h3{
 
 .menu1{
   order: 0;
+  /*border: 1px solid black;*/
 }
 .dropdown {
   float: left;
@@ -155,6 +160,8 @@ p,h3{
   font-family: inherit;
   margin: 0;
   font-weight: bold;
+  -webkit-tap-highlight-color:  rgba(255, 255, 255, 0);
+
 }
 
 
@@ -162,16 +169,12 @@ button::-moz-focus-inner {
   border: 0;
 }
 
-
-
-
 .dropdown-content {
   display: none;
   position: absolute;
   background-color: #f9f9f9;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
-  max-width: 30vw;
 
 }
 .dropdown-content a {
@@ -180,7 +183,7 @@ button::-moz-focus-inner {
   padding: 12px 16px;
   text-decoration: none;
   display: block;
-  text-align: left;
+  text-align: center;
   align-self: left;
   border: 1px solid black;
 }
