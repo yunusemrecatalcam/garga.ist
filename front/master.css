@@ -35,7 +35,10 @@ body {
   font-family: Nexa_Bold;
   color: black;
   cursor: pointer;
-  margin-bottom: 5px;
+  margin-left: 3px;
+  margin-right: 1px;
+  margin-top: 4px;
+  margin-bottom: 4px;
   -webkit-tap-highlight-color:  rgba(255, 255, 255, 0);
 }
 .topnav a.svg1:hover{
@@ -55,7 +58,10 @@ body {
   font-family: Nexa_Bold;
   color: black;
   cursor: pointer;
-  margin-bottom: 5px;
+  margin-left: 3px;
+  margin-right: 1px;
+  margin-top: 4px;
+  margin-bottom: 4px;
   -webkit-tap-highlight-color:  rgba(255, 255, 255, 0);
 }
 .topnav a.svg2:hover{
@@ -135,16 +141,24 @@ p,h3{
 
 .menu1{
   order: 0;
-  /*border: 1px solid black;*/
+  border: 1px solid #d7d8cd;
+  border-radius: 5px;
+  margin-bottom: 5px;
 }
 .dropdown {
   float: left;
   overflow: hidden;
   order: 2;
+  border: 1px solid #d7d8cd;
+  border-radius: 5px;
+  margin-bottom: 5px;
 }
 
 .menu2{
   order: 3;
+  border: 1px solid #d7d8cd;
+  border-radius: 5px;
+  margin-bottom: 1px;
 }
 
 .dropdown .dropbtn {
@@ -154,8 +168,6 @@ p,h3{
   outline: 0px;
   color: white;
   padding: 12px 16px;
-  width: 20vw;
-  height: 7vh;
   background-color: inherit;
   font-family: inherit;
   margin: 0;

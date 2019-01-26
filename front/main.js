@@ -12,9 +12,9 @@ function calc_pos(){
     console.log(element.style.width);
   });
 
-  document.getElementById("myDropdown").style.left = (($("#dropbtn").position().left)+($("#dropbtn").outerWidth()-$("#myDropdown").outerWidth())/2) + "px";//horizontal align
-  document.getElementById("menu1_content").style.left = (($("#svg1").position().left)+($("#svg1").outerWidth()-$("#menu1_content").outerWidth())/2) + "px";//horizontal align
-  document.getElementById("menu2_content").style.left = (($("#svg2").position().left)+($("#svg2").outerWidth()-$("#menu2_content").outerWidth())/2) + "px";//horizontal align
+  document.getElementById("myDropdown").style.left = (($("#dropbtn").position().left)+($("#dropbtn").innerWidth()-$("#myDropdown").innerWidth())/2) + "px";//horizontal align
+  document.getElementById("menu1_content").style.left = (($("#svg1").position().left)+($("#svg1").outerWidth(true)-$("#menu1_content").outerWidth(true))/2) + "px";//horizontal align
+  document.getElementById("menu2_content").style.left = (($("#svg2").position().left)+($("#svg2").outerWidth(true)-$("#menu2_content").outerWidth(true))/2) + "px";//horizontal align
 
   //window.alert((($("#svg1").offset().left)/2));
 }
