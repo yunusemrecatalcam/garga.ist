@@ -15,6 +15,7 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="master.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 </head>
 
@@ -35,7 +36,7 @@
           </div>
 
           <div class="dropdown">
-             <button class="dropbtn" onclick="midmenu('myDropdown')">MENÜ
+             <button class="dropbtn" id="dropbtn" onclick="midmenu('myDropdown')">MENÜ
                <i class="fa fa-caret-down"></i>
              </button>
              <div class="dropdown-content" id="myDropdown">
@@ -102,49 +103,9 @@
     </div>
     <br>
 
-    <script type="text/javascript">
+    <script src="main.js" type="text/javascript">
 
-    window.onresize = calc_pos;
-    window.onload   = calc_pos;
 
-    function calc_pos(){
-      var topnav = document.getElementById("topnav");
-      var one =document.getElementsByClassName("dropdown-content");
-      var len = topnav.offsetHeight + "px";
-
-      Array.from(one).forEach(function(element){
-        element.style.top = len;
-        console.log("as");
-      });
-      //for (var i = 0; i <3; i++) {
-        //one.style.top = len;// topnav.offsetHeight;
-        //}
-      //window.alert(one.length);
-
-    }
-    function midmenu(content_id) {
-      document.getElementById(content_id).classList.toggle("show");
-    }
-
-    // Close the dropdown if the user clicks outside of it
-    window.onclick = function(e) {
-      if (!e.target.matches('.dropbtn')) {
-        if (myDropdown.classList.contains('show')) {
-          myDropdown.classList.remove('show');
-        }
-      }
-      if (!e.target.matches('.svg1')) {
-        if (menu1_content.classList.contains('show')) {
-          menu1_content.classList.remove('show');
-        }
-      }
-      if (!e.target.matches('.svg2')) {
-         if (menu2_content.classList.contains('show')) {
-           menu2_content.classList.remove('show');
-         }
-      }
-
-    }
     </script>
 </body>
 </html>

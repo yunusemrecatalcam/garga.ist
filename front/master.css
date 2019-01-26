@@ -154,8 +154,15 @@ p,h3{
   background-color: inherit;
   font-family: inherit;
   margin: 0;
-
+  font-weight: bold;
 }
+
+
+button::-moz-focus-inner {
+  border: 0;
+}
+
+
 
 
 .dropdown-content {
@@ -164,7 +171,7 @@ p,h3{
   background-color: #f9f9f9;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
-  width: 25vw;
+  max-width: 30vw;
 
 }
 .dropdown-content a {
@@ -175,7 +182,7 @@ p,h3{
   display: block;
   text-align: left;
   align-self: left;
-  border: 1px dashed black;
+  border: 1px solid black;
 }
 
 .show {
