@@ -1,0 +1,29 @@
+body{
+
+  align-items: baseline;
+  align-content: center;
+  justify-content: center;
+}
+.collider{
+  display: flex;
+  align-content: stretch;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  flex-flow: column;
+  align-items: center;
+  max-width: 1000px;
+  margin: 0px auto;
+}
+
+.break{
+  /*break-after: always;*/
+}
+
+h3 {
+  font-family: Nexa_Bold;
+  font-size: 25px;
+}
+input {
+  font-size: 20px;
+}
