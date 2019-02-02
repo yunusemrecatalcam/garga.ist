@@ -23,6 +23,10 @@ function midmenu(content_id) {
   document.getElementById(content_id).classList.toggle("show");
 }
 
+function to_mainpage(){
+  window.location.replace("https://garga.ist");
+}
+
 // Close the dropdown if the user clicks outside of it
 window.onclick = function(e) {
   if (!e.target.matches('.dropbtn')) {
