@@ -14,3 +14,18 @@ function resize_form(){
   collider.style.left = "100px";*/
   //window.alert("sdf");
 }
+
+window.onclick = function(e) {
+  if (e.target.matches('.selection')) {
+    window.alert
+  }
+}
+
+$(document).ready(function(){
+  $("textarea").keypress(function(){
+      var text = $('#metin').val();
+      //window.alert(text);
+      $('#paragr').html(text);
+      //document.getElementsByClassName("text_view").textContent = "lol";
+    });
+});
