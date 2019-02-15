@@ -207,3 +207,14 @@ button::-moz-focus-inner {
 .show {
   display: block;
 }
+#metin{
+  margin: 0 auto;
+  width : 95%;90vw;
+  min-height: 10em;
+  line-height: 1.2em;
+  text-align : left;
+  position: relative;
+  font-size : 20px;
+  word-wrap: break-word;
+  max-width: 1000px;
+}
