@@ -193,6 +193,27 @@ button::-moz-focus-inner {
   z-index: 1;
 
 }
+.duzyazi, .avatar{
+  display: none;
+}
+.text_preview{
+    display: none;
+    background-color: transparent;#4CAF50;
+    border: 3px;
+    border-color: #262624;
+    border-style: dashed;
+    margin: 0 auto;
+    width : 95%;90vw;
+    min-height: 10em;
+    line-height: 1.2em;
+    text-align : left;
+    position: relative;
+    font-size : 20px;
+    word-wrap: break-word;
+    max-width: 1000px;
+    white-space: pre-wrap;
+}
+
 .dropdown-content a {
   float: none;
   color: black;

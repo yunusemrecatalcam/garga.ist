@@ -63,18 +63,19 @@
     <div id="collider" class="collider">
       <h3>İçerik Ekle</h3>
       <p>Bilgi için kılavuzu kullanabilirsiniz</p>
-      <select class=".selection">
-        <option value="1">Yazı</option>
-        <option value="3">Fotoğraf</option>
+      <select class="selection" id="selection">
+        <option onclick="mod_upd()" value="1">Yazı</option>
+        <option onclick="mod_upd()" value="2">Fotoğraf</option>
       </select>
       <br>
         <input  type="text" name="mahlas" value="" placeholder="Mahlas"><br>
         <input type="password" name="password" class="box" placeholder="Şifre"><br>
-        <input type="text" name="metin_ismi" id="metin_ismi" class="box" placeholder="Metin İsmi"><br>
+        <input type="text" class="duzyazi" name="metin_ismi" id="metin_ismi" class="box" placeholder="Metin İsmi"><br>
 
-        <textarea name="yazi" id="metin" ></textarea>
+        <textarea name="yazi" id="metin" class="duzyazi"></textarea>
+        <input type="file" class="avatar" id="avatar" accept="image/png, image/jpeg">
          <input type="submit"  value="Submit">
-         <div class="text_view">
+         <div class="text_preview" id="text_preview">
            <h3 id="baslik">BAŞLIK</h3>
            <p id="paragr">Yazının başlangıcından bir kısım</p>
          </div>

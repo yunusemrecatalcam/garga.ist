@@ -1,12 +1,5 @@
 //window.onresize = resize_form;
-//window.onload   = resize_form;
-
-function resize_form(){
-
-  var topnav = document.getElementById("topnav");
-  var collider =document.getElementsByClassName("collider");
-  var len = (topnav.offsetHeight+100) + "px";
-}
+window.onload   = mod_upd()();
 
 $(document).ready(function(){
   $("textarea").keyup(function(){
@@ -20,3 +13,20 @@ $(document).ready(function(){
     });
 
 });
+
+function mod_upd(){
+  var e = document.getElementById("selection");
+  var sel_val = e.options[e.selectedIndex].value;
+  //window.alert(strUser);
+  if(sel_val==1){
+    document.getElementById("metin").classList.add("show");
+    document.getElementById("metin_ismi").classList.add("show");
+    document.getElementById("text_preview").classList.add("show");
+    document.getElementById("avatar").classList.remove("show");
+  }else if(sel_val==2){
+    document.getElementById("metin").classList.remove("show");
+    document.getElementById("metin_ismi").classList.remove("show");
+    document.getElementById("text_preview").classList.remove("show");
+    document.getElementById("avatar").classList.add("show");
+  }
+}
