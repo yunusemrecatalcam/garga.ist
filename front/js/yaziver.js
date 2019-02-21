@@ -9,10 +9,14 @@ function resize_form(){
 }
 
 $(document).ready(function(){
-  $("textarea").keydown(function(){
+  $("textarea").keyup(function(){
       var text = $('#metin').val();
-      //window.alert(text);
       $('#paragr').html(text);
-      //document.getElementsByClassName("text_view").textContent = "lol";
     });
+
+  $("#metin_ismi").keyup(function(){
+      var text = $('#metin_ismi').val();
+      $('#baslik').html(text);
+    });
+
 });

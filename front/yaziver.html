@@ -64,18 +64,18 @@
       <h3>İçerik Ekle</h3>
       <p>Bilgi için kılavuzu kullanabilirsiniz</p>
       <select class=".selection">
-        <option value="1">Düz Yazı</option>
-        <option value="2">Şiir</option>
+        <option value="1">Yazı</option>
         <option value="3">Fotoğraf</option>
       </select>
+      <br>
         <input  type="text" name="mahlas" value="" placeholder="Mahlas"><br>
         <input type="password" name="password" class="box" placeholder="Şifre"><br>
-        <input type="password" name="password" class="box" class="box" placeholder="Metin İsmi"><br>
+        <input type="text" name="metin_ismi" id="metin_ismi" class="box" placeholder="Metin İsmi"><br>
 
         <textarea name="yazi" id="metin" ></textarea>
          <input type="submit"  value="Submit">
          <div class="text_view">
-           <h3>BAŞLIK</h3>
+           <h3 id="baslik">BAŞLIK</h3>
            <p id="paragr">Yazının başlangıcından bir kısım</p>
          </div>
 
