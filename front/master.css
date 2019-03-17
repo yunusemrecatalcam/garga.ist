@@ -96,16 +96,20 @@ body {
    border-style: dashed;
    margin: 0 auto;
    width : 95%;90vw;
-   min-height: 10em;
-   line-height: 1.2em;
    text-align : left;
    position: relative;
-   font-size : 20px;
    word-wrap: break-word;
    max-width: 1000px;
    white-space: pre-wrap;
 }
+.text_view {font-size: 20px;}
 
+@media (max-width: 1580px) { .text_view {font-size: 18px;
+  }
+}
+@media (max-width: 980px) { .text_view {font-size: 16px;
+  }
+}
 p,h3{
   margin-left: 10px;
   margin-right: 10px;
@@ -212,4 +216,19 @@ button::-moz-focus-inner {
   font-size : 20px;
   word-wrap: break-word;
   max-width: 1000px;
+}
+
+
+ol {
+  list-style: none;
+  counter-reset: my-awesome-counter;
+}
+ol li {
+  counter-increment: my-awesome-counter;
+  margin: 0 0.5rem 0.5rem 0;
+}
+ol li::before {
+  content: counter(my-awesome-counter) ". ";
+  color: black;
+  font-weight: bold;
 }

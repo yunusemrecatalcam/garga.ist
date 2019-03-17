@@ -41,8 +41,8 @@
                <i class="fa fa-caret-down"></i>
              </button>
              <div class="dropdown-content" id="myDropdown">
-               <a href="https://garga.ist/kimiz/">Biz Kimiz?</a>
-               <a href="#">Kılavuz</a>
+               <a href="https://garga.ist/kimiz.html">Biz Kimiz?</a>
+               <a href="https://garga.ist/kilavuz.html">Kılavuz</a>
                <a href="#">İletişim</a>
                <a href="https://garga.ist/ekle.html">İçerik Ekle</a>
              </div>
@@ -63,9 +63,16 @@
     <br><br><br><br><br><br><br><br><br>
     <div id="collider" class="collider">
       <h3>İçerik Ekle</h3>
-      <p>Bilgi için kılavuzu kullanabilirsiniz</p>
-      <p>içerik paneli kullanımı: </p>
-      <select onclick="mod_upd()" class="selection" id="selection">
+      <p>İçerik eklemeden önce lütfen kılavuzu okuyun, içeriğinizi değerlendirirken kılavuzu okuduğunuzu varsayacağız.</p>
+      <p>İçerik paneli kullanımı: <br>
+        <ol>
+          <li>Eklemek istediğiniz içeriğin tipini seçin</li>
+          <li>Eklemek için gerekli alanları doldurduktan sonra önizleme kısmında içeriğinizi teyit edin.</li>
+          <li>En alttaki gönder butonuyla içeriğinize bize gönderin.</li>
+        </ol>
+
+      </p>
+      <select class="selection" id="selection">
         <option value="1">Yazı</option>
         <option value="2">Fotoğraf</option>
       </select>
@@ -83,7 +90,7 @@
            <h3 id="baslik">BAŞLIK</h3>
            <p id="paragr">Yazının başlangıcından bir kısım</p>
          </div>
-         <input type="submit"  value="Submit">
+         <input type="submit"  value="Gönder">
 
      </div>
 

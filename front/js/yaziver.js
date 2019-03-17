@@ -32,6 +32,8 @@ function readURL(input) {
     }
 }
 
+$('#selection').change(mod_upd);
+
 function mod_upd(){
 
   var e = document.getElementById("selection");
