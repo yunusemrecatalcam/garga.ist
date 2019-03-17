@@ -1,6 +1,6 @@
 @font-face {
     font-family: 'Nexa_Bold'; /*a name to be used later*/
-    src: url('https:garga.ist/nexa/nexa_light-webfont.ttf'); /*URL to font*/
+    src: url('https://garga.ist/nexa/nexa_light-webfont.ttf'); /*URL to font*/
 }
 
 body {
@@ -32,7 +32,6 @@ body {
   padding: 14px 20px;
   text-decoration: none;
   font-size: 17px;
-  font-family: Nexa_Bold;
   color: black;
   cursor: pointer;
   margin-left: 3px;
@@ -41,9 +40,7 @@ body {
   margin-bottom: 4px;
   -webkit-tap-highlight-color:  rgba(255, 255, 255, 0);
 }
-.topnav a.svg1:hover{
-  /*background-image: url(garga_on_hover.svg);*/
-}
+
 .topnav a.svg2{
   background-image: url(garga.svg);
   transform: scale(-1 ,1);
@@ -56,7 +53,6 @@ body {
   padding: 14px 20px;
   text-decoration: none;
   font-size: 17px;
-  font-family: Nexa_Bold;
   color: black;
   cursor: pointer;
   margin-left: 1px;
@@ -65,9 +61,7 @@ body {
   margin-bottom: 4px;
   -webkit-tap-highlight-color:  rgba(255, 255, 255, 0);
 }
-.topnav a.svg2:hover{
-  /*background-image: url(crow_on_hover.svg);*/
-}
+
 .flex_box{
   display: flex;
   align-content: stretch;
@@ -89,18 +83,13 @@ body {
   margin: auto;
   cursor: pointer;
 }
-/*
-.topnav a:hover {
-  background-color: #ddd;
-  color: black;
-}*/
 
 .topnav a.active {
   background-color: #F35848;#D82825;#4CAF50;
   color: white;
 }
 
-.text_view {
+.text_view,.text_preview {
    background-color: transparent;#4CAF50;
    border: 3px;
    border-color: #262624;
@@ -120,7 +109,6 @@ body {
 p,h3{
   margin-left: 10px;
   margin-right: 10px;
-  font-family: Nexa_Bold;
 }
 
 .sentence_view {
@@ -193,25 +181,11 @@ button::-moz-focus-inner {
   z-index: 1;
 
 }
-.duzyazi, .avatar{
+.duzyazi, .avatar, .image_preview{
   display: none;
 }
 .text_preview{
     display: none;
-    background-color: transparent;#4CAF50;
-    border: 3px;
-    border-color: #262624;
-    border-style: dashed;
-    margin: 0 auto;
-    width : 95%;90vw;
-    min-height: 10em;
-    line-height: 1.2em;
-    text-align : left;
-    position: relative;
-    font-size : 20px;
-    word-wrap: break-word;
-    max-width: 1000px;
-    white-space: pre-wrap;
 }
 
 .dropdown-content a {
