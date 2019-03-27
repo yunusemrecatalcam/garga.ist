@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+      <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-67954605-3"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-67954605-3');
+    </script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="master.css">
+    <link rel="stylesheet" href="yaziver.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <title>GARGA</title>
+</head>
+
+<body>
+
+    <div class="topnav" id="topnav">
+      <h2 id="header">GARGA</h2>
+      <br>
+        <div class="flex_box">
+
+          <div class="menu1">
+              <a class="svg1" id="svg1" onclick="midmenu('menu1_content')" ></a>
+              <div class="dropdown-content" id="menu1_content">
+                <a href="#">Düz Yazı</a>
+                <a href="#">Şiir</a>
+                <a href="#">Fotoğraf</a>
+              </div>
+          </div>
+
+          <div class="dropdown">
+             <button class="dropbtn" id="dropbtn" onclick="midmenu('myDropdown')">MENÜ
+               <i class="fa fa-caret-down"></i>
+             </button>
+             <div class="dropdown-content" id="myDropdown">
+               <a href="https://garga.ist/kimiz.html">Biz Kimiz?</a>
+               <a href="https://garga.ist/kilavuz.html">Kılavuz</a>
+               <a href="#">İletişim</a>
+               <a href="https://garga.ist/ekle.html">İçerik Ekle</a>
+             </div>
+         </div>
+
+         <div class="menu2">
+             <a class="svg2" id="svg2" onclick="midmenu('menu2_content')" ></a>
+             <div class="dropdown-content" id="menu2_content">
+               <a href="#">Sinema</a>
+               <a href="#">Tiyatro</a>
+               <a href="#">Dizi</a>
+             </div>
+         </div>
+
+        </div>
+    </div>
+
+    <br><br><br><br><br><br><br><br><br>
+    <div id="collider" class="collider">
+      <h3>İçerik Ekle</h3>
+      <p>İçerik eklemeden önce lütfen kılavuzu okuyun, içeriğinizi değerlendirirken kılavuzu okuduğunuzu varsayacağız.</p>
+      <p>İçerik paneli kullanımı: <br>
+        <ol>
+          <li>Eklemek istediğiniz içeriğin tipini seçin</li>
+          <li>Eklemek için gerekli alanları doldurduktan sonra önizleme kısmında içeriğinizi teyit edin.</li>
+          <li>En alttaki gönder butonuyla içeriğinize bize gönderin.</li>
+        </ol>
+
+      </p>
+      <select class="selection" id="selection">
+        <option value="1">Yazı</option>
+        <option value="2">Fotoğraf</option>
+      </select>
+      <br>
+        <input  type="text" name="mahlas" value="" placeholder="Mahlas"><br>
+        <input type="password" name="password" class="box" placeholder="Şifre"><br>
+        <input type="text" class="duzyazi" name="metin_ismi" id="metin_ismi" class="box" placeholder="Metin İsmi"><br>
+
+        <textarea name="yazi" id="metin" class="duzyazi"></textarea>
+
+        <input type="file"  onchange="readURL(this);" class="avatar" id="avatar" accept="image/png, image/jpeg">
+        <img id="image_preview"class="image_preview" src="#" alt="resim önizleme" />
+
+         <div class="text_preview" id="text_preview">
+           <h3 id="baslik">BAŞLIK</h3>
+           <p id="paragr">Yazının başlangıcından bir kısım</p>
+         </div>
+         <input type="submit"  value="Gönder">
+
+     </div>
+
+    <script src="main.js" type="text/javascript">
+
+    </script>
+    <script src="js/yaziver.js" type="text/javascript">
+
+    </script>
+
+</body>
+</html>

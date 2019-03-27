@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>tamamdır</title>
+    <style media="screen">
+    #customers tr:nth-child(even){background-color: #f2f2f2;}
+
+    #customers tr:hover {background-color: #ddd;}
+
+    table,th,td,button{
+      font-size: 20px;
+    }
+
+    #textyyy{
+      border-width: 1px;
+      width: 100%;
+      font-size: 20px;
+      text-align: center;
+      align-content: center;
+      background-color: #ff8080;
+      align: center;
+      font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+      min-height: 30%;
+    }
+
+
+    @media only screen and (orientation: portrait) {
+        body {
+            background-color: lightblue;
+            font-size: 100px;
+            vertical-align: top;
+        }
+        table,th,td,button{
+          font-size: 50px;
+        }
+        #textyyy{
+          font-size: 50px;
+        }
+
+      }
+
+      table td, table td * {
+          vertical-align: top;
+      }
+
+    table, th, td {
+      border: 0px solid white;
+      border-collapse: collapse;
+
+    }
+    table{
+      width: 100%;
+      font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+      border-collapse: collapse;
+      vertical-align: top;
+
+    }
+
+    th,td{
+      min-width: 25%;
+      min-height: 20%;
+      text-align: left;
+      border: 1px solid #ddd;
+      padding: 8px;
+    }
+    th{
+      padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #4CAF50;
+        color: white;
+        vertical-align:top;
+    }
+
+    button{
+      font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+      background-color: Transparent;#4CAF50;99ff66;
+      width: 100%;
+      height: 200%;
+      outline: none;
+      border: none;
+    }
+    </style>
+  </head>
+  <body>
+    <h1>yazını veritabanımıza kaydoldu,admin onayından sonra yayınlayacağız</h1><br><br>
+    <h2>tüm yazılar</h2>
+    <table id="customers">
+
+    <?php
+    include ($_SERVER['DOCUMENT_ROOT'].'/beta/connect_daddy.php');
+    $conn=open_con();
+
+    if (isset($_COOKIE['mahlas'])) {
+      $maho=$_COOKIE['mahlas'];
+
+      $tryi=mysqli_query($conn,"SELECT * FROM texts WHERE mahlas='$maho' ");
+      //$result=mysqli_fetch_assoc($try);
+      echo "<h3>";
+      if($tryi){
+        echo "<tr>";
+        echo "<th>";
+        echo "MAHLAS"."    ";
+        echo "</th>";
+        echo "<th>";
+        echo "METİN ADI"."    ";
+        echo "</th>";
+        echo "<th>";
+        echo "TARİH"."</br>";
+        echo "</th>";
+        //echo "<th>";
+        //echo "METNİ OKU"."    ";
+        //echo "</th>";
+      while ($result=mysqli_fetch_assoc($tryi)) {
+        echo "<tr>";
+
+        echo "<td>";
+        echo $result['mahlas'];
+        echo "</td>";
+        //echo '<a href="https://www.w3schools.com">'.'Visit W3Schools</a>';
+        /*echo "<td>";
+        echo $result['metinadi']."    ";
+        echo "</td>";*/
+
+        echo "<td>";
+        echo '<button id="'.$result['id'].'" type="button" '.'name="button">'.$result['metinadi'].'</button>';
+        echo "</td>";
+
+
+        echo "<td>";
+        echo $result['tarih']."    ";
+        echo "</td>";
+
+
+        echo "</br>";
+      }
+      }
+      echo "</h3>";
+    }
+
+
+    ?>
+  </table>
+  </body>
+</html>

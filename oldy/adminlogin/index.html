@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="qstyle.css">
+    <meta charset="utf-8">
+    <title>admin girişi</title>
+      <script type="text/javascript">
+        function submity(){
+          document.getElementById('form1').submit();
+
+          alert("holy awesome");
+        }
+      </script>
+  </head>
+  <body>
+
+      <div class="era" id="era">
+
+          <form class="yaziver" id="form1" action="admin_login.php" method="post">
+
+            <p>
+              <label></label><br><br>
+              <input  type="text" name="username" value="" placeholder="Kullanıcı Adı">
+            </p>
+
+            <p>
+              <label></label><br><br>
+              <input type="text" name="email" value="" placeholder="Mail Adresi">
+            </p>
+
+            <p>
+            <label></label><br><br>
+            <input type="password" name="password" value="" placeholder="Şifre">
+            </p>
+            <p>
+            <script type="text/javascript">
+                autosize(document.getElementById("note"));
+                function submity(){
+                  if (confirm("girdiğiniz bilgilerin doğru olduğuna emin olun")) {
+                  document.getElementById('form1').submit();
+                }
+                }
+              </script>
+            </p>
+            <button type="button" value="Gönder" onclick="submity()" name="button">Gönder</button>
+          </form>
+
+      </div>
+
+      <div class="xyz">
+        <?php
+
+        if (isset($_COOKIE['wrong'])) {
+          if ($_COOKIE['wrong']=='1') {
+            echo "kullanıcı adı ve şifre tutmadı,lütfen sallamayınız";
+          }
+        }
+        ?>
+      </div>
+
+  </body>
+</html>

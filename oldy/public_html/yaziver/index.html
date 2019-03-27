@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="newstyle.css">
+    <meta charset="utf-8">
+    <title>yazi ver</title>
+      <script type="text/javascript">
+        function submity(){
+          document.getElementById('form1').submit();
+
+          alert("holy awesome");
+        }
+      </script>
+  </head>
+  <body>
+
+      <div class="era" id="era">
+
+          <form class="yaziver" id="form1" action="get_text.php" method="post">
+
+            <p>
+              <label></label><br><br>
+              <input  type="text" name="mahlas" value="" placeholder="Mahlas">
+            </p>
+
+            <p>
+              <label></label><br><br>
+              <input type="password" name="password" value="" placeholder="Şifre">
+            </p>
+
+            <p>
+            <label></label><br><br>
+            <input type="text" name="metinadi" value="" placeholder="Metin Adı">
+            </p>
+            <p>
+              <label>Metin</label><br><br>
+              <script  src="autosize.js">  </script>
+
+              <textarea name="yazi" id="note" >
+                
+                </textarea>
+              <script type="text/javascript">
+                autosize(document.getElementById("note"));
+                function submity(){
+                  document.getElementById('form1').submit();
+
+                  window.alert("holy awesome");
+                }
+              </script>
+            </p>
+            <button type="button" value="Gönder" onclick="submity()" name="button">Gönder</button>
+          </form>
+
+      </div>
+
+      <div class="red">
+        advgdv
+        <?php
+
+        if (isset($_COOKIE['if_pass_wrong'])) {
+          if ($_COOKIE['if_pass_wrong']=='true') {
+            echo "mahlas kullanımda ve girdiğin şifre yanlış";
+          }
+        }
+        ?>
+      </div>
+
+  </body>
+</html>
