@@ -13,7 +13,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
-    <link rel="stylesheet" href="../master.css">
+    <link rel="stylesheet" href={{ url_for('static', filename='master.css') }}>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
@@ -40,10 +40,10 @@
              <i class="fa fa-caret-down"></i>
            </button>
            <div class="dropdown-content" id="myDropdown">
-             <a href="https://garga.ist/kimiz.html">Biz Kimiz?</a>
-             <a href="https://garga.ist/kilavuz.html">Kılavuz</a>
+             <a href="/kimiz">Biz Kimiz?</a>
+             <a href="/kilavuz">Kılavuz</a>
              <a href="#">İletişim</a>
-             <a href="https://garga.ist/ekle.html">İçerik Ekle</a>
+             <a href="/ekle">İçerik Ekle</a>
            </div>
        </div>
 
@@ -80,7 +80,7 @@
     </div>
     <br>
 
-    <script src="../main.js" type="text/javascript"></script>
+    <script src={{ url_for('static', filename='main.js') }} type="text/javascript"></script>
 
   </body>
   </html>
