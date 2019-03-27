@@ -1,6 +1,9 @@
 window.onresize = calc_pos;
-window.onload   = calc_pos;
+calc_pos();
 
+$('#header').click(function(){
+  window.location.replace("https://garga.ist");
+});
 function calc_pos(){
 
   var topnav = document.getElementById("topnav");
@@ -15,7 +18,7 @@ function calc_pos(){
   document.getElementById("myDropdown").style.left = (($("#dropbtn").position().left)+($("#dropbtn").innerWidth()-$("#myDropdown").innerWidth())/2) + "px";//horizontal align
   document.getElementById("menu1_content").style.left = (($("#svg1").position().left)+($("#svg1").outerWidth(true)-$("#menu1_content").outerWidth(true))/2) + "px";//horizontal align
   document.getElementById("menu2_content").style.left = (($("#svg2").position().left)+($("#svg2").outerWidth(true)-$("#menu2_content").outerWidth(true))/2) + "px";//horizontal align
-
+  console.log("im calcing");
   //window.alert((($("#svg1").offset().left)/2));
 }
 
