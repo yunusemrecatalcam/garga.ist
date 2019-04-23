@@ -1,4 +1,4 @@
-from flask import Flask,render_template
+from flask import Flask,render_template,request
 import os
 
 project_root = os.path.dirname(__file__)
@@ -38,6 +38,11 @@ def kimiz():
         return rend
     except Exception as e:
         return (str(e)+ ERR_TEXT)
+
+@app.route("/content_get",methods=['POST'])
+def content_get():
+    namy = request.args.get('text_name')
+    return (str(namy)+"Success")
 
 if __name__ == '__main__':
     app.run()

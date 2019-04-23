@@ -17,6 +17,15 @@ $(document).ready(function(){
   //$('#divID').css("background-image", "url(/myimage.jpg)");
 });
 
+$('#post_form').click(function () {
+    $.post("/content_get",
+        { text_name : $('#metin_ismi').innerText},
+        function(data, status){
+            alert("Data: " + data + "\nStatus: " + status);
+        })
+
+});
+
 function readURL(input) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();
@@ -40,7 +49,7 @@ function mod_upd(){
   var sel_val = e.options[e.selectedIndex].value;
   //window.alert(strUser);
   console.log("triggged");
-  if(sel_val==1){ //text mode
+  if(sel_val==1 || sel_val==3){ //text mode
 
     document.getElementById("metin").classList.add("show");
     document.getElementById("metin_ismi").classList.add("show");
