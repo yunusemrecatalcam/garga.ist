@@ -1,4 +1,4 @@
-from flask import Flask,render_template,request
+from flask import Flask,render_template,request,jsonify
 import os
 
 project_root = os.path.dirname(__file__)
@@ -41,8 +41,14 @@ def kimiz():
 
 @app.route("/content_get",methods=['POST'])
 def content_get():
-    namy = request.args.get('text_name')
-    return (str(namy)+"Success")
-
+    try:
+        namy  = request.form.get('text_name')
+        texty = request.form.get('text')
+        mahlas= request.form.get('mahlas')
+        passy = request.form.get('password')
+        print(namy,texty,mahlas,passy)
+        return (jsonify(success=True))
+    except:
+        return(jsonify(success=False))
 if __name__ == '__main__':
     app.run()

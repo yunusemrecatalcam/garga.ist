@@ -19,9 +19,14 @@ $(document).ready(function(){
 
 $('#post_form').click(function () {
     $.post("/content_get",
-        { text_name : $('#metin_ismi').innerText},
+        {   text_name : $('#metin_ismi').val(),
+            mahlas    : $('#mahlas').val(),
+            text      : $('#metin').val(),
+            password  : $('#password').val()},
         function(data, status){
-            alert("Data: " + data + "\nStatus: " + status);
+            console.log(data);
+            console.log(status);
+            alert("Data: " + data.success + " | "+"\nStatus: " + status);
         })
 
 });

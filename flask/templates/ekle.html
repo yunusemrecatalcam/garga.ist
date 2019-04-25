@@ -77,11 +77,11 @@
           <option value="3">Şiir</option>
       </select>
       <br>
-        <input  type="text" name="mahlas" value="" placeholder="Mahlas"><br>
-        <input type="password" name="password" class="box" placeholder="Şifre"><br>
+        <input  type="text" name="mahlas" id="mahlas" placeholder="Mahlas"><br>
+        <input type="password" name="password" id="password" class="box" placeholder="Şifre"><br>
         <input type="text" class="duzyazi" name="metin_ismi" id="metin_ismi" class="box" placeholder="Metin İsmi"><br>
 
-        <textarea name="yazi" id="metin" class="duzyazi"></textarea>
+        <textarea name="yazi" id="metin" name="metin" class="duzyazi"></textarea>
 
         <input type="file"  onchange="readURL(this);" class="avatar" id="avatar" accept="image/png, image/jpeg">
         <img id="image_preview"class="image_preview" src="#" alt="resim önizleme" />
