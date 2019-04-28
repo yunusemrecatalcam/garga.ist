@@ -1,0 +1,31 @@
+body{
+
+  align-items: baseline;
+  align-content: center;
+  justify-content: center;
+}
+.collider{
+  display: flex;
+  align-content: stretch;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  flex-flow: column;
+  align-items: center;
+  max-width: 1000px;
+  margin: 0px auto;
+}
+
+.break{
+  /*break-after: always;*/
+}
+
+h3 {
+  font-size: 25px;
+}
+input, textarea {
+  font-size: 20px;
+}
+#image_preview{
+  width: 80%;
+}
