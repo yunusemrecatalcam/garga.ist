@@ -60,5 +60,11 @@ def content_view(content_id):
     return render_template("textview.html",text_name=fetched_title,
                            text = fetched_text,
                            mahlas=fetched_mahlas)
+
+@app.route('/waitlist')
+def waitlist():
+    url_list = [str(i) for i in range(10,20)]
+    return render_template("waitlist.html",urls= url_list)
+
 if __name__ == '__main__':
     app.run()
