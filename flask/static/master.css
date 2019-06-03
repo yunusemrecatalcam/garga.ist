@@ -22,11 +22,13 @@ body {
 }
 
 .svg1{
-  background-image: url('/static/images/garga.svg');
-  background-size:contain;
-  background-repeat: no-repeat;
-  width: 4.3rem;
-  height: 4.3rem;
+    background-image: url('/static/images/garga.svg');
+    background-size:contain;
+    background-repeat: no-repeat;
+    width: 4.3rem;
+    height: 4.3rem;
+    margin-left: 17px;
+    margin-top: 13px;
 }
 
 .topnav a.svg2{
@@ -66,11 +68,12 @@ body {
 
 .topnav .header {
   text-align: center;
-  color: #D8F0EB;
+  color: #FFFFFF;
   font-size: 50px;
   font-family: 'Quicksand', sans-serif;
+  font-style: normal;
+  font-weight: normal;
   position: relative;
-  margin-left: 0.8rem;
   cursor: pointer;
 }
 
