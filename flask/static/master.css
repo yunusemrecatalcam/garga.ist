@@ -15,30 +15,18 @@ body {
   position : fixed;
   top: 0;
   width : 100vw;
-  max-height: 40vh;
+  height: 5.0rem;
   z-index: 1;
   display: inline-block;
   align-items: center;
 }
 
-.topnav a.svg1{
+.svg1{
   background-image: url('/static/images/garga.svg');
   background-size:contain;
   background-repeat: no-repeat;
-  min-width: 20px;
-  min-height: 20px;
-  float: left;
-  color: #f2f2f2;
-  padding: 14px 20px;
-  text-decoration: none;
-  font-size: 17px;
-  color: black;
-  cursor: pointer;
-  margin-left: 3px;
-  margin-right: 1px;
-  margin-top: 4px;
-  margin-bottom: 4px;
-  -webkit-tap-highlight-color:  rgba(255, 255, 255, 0);
+  width: 4.3rem;
+  height: 4.3rem;
 }
 
 .topnav a.svg2{
@@ -64,9 +52,11 @@ body {
 
 .flex_box{
   display: flex;
-  align-content: stretch;
+  justify-content: left;
   align-items: center;
-  justify-content: space-around;
+  width : 100vw;
+  height: 5.0rem;
+  align-self: center;
 }
 .menus{
   order: 2;
@@ -74,13 +64,13 @@ body {
   text-align: center;
 }
 
-.topnav h2 {
+.topnav .header {
   text-align: center;
   color: #D8F0EB;
   font-size: 50px;
-  font-family: Nexa_Bold;
+  font-family: 'Quicksand', sans-serif;
   position: relative;
-  margin: auto;
+  margin-left: 0.8rem;
   cursor: pointer;
 }
 
@@ -138,7 +128,9 @@ p,h3{
   border-radius: 5px;
   margin-bottom: 1px;
 }
-.dropdown {
+.dropdown_list {
+  position: fixed;
+  right: 0px;
   float: left;
   overflow: hidden;
   order: 2;
@@ -154,7 +146,7 @@ p,h3{
   margin-bottom: 1px;
 }
 
-.dropdown .dropbtn {
+.dropdown_list .dropbtn {
   cursor: pointer;
   font-size: 16px;
   border: 0px;
