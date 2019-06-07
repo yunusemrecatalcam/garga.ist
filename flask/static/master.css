@@ -207,7 +207,6 @@ button::-moz-focus-inner {
   max-width: 1000px;
 }
 
-
 ol {
   list-style: none;
   counter-reset: my-awesome-counter;
@@ -220,4 +219,47 @@ ol li::before {
   content: counter(my-awesome-counter) ". ";
   color: black;
   font-weight: bold;
+}
+@media only screen and (orientation: landscape){
+    #myDropdown,#dropbtn{
+        display: none;
+    }
+    .desktop_menus a{
+        color: #A8A9AB;
+        font-size: 1.0rem;
+        font-family: 'Quicksand', sans-serif;
+        font-weight: normal;
+        text-decoration: none;
+        text-align: center;
+        margin-right: 1.0rem;
+    }
+
+    .desktop_menus input[type=text] {
+        color: #A8A9AB;
+        font-size: 1.0rem;
+        font-family: 'Quicksand', sans-serif;
+        font-weight: normal;
+        text-decoration: none;
+        text-align: center;
+        margin-right: 1.0rem;
+        background-color: #000000;
+        padding: 0px;
+        border: 0px;
+        max-width: 7rem;
+        border-radius: 10px;
+    }
+    ::placeholder{
+        color: #A8A9AB;
+        font-size: 1.0rem;
+        font-family: 'Quicksand', sans-serif;
+        font-weight: bold;
+        text-decoration: none;
+        margin-left: 2px;
+    }
+}
+
+@media only screen and (orientation: portrait){
+    .desktop_menus{
+        display: none;
+    }
 }
