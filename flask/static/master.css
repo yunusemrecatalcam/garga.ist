@@ -78,7 +78,7 @@ body {
 }
 
 .topnav a.active {
-  background-color: #F35848;#D82825;#4CAF50;
+  background-color: #F35848;
   color: white;
 }
 
@@ -88,7 +88,7 @@ body {
    border-color: #262624;
    border-style: dashed;
    margin: 0 auto;
-   width : 95%;90vw;
+   width : 95%;
    text-align : left;
    position: relative;
    word-wrap: break-word;
@@ -166,12 +166,12 @@ button::-moz-focus-inner {
 }
 
 .dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f9f9f9;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
-
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    right: 0.0rem;
 }
 .duzyazi, .avatar, .image_preview{
   display: none;
@@ -180,16 +180,16 @@ button::-moz-focus-inner {
     display: none;
 }
 
-.dropdown-content a {
+.dropdown-content a,input {
     float: none;
     color: black;
     padding: 12px 16px;
     text-decoration: none;
     display: block;
-    text-align: center;
-    align-self: left;
+    text-align: left;
     border: 1px solid black;
     font-family: inherit;
+    width: 10rem;
 }
 
 .show {

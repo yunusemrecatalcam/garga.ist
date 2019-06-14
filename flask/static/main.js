@@ -16,7 +16,7 @@ function calc_pos(){
     console.log(element.style.width);
   });
 
-  document.getElementById("myDropdown").style.left = (($("#dropbtn").position().left)+($("#dropbtn").innerWidth()-$("#myDropdown").innerWidth())/2) + "px";//horizontal align
+  //document.getElementById("myDropdown").style.left = (($("#dropbtn").position().left)+($("#dropbtn").innerWidth()-$("#myDropdown").innerWidth())/2) + "px";//horizontal align
   console.log("im calcing");
   //window.alert((($("#svg1").offset().left)/2));
 }
@@ -28,9 +28,11 @@ function to_mainpage(){
 // Close the dropdown if the user clicks outside of it
 window.onclick = function(e) {
   if (!e.target.matches('.droper')) {
-    if (myDropdown.classList.contains('show')) {
-      myDropdown.classList.remove('show');
-    }
+      if(!e.target.matches('.searcher')){
+          if (myDropdown.classList.contains('show')) {
+                myDropdown.classList.remove('show');
+          }
+      }
   }else{
     document.getElementById('myDropdown').classList.toggle("show");
     console.log("me as an enginar");
