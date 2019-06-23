@@ -280,7 +280,7 @@ ol li::before {
 
     .droper{
         width: 3rem;
-        height: 2.5rem;
+        height: 1.8rem;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -288,7 +288,7 @@ ol li::before {
     }
     .liner{
         height: 0.2rem;
-        width: 3rem;
+        width: 2rem;
         background-color: #FFFFFF;
     }
 }
