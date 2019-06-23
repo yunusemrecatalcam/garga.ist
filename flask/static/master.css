@@ -224,6 +224,9 @@ ol li::before {
     #myDropdown,#dropbtn{
         display: none;
     }
+    .desktop_menus{
+        display: flex;
+    }
     .desktop_menus a{
         color: #A8A9AB;
         font-size: 1.0rem;
