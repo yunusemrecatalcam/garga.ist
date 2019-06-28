@@ -50,5 +50,21 @@ def content_get():
         return (jsonify(success=True))
     except:
         return(jsonify(success=False))
+
+@app.route('/content_view/<content_id>')
+def content_view(content_id):
+    fetched_title = 'heasder'
+    fetched_text = 'I was living at the first floor,' \
+                   'now Im climbing'
+    fetched_mahlas = 'developer_developer_developer'
+    return render_template("textview.html",text_name=fetched_title,
+                           text = fetched_text,
+                           mahlas=fetched_mahlas)
+
+@app.route('/waitlist')
+def waitlist():
+    url_list = [str(i) for i in range(10,20)]
+    return render_template("waitlist.html",urls= url_list)
+
 if __name__ == '__main__':
     app.run()
