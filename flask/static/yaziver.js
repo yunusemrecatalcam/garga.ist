@@ -13,6 +13,10 @@ $(document).ready(function(){
       var text = $('#metin_ismi').val();
       $('#baslik').html(text);
     });
+  $("#mahlas").keyup(function(){
+      var text = $('#mahlas').val();
+      $('.mahlas').html(text);
+    });
   var image = document.getElementById("avatar");
   //$('#divID').css("background-image", "url(/myimage.jpg)");
 });
