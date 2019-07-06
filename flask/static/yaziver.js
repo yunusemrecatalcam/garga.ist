@@ -30,7 +30,14 @@ $('#post_form').click(function () {
         function(data, status){
             console.log(data);
             console.log(status);
-            alert("Data: " + data.success + " | "+"\nStatus: " + status);
+            if(data.success == true) {
+                alert("Yazınızı aldık, sizi ana sayfaya yönlendiriyoruz.");
+                window.location.replace("http://garga.ist");
+            }else{
+                alert("Bir hata oluştu ve sistemde loglandı, hata devam ederse" +
+                    "lütfen iletişime geçin.");
+            }
+
         })
 
 });
