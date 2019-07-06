@@ -1,50 +1,50 @@
 body{
 
-  align-items: baseline;
-  align-content: center;
-  justify-content: center;
+    align-items: baseline;
+    align-content: center;
+    justify-content: center;
 }
 .collider{
-  display: flex;
-  align-content: stretch;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  flex-flow: column;
-  max-width: 1000px;
-  margin: 0px auto;
-  font-family: 'Quicksand', sans-serif;
+    display: flex;
+    align-content: stretch;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    flex-flow: column;
+    max-width: 1000px;
+    margin: 0px auto;
+    font-family: 'Quicksand', sans-serif;
 }
 
 .break{
-  /*break-after: always;*/
+    /*break-after: always;*/
 }
 
 h3 {
-  font-size: 25px;
+    font-size: 25px;
 }
 textarea {
-  font-size: 20px;
-  margin-top: 10px;
-  width : 95%;
-  min-height: 10em;
-  line-height: 1.2em;
-  text-align : left;
-  position: relative;
-  word-wrap: break-word;
-  max-width: 1000px;
+    font-size: 20px;
+    margin-top: 10px;
+    width : 95%;
+    min-height: 10em;
+    line-height: 1.2em;
+    text-align : left;
+    position: relative;
+    word-wrap: break-word;
+    max-width: 1000px;
 }
 #image_preview{
-  width: 80%;
+    width: 80%;
 }
 input[type=password], input[type=text]{
-  border: none;
-  border-bottom: 1px solid #262624;
-  font-size: 20px;
+    border: none;
+    border-bottom: 1px solid #262624;
+    font-size: 20px;
 }
 input[type=submit]{
-  text-align: center;
-  border-radius: 99999rem;
-  background-color: #F35848;
-  margin-top: 10px;
+    text-align: center;
+    border-radius: 99999rem;
+    background-color: #F35848;
+    margin-top: 10px;
 }
