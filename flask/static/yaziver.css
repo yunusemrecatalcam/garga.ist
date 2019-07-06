@@ -11,9 +11,8 @@ body{
   justify-content: center;
   flex-direction: column;
   flex-flow: column;
-  align-items: center;
   max-width: 1000px;
-  margin: 0px auto;
+  margin: 0;
   font-family: 'Quicksand', sans-serif;
 }
 
@@ -27,7 +26,7 @@ h3 {
 textarea {
   font-size: 20px;
   margin-top: 10px;
-  width : 95%;90vw;
+  width : 95%;
   min-height: 10em;
   line-height: 1.2em;
   text-align : left;
