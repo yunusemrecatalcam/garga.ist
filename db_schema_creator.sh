@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-Q1="CREATE DATABASE IF NOT EXISTS garga;"
+Q1="CREATE DATABASE IF NOT EXISTS garga CHARACTER SET utf8 COLLATE utf8_general_ci;"
 Q2="USE garga;"
 Q3="CREATE TABLE IF NOT EXISTS texts ( \
     id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, \
@@ -19,4 +19,4 @@ Q8="GRANT DELETE,INSERT,SELECT,UPDATE ON garga.* TO 'api'@'localhost';"
 
 SQL="${Q1}${Q2}${Q3}${Q4}${Q5}${Q6}${Q7}${Q8}"
 
-mysql -uroot -p -e "$SQL"
+mysql -u root -p -e "$SQL"
