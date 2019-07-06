@@ -1,5 +1,8 @@
 from flask import Flask,render_template,request,jsonify
 import os
+from flask_pro.db_handler import db_handler
+
+dber = db_handler()
 
 project_root = os.path.dirname(__file__)
 template_path = os.path.join(project_root, 'templates')
@@ -47,8 +50,10 @@ def content_get():
         mahlas= request.form.get('mahlas')
         passy = request.form.get('password')
         print(namy,texty,mahlas,passy)
+        dber.insert_text(namy,texty,mahlas)
         return (jsonify(success=True))
-    except:
+    except Exception as err:
+        print(err)
         return(jsonify(success=False))
 
 @app.route('/content_view/<content_id>')
@@ -63,7 +68,9 @@ def content_view(content_id):
 
 @app.route('/waitlist')
 def waitlist():
-    url_list = [str(i) for i in range(10,20)]
+    url_list = dber.get_waitings()
+    for i in url_list:
+        print(i)
     return render_template("waitlist.html",urls= url_list)
 
 if __name__ == '__main__':
