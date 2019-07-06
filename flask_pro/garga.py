@@ -1,5 +1,8 @@
 from flask import Flask,render_template,request,jsonify
 import os
+from flask_pro.db_handler import db_handler
+
+myer = db_handler()
 
 project_root = os.path.dirname(__file__)
 template_path = os.path.join(project_root, 'templates')
