@@ -31,3 +31,42 @@ class db_handler():
         for waiter in self.cursor:
             result.append(waiter)
         return result
+
+    def get_votes(self,text_id):
+        text_id = str(int(text_id))
+        sql = "SELECT admin FROM admins"
+        self.cursor.execute(sql)
+        admin_dicts = self.turn2dict(self.cursor)
+        admin_list  = [admin['admin'] for admin in admin_dicts]
+
+        sql = "SELECT admin,vote FROM votes WHERE EXISTS" \
+              "(SELECT admin from admins WHERE admins.admin = votes.admin AND votes.id = " + text_id + ')'# votes for text
+        self.cursor.execute(sql)
+        votes_dict = {vote['admin']: vote['vote'] for vote in self.turn2dict(self.cursor)}
+
+        for admin in admin_list:
+            if votes_dict.get(admin) is None:
+                votes_dict[admin] = 'waiting'
+            elif votes_dict.get(admin) is 1:
+                votes_dict[admin] = 'good'
+            elif votes_dict.get(admin) is 0:
+                votes_dict[admin] = 'bad'
+
+        return votes_dict
+
+    def get_text_and_attr(self, text_id):
+        sql = "SELECT textname, text, mahlas, reg_date FROM texts" \
+              " WHERE id =" + str(text_id)
+        self.cursor.execute(sql)
+        text_dict = self.turn2dict(self.cursor)
+        if len(text_dict) == 0:
+            return {}        #if text not exists, its none
+        return text_dict[0]
+
+    @staticmethod
+    def turn2dict(cursor):
+        desc = cursor.description
+        column_names = [col[0] for col in desc]
+        data = [dict(zip(column_names, row))
+                for row in cursor.fetchall()]
+        return data
