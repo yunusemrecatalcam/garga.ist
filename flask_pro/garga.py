@@ -58,13 +58,24 @@ def content_get():
 
 @app.route('/content_view/<content_id>')
 def content_view(content_id):
-    fetched_title = 'heasder'
-    fetched_text = 'I was living at the first floor,' \
-                   'now Im climbing'
-    fetched_mahlas = 'developer_developer_developer'
-    return render_template("textview.html",text_name=fetched_title,
-                           text = fetched_text,
-                           mahlas=fetched_mahlas)
+    is_admin = True #check for admin session
+    fetchy = dber.get_text_and_attr(content_id)
+    fetched_title = fetchy.get('textname')
+    fetched_text  = fetchy.get('text')
+    fetched_mahlas= fetchy.get('mahlas')
+    fetched_votes = dber.get_votes(content_id)
+    if is_admin is False:
+        return render_template("textview.html",
+                               text_name=fetched_title,
+                               text=fetched_text,
+                               mahlas=fetched_mahlas)
+    else:
+        return render_template("textview.html",
+                               text_name=fetched_title,
+                               text=fetched_text,
+                               mahlas=fetched_mahlas,
+                               votes= fetched_votes)
+
 
 @app.route('/waitlist')
 def waitlist():
@@ -72,6 +83,10 @@ def waitlist():
     for i in url_list:
         print(i)
     return render_template("waitlist.html",urls= url_list)
+
+@app.route('/inh')
+def inh():
+    return render_template("inheriter.html")
 
 if __name__ == '__main__':
     app.run()
