@@ -25,7 +25,8 @@ class db_handler():
         print(self.cursor.rowcount," inserted")
 
     def get_waitings(self):
-        sql = "SELECT * FROM texts"
+        sql = "SELECT * FROM texts WHERE id NOT IN \
+                        (SELECT id FROM votes WHERE vote=1 GROUP BY id HAVING COUNT(id)>1)"
         self.cursor.execute(sql)
         result = []
         for waiter in self.cursor:
@@ -63,6 +64,12 @@ class db_handler():
             return {}        #if text not exists, its none
         return text_dict[0]
 
+    def get_flow(self):
+        sql = "SELECT * FROM texts WHERE id IN \
+                (SELECT id FROM votes WHERE vote=1 GROUP BY id HAVING COUNT(id)>1)"
+        self.cursor.execute(sql)
+        text_dict = self.turn2dict(self.cursor)
+        return text_dict
     @staticmethod
     def turn2dict(cursor):
         desc = cursor.description
