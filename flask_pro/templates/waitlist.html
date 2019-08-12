@@ -2,31 +2,34 @@
 
 {% block content %}
 
-<div class="texter_container"></div>
-<h3>Yazıları incelemek ve onaylamak için yanlarındaki bağlantıları kullanın.</h3>
-
-<div class="table_view">
-    <table>
-        <tr>
-            <th>id</th>
-            <th>Metin Adı</th>
-            <th>Mahlas</th>
-            <th>Tarih</th>
-        </tr>
-        {% if urls %}
-            {% for url in urls %}
-                <tr>
-                    <td>{{ url[0] }}</td>
-                    <td>{{ url[1] }}</td>
-                    <td>{{ url[3] }}</td>
-                    <td>{{ url[4] }}</td>
-                    <td><a href="/content_view/{{ url[0] }}" target="_blank"> İncele </a></td>
-                </tr>
-            {% endfor %}
-        {% endif %}
-    </table>
-</div>
-<br>
+    <div class="texter_container"></div>
+    <div class="text_view">
+    {% if username %}
+        <p>Yazıları incelemek ve onaylamak için yanlarındaki bağlantıları kullan <b>{{ username }}</b>.</p>
+    {% endif %}
+    </div>
+    <div class="table_view">
+        <table>
+            <tr>
+                <th>id</th>
+                <th>Metin Adı</th>
+                <th>Mahlas</th>
+                <th>Tarih</th>
+            </tr>
+            {% if urls %}
+                {% for url in urls %}
+                    <tr>
+                        <td>{{ url[0] }}</td>
+                        <td>{{ url[1] }}</td>
+                        <td>{{ url[3] }}</td>
+                        <td>{{ url[4] }}</td>
+                        <td><a href="/content_view/{{ url[0] }}" target="_blank"> İncele </a></td>
+                    </tr>
+                {% endfor %}
+            {% endif %}
+        </table>
+    </div>
+    <br>
 {% endblock %}
 <script src={{ url_for('static', filename='main.js') }} type="text/javascript"></script>
 
