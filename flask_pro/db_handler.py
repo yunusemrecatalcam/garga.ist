@@ -70,6 +70,14 @@ class db_handler():
         self.cursor.execute(sql)
         text_dict = self.turn2dict(self.cursor)
         return text_dict
+
+    def admin_login(self, usr, passwd):
+        sql = "SELECT * FROM admins WHERE admin ='" + str(usr) + "' AND password ='" + str(passwd) + "'"
+        self.cursor.execute(sql)
+        text_dict = self.turn2dict(self.cursor)
+        print(len(text_dict))
+        return False if len(text_dict)==0 else True
+
     @staticmethod
     def turn2dict(cursor):
         desc = cursor.description
