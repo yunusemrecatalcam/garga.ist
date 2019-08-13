@@ -1,5 +1,6 @@
 import mysql.connector
 
+VOTE_THRESHOLD = 0
 class db_handler():
 
     def __init__(self):
@@ -26,7 +27,8 @@ class db_handler():
 
     def get_waitings(self):
         sql = "SELECT * FROM texts WHERE id NOT IN \
-                        (SELECT id FROM votes WHERE vote=1 GROUP BY id HAVING COUNT(id)>1)"
+                        (SELECT id FROM votes WHERE vote=1 GROUP BY id HAVING COUNT(id)>"+\
+                        str(VOTE_THRESHOLD)+")"
         self.cursor.execute(sql)
         result = []
         for waiter in self.cursor:
@@ -66,10 +68,13 @@ class db_handler():
 
     def get_flow(self):
         sql = "SELECT * FROM texts WHERE id IN \
-                (SELECT id FROM votes WHERE vote=1 GROUP BY id HAVING COUNT(id)>1)"
+                (SELECT id FROM votes WHERE vote=1 GROUP BY id HAVING COUNT(id)>"+\
+                str(VOTE_THRESHOLD)+ ")"
         self.cursor.execute(sql)
-        text_dict = self.turn2dict(self.cursor)
-        return text_dict
+        result = []
+        for res in self.cursor:
+            result.append(res)
+        return result
 
     def admin_login(self, usr, passwd):
         sql = "SELECT * FROM admins WHERE admin ='" + str(usr) + "' AND password ='" + str(passwd) + "'"

@@ -11,10 +11,13 @@ Q3="CREATE TABLE IF NOT EXISTS texts ( \
 Q4="CREATE TABLE IF NOT EXISTS users ( \
     mahlas TINYTEXT NOT NULL, \
     passwords TINYTEXT NOT NULL);"
-Q9="CREATE TABLE IF NOT EXISTS votes ( \
-    id INT(6),\
-    admin TINYTEXT NOT NULL,\
-    vote boolean);"
+Q9="CREATE TABLE IF NOT EXISTS votes2
+    (
+        id    INT(6),
+        admin VARCHAR(15) NOT NULL,
+        vote  boolean,
+        CONSTRAINT uniqueness UNIQUE (id, admin)
+    );"
 
 Q5="CREATE USER IF NOT EXISTS 'api'@'localhost' IDENTIFIED BY 'pass';"
 Q6="GRANT ALL PRIVILEGES ON * . * TO 'api'@'localhost';"
