@@ -77,17 +77,29 @@ def content_view(content_id):
                                text=fetched_text,
                                mahlas=fetched_mahlas)
 
-
-@app.route('/waitlist')
+@app.route('/admin/waitlist')
 def waitlist():
-    url_list = dber.get_waitings()
-    for i in url_list:
-        print(i)
-    return render_template("waitlist.html",urls= url_list)
+    if 'username' in session:
+        url_list = dber.get_waitings()
+        return render_template("waitlist.html",urls= url_list
+                               , username=session['username'])
+    else:
+        return redirect(url_for('index'))
 
-@app.route('/inh')
-def inh():
-    return render_template("inheriter.html")
+@app.route('/admin/login',methods=['GET','POST'])
+def login():
+    if request.method == 'POST':
+        try:
+            is_admin = dber.admin_login(request.form['username'],request.form['password'])
+            if is_admin is True:
+                session['username'] = request.form['username']
+                return redirect(url_for('waitlist'))
+            else:
+                return redirect(url_for('index'))
+        except Exception as err:
+            return 'failure: '+ str(err)
+    else:
+        return render_template('login.html')
 
 if __name__ == '__main__':
     app.run()
