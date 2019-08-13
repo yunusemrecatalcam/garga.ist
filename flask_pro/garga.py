@@ -1,4 +1,6 @@
-from flask import Flask,render_template,request,jsonify
+from flask import Flask,render_template,\
+    request,jsonify,session,redirect,url_for, \
+    send_from_directory
 import os
 from flask_pro.db_handler import db_handler
 
@@ -70,7 +72,8 @@ def content_view(content_id):
                                text=fetched_text,
                                mahlas=fetched_mahlas,
                                votes=fetched_votes,
-                               username=session['username'])
+                               username=session['username'],
+                               text_id=content_id)
     else:
         return render_template("textview.html",
                                text_name=fetched_title,
@@ -101,5 +104,20 @@ def login():
     else:
         return render_template('login.html')
 
+@app.route('/admin/vote',methods=['GET','POST'])
+def vote():
+    if request.method == 'POST':
+        if 'username' in session:
+            try:
+                usr = session.get('username')
+                text_id = request.form.get('text_id')
+                vote = 1 if request.form.get('vote')== 'onay' else 0
+                print(usr, text_id, vote)
+                dber.insert_vote(text_id,usr,vote)
+                return (jsonify(success=True))
+            except:
+                return (jsonify(success=False))
+
+    return redirect(url_for('index'))
 if __name__ == '__main__':
     app.run()

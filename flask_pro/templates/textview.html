@@ -42,13 +42,43 @@
 
             <h2>Sence nasıl {{ username }}?</h2>
             <div class="switch-field">
-                <input type="radio" id="radio-one" name="switch-one" value="yes" checked/>
+                <input type="radio" id="radio-one" name="vote_val" value="onay" checked/>
                 <label for="radio-one">Güzel</label>
-                <input type="radio" id="radio-two" name="switch-one" value="no"/>
+                <input type="radio" id="radio-two" name="vote_val" value="ret"/>
                 <label for="radio-two">Olmamış</label>
             </div>
-            <button type="button" class="btn btn-dark">Oyla</button>
+            <button type="button" class="btn btn-dark" id="vote">Oyla</button>
         </div>
+
+        <script>
+            {% if text_id %}
+            var id = {{ text_id }}
+            {% endif %}
+            $(document).ready(function() {
+                $('#vote').click(function () {
+                    var vote_val = $("input[name='vote_val']:checked").val();
+                    if(confirm("Oyunu kaydediyorum, son kararın mı?")) {
+                        $.post("/admin/vote",
+                            {
+                                vote: vote_val,
+                                text_id: id
+                            },
+                            function (data, status) {
+                                console.log(data);
+                                console.log(status);
+                                if (data.success == true) {
+                                    alert("Kaydettim, şimdi sayfayı yenileyeceğim ve oy " +
+                                        "durumunun güncellendiğini göreceksin.");
+                                    location.reload();
+                                } else {
+                                    alert("Bir hata oluştu, yeçe söyle");
+                                }
+
+                            })
+                    }
+                });
+            });
+        </script>
     {% endif %}
 {% endblock %}
 <script src={{ url_for('static', filename='main.js') }} type="text/javascript"></script>
