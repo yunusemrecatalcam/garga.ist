@@ -7,6 +7,7 @@ dber = db_handler()
 project_root = os.path.dirname(__file__)
 template_path = os.path.join(project_root, 'templates')
 app = Flask(__name__, template_folder=template_path)
+app.secret_key = 'any random string'
 
 ERR_TEXT = " //Booom, looks like I failed, please send an email about error yunusemrecatalcam@gmail.com "
 
@@ -58,23 +59,23 @@ def content_get():
 
 @app.route('/content_view/<content_id>')
 def content_view(content_id):
-    is_admin = True #check for admin session
     fetchy = dber.get_text_and_attr(content_id)
     fetched_title = fetchy.get('textname')
-    fetched_text  = fetchy.get('text')
-    fetched_mahlas= fetchy.get('mahlas')
-    fetched_votes = dber.get_votes(content_id)
-    if is_admin is False:
-        return render_template("textview.html",
-                               text_name=fetched_title,
-                               text=fetched_text,
-                               mahlas=fetched_mahlas)
-    else:
+    fetched_text = fetchy.get('text')
+    fetched_mahlas = fetchy.get('mahlas')
+    if 'username' in session: #check for admin session
+        fetched_votes = dber.get_votes(content_id)
         return render_template("textview.html",
                                text_name=fetched_title,
                                text=fetched_text,
                                mahlas=fetched_mahlas,
-                               votes= fetched_votes)
+                               votes=fetched_votes,
+                               username=session['username'])
+    else:
+        return render_template("textview.html",
+                               text_name=fetched_title,
+                               text=fetched_text,
+                               mahlas=fetched_mahlas)
 
 
 @app.route('/waitlist')
