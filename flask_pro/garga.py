@@ -16,7 +16,8 @@ ERR_TEXT = " //Booom, looks like I failed, please send an email about error yunu
 @app.route("/")
 def index():
     try:
-        rend = render_template("index.html")
+        flowers = dber.get_flow()
+        rend = render_template("index.html", texts= flowers)
         return rend
     except Exception as e:
         return (str(e)+ ERR_TEXT)
