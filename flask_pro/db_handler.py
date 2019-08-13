@@ -1,5 +1,6 @@
 import mysql.connector
 
+VOTE_THRESHOLD = 0
 class db_handler():
 
     def __init__(self):
@@ -25,9 +26,72 @@ class db_handler():
         print(self.cursor.rowcount," inserted")
 
     def get_waitings(self):
-        sql = "SELECT * FROM texts"
+        sql = "SELECT * FROM texts WHERE id NOT IN \
+                        (SELECT id FROM votes WHERE vote=1 GROUP BY id HAVING COUNT(id)>"+\
+                        str(VOTE_THRESHOLD)+")"
         self.cursor.execute(sql)
         result = []
         for waiter in self.cursor:
             result.append(waiter)
         return result
+
+    def get_votes(self,text_id):
+        text_id = str(int(text_id))
+        sql = "SELECT admin FROM admins"
+        self.cursor.execute(sql)
+        admin_dicts = self.turn2dict(self.cursor)
+        admin_list  = [admin['admin'] for admin in admin_dicts]
+
+        sql = "SELECT admin,vote FROM votes WHERE EXISTS" \
+              "(SELECT admin from admins WHERE admins.admin = votes.admin AND votes.id = " + text_id + ')'# votes for text
+        self.cursor.execute(sql)
+        votes_dict = {vote['admin']: vote['vote'] for vote in self.turn2dict(self.cursor)}
+
+        for admin in admin_list:
+            if votes_dict.get(admin) is None:
+                votes_dict[admin] = 'waiting'
+            elif votes_dict.get(admin) is 1:
+                votes_dict[admin] = 'good'
+            elif votes_dict.get(admin) is 0:
+                votes_dict[admin] = 'bad'
+
+        return votes_dict
+
+    def get_text_and_attr(self, text_id):
+        sql = "SELECT textname, text, mahlas, reg_date FROM texts" \
+              " WHERE id =" + str(text_id)
+        self.cursor.execute(sql)
+        text_dict = self.turn2dict(self.cursor)
+        if len(text_dict) == 0:
+            return {}        #if text not exists, its none
+        return text_dict[0]
+
+    def get_flow(self):
+        sql = "SELECT * FROM texts WHERE id IN \
+                (SELECT id FROM votes WHERE vote=1 GROUP BY id HAVING COUNT(id)>"+\
+                str(VOTE_THRESHOLD)+ ")"
+        self.cursor.execute(sql)
+        result = []
+        for res in self.cursor:
+            result.append(res)
+        return result
+
+    def admin_login(self, usr, passwd):
+        sql = "SELECT * FROM admins WHERE admin ='" + str(usr) + "' AND password ='" + str(passwd) + "'"
+        self.cursor.execute(sql)
+        text_dict = self.turn2dict(self.cursor)
+        print(len(text_dict))
+        return False if len(text_dict)==0 else True
+
+    def insert_vote(self, text_id, admin, vote):
+        sql = "INSERT INTO votes values(%s, %s, %s) ON DUPLICATE KEY UPDATE vote=%s"
+        self.cursor.execute(sql, (text_id,admin,vote,vote))
+        self.db.commit()
+        print(self.cursor.rowcount, " inserted")
+    @staticmethod
+    def turn2dict(cursor):
+        desc = cursor.description
+        column_names = [col[0] for col in desc]
+        data = [dict(zip(column_names, row))
+                for row in cursor.fetchall()]
+        return data

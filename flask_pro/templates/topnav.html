@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-67954605-3"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+
+        gtag('config', 'UA-67954605-3');
+    </script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href={{ url_for('static', filename='master.css') }}>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    {% if text_name %}
+        <title>{{ text_name }} | GARGA </title>
+    {% else %}
+        <title> GARGA </title>
+    {% endif %}
+
+</head>
+<body>
+{% block topnav %}
+    <div class="topnav" id="topnav">
+        <div class="flex_box">
+            <a class="svg1" id="svg1" onclick="midmenu('menu1_content')"></a>
+            <h2 class="header">Garga</h2>
+
+            <div class="dropdown_list">
+                <div class="desktop_menus">
+                    <a href="/kimiz">Biz Kimiz?</a>
+                    <a href="/kilavuz">Kılavuz</a>
+                    <a href="#">İletişim</a>
+                    <a href="/ekle">İçerik Ekle</a>
+                    <a href="#">Düz Yazı</a>
+                    <a href="#">Şiir</a>
+                    <a href="#">Fotoğraf</a>
+                    <a href="#">Sinema</a>
+                    <a href="#">Tiyatro</a>
+                    <a href="#">Dizi</a>
+                    <input type="text" placeholder="Bul...        &#x1F50D">
+                </div>
+                <button class="dropbtn" id="dropbtn">
+                    <div class="droper" id="droper"></i>
+                        <div class="liner"></div>
+                        <div class="liner"></div>
+                        <div class="liner"></div>
+                    </div>
+                </button>
+                <div class="dropdown-content" id="myDropdown">
+                    <input class="searcher" type="text" placeholder="Bul... &#x1F50D">
+                    <a href="/kimiz">Biz Kimiz?</a>
+                    <a href="/kilavuz">Kılavuz</a>
+                    <a href="#">İletişim</a>
+                    <a href="/ekle">İçerik Ekle</a>
+                    <a href="#">Düz Yazı</a>
+                    <a href="#">Şiir</a>
+                    <a href="#">Fotoğraf</a>
+                    <a href="#">Sinema</a>
+                    <a href="#">Tiyatro</a>
+                    <a href="#">Dizi</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}
+    <div id="content">{% block content %}{% endblock %}</div>
+</body>
