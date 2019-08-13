@@ -1,36 +1,55 @@
 {% extends "topnav.html" %}
 
 {% block content %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <div class="texter_container"></div>
     <div class="text_view">
         {% if text_name %}
         <h3>{{ text_name }}</h3>
         {% else %}
-        <h3> You should give me content</h3>
+        <h3>Böyle</h3>
         {% endif %}
 
         {% if text %}
         <p> {{ text }}</p>
         {% else %}
-        <p> You should give me content </p>
+        <p>bir içerik </p>
         {% endif %}
 
         {% if mahlas %}
         <p> {{ mahlas }}</p>
         {% else %}
-        <h4 style="font-style: italic"> You should give me mahlas</h4>
+        <h4 style="font-style: italic"> Yok </h4>
         {% endif %}
 
     </div>
 
+    {% if username %}
+        <div class="text_view">
+            {% if votes %}
+                {% for vote in votes.keys() %}
+                    {% if votes[vote] == 'bad' %}
+                        <a style="color:red"> {{ vote }} ::: {{ votes[vote] }}</a>
+                    {% elif votes[vote] == 'good' %}
+                        <a style="color:green"> {{ vote }} ::: {{ votes[vote] }}</a>
+                    {% else %}
+                        <a> {{ vote }} ::: {{ votes[vote] }}</a>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        </div>
+        <div class="collider">
 
-    <div class="text_view">
-        {% if votes %}
-            {% for vote in votes.keys() %}
-            <a> {{ vote }} ::: {{ votes[vote] }}</a>
-            {% endfor %}
-        {% endif %}
-    </div>
+            <h2>Sence nasıl {{ username }}?</h2>
+            <div class="switch-field">
+                <input type="radio" id="radio-one" name="switch-one" value="yes" checked/>
+                <label for="radio-one">Güzel</label>
+                <input type="radio" id="radio-two" name="switch-one" value="no"/>
+                <label for="radio-two">Olmamış</label>
+            </div>
+            <button type="button" class="btn btn-dark">Oyla</button>
+        </div>
+    {% endif %}
 {% endblock %}
 <script src={{ url_for('static', filename='main.js') }} type="text/javascript"></script>
 
