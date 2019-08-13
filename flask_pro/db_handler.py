@@ -78,6 +78,11 @@ class db_handler():
         print(len(text_dict))
         return False if len(text_dict)==0 else True
 
+    def insert_vote(self, text_id, admin, vote):
+        sql = "INSERT INTO votes values(%s, %s, %s) ON DUPLICATE KEY UPDATE vote=%s"
+        self.cursor.execute(sql, (text_id,admin,vote,vote))
+        self.db.commit()
+        print(self.cursor.rowcount, " inserted")
     @staticmethod
     def turn2dict(cursor):
         desc = cursor.description
