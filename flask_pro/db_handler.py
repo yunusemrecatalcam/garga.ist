@@ -1,5 +1,5 @@
 import mysql.connector
-
+from passlib.hash import pbkdf2_sha256
 VOTE_THRESHOLD = 0
 class db_handler():
 
@@ -18,13 +18,34 @@ class db_handler():
         for x in self.cursor:
             print(x)
 
-    def insert_text(self,textname,text,mahlas):
-        sql = "INSERT INTO texts (textname, text, mahlas) VALUES (%s, %s, %s)"
-        val = (textname, text, mahlas)
-        self.cursor.execute(sql, val)
-        self.db.commit()
-        print(self.cursor.rowcount," inserted")
+    def insert_text(self,textname,text,mahlas,passkey):
+        hash = pbkdf2_sha256.encrypt(str(passkey), rounds=200000, salt_size=16)
+        sql = "SELECT * FROM users WHERE mahlas='"+ str(mahlas) + "'"
+        self.cursor.execute(sql)
+        try:
+            result = self.turn2dict(self.cursor)[0]
+        except:
+            result = None
+        if result == None:    #new user
+            sql = "INSERT INTO texts (textname, text, mahlas) VALUES (%s, %s, %s)"
+            val = (textname, text, mahlas)
+            self.cursor.execute(sql, val)
+            print(self.cursor.rowcount, " inserted1")
 
+            sql = "INSERT INTO users (mahlas,passwords) VALUES (%s, %s)"
+            val = (mahlas, passkey)
+            self.cursor.execute(sql, val)
+            print(self.cursor.rowcount, " inserted2")
+
+            self.db.commit()
+            return 1
+        elif result['mahlas']==mahlas and result['passwords']==passkey:
+            sql = "INSERT INTO texts (textname, text, mahlas) VALUES (%s, %s, %s)"
+            val = (textname, text, mahlas)
+            self.cursor.execute(sql, val)
+            return 2
+        else:
+            return 0
     def get_waitings(self):
         sql = "SELECT * FROM texts WHERE id NOT IN \
                         (SELECT id FROM votes WHERE vote=1 GROUP BY id HAVING COUNT(id)>"+\
