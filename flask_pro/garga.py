@@ -54,8 +54,9 @@ def content_get():
         mahlas= request.form.get('mahlas')
         passy = request.form.get('password')
         print(namy,texty,mahlas,passy)
-        dber.insert_text(namy,texty,mahlas)
-        return (jsonify(success=True))
+        insert_stat = dber.insert_text(namy,texty,mahlas,passy)
+        return (jsonify(success=True,
+                        status=insert_stat))
     except Exception as err:
         print(err)
         return(jsonify(success=False))
