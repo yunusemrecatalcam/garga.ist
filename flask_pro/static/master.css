@@ -190,7 +190,10 @@ button::-moz-focus-inner {
 .text_preview {
     display: none;
 }
-
+.text_view a{
+    margin-left: 10px;
+    margin-right: 10px;
+}
 .dropdown-content a, input {
     float: none;
     color: black;
@@ -298,6 +301,12 @@ ol li::before {
     font-family: 'Quicksand', sans-serif;
     margin-top: 2.0rem;
 }
+
+img {
+    width: 100%;
+    height: auto;
+}
+
 @media only screen and (min-device-aspect-ratio: 1/1) {
     #myDropdown, #dropbtn {
         display: none;
@@ -339,6 +348,9 @@ ol li::before {
         font-weight: bold;
         text-decoration: none;
         margin-left: 2px;
+    }
+    .text_view, .text_preview {
+        width: 40%;
     }
 }
 
