@@ -38,7 +38,7 @@ $('#post_form').click(function () {
                     alert("Tanışıyoruz galiba :) Yazınızı aldık. Sizi ana sayfaya yönlendiriyoruz.");
                 else if(data.status == 0)
                     alert("Şifreyi tutturamadın!");
-                window.location.replace("http://garga.ist");
+                window.location.replace("/");
             }else{
                 alert("Bir hata oluştu ve sistemde loglandı, hata devam ederse" +
                     "lütfen iletişime geçin.");
