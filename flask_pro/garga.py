@@ -72,6 +72,7 @@ def content_view(content_id):
     fetched_title = fetchy.get('textname')
     fetched_text = fetchy.get('text')
     fetched_mahlas = fetchy.get('mahlas')
+    fetched_img = fetchy.get('img_path')
     if 'username' in session: #check for admin session
         fetched_votes = dber.get_votes(content_id)
         return render_template("textview.html",
@@ -80,12 +81,14 @@ def content_view(content_id):
                                mahlas=fetched_mahlas,
                                votes=fetched_votes,
                                username=session['username'],
-                               text_id=content_id)
+                               text_id=content_id,
+                               img_path=fetched_img)
     else:
         return render_template("textview.html",
                                text_name=fetched_title,
                                text=fetched_text,
-                               mahlas=fetched_mahlas)
+                               mahlas=fetched_mahlas,
+                               img_path=fetched_img)
 
 @app.route('/admin/waitlist')
 def waitlist():
