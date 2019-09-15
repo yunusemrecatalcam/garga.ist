@@ -7,7 +7,8 @@
     {% if texts %}
         {% for text in texts %}
 
-            <div class="text_view">
+            <div class="text_view" onclick="go2text({{ text[0] }})">
+                <img src="/static/images/headless_guy.jpg">
                 <h3>{{ text[1] }}</h3>
                 <p>{{ text[2] }}</p>
                 <p class="mahlas">{{ text[3] }}</p>
@@ -17,6 +18,13 @@
         {% endfor %}
     {% endif %}
 
+    <script>
+        function go2text(id) {
+            console.log(id);
+            link = 'content_view/'.concat(id);
+            window.open(link, '_blank');
+        }
+    </script>
 {% endblock %}
 
 <script src={{ url_for('static', filename='main.js') }} type="text/javascript"></script>
