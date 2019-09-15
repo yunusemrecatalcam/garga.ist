@@ -1,90 +1,22 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-67954605-3"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
+{% extends "topnav.html" %}
 
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-
-        gtag('js', new Date());
-
-        gtag('config', 'UA-67954605-3');
-    </script>
-
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta charset="utf-8">
-    <link rel="stylesheet" href={{ url_for('static', filename='master.css') }}>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-</head>
-
-<body>
-
-<div class="topnav" id="topnav">
-    <div class="flex_box">
-        <a class="svg1" id="svg1" onclick="midmenu('menu1_content')"></a>
-        <h2 class="header">Garga</h2>
-
-        <div class="dropdown_list">
-            <div class="desktop_menus">
-                <a href="/kimiz">Biz Kimiz?</a>
-                <a href="/kilavuz">Kılavuz</a>
-                <a href="#">İletişim</a>
-                <a href="/ekle">İçerik Ekle</a>
-                <a href="#">Düz Yazı</a>
-                <a href="#">Şiir</a>
-                <a href="#">Fotoğraf</a>
-                <a href="#">Sinema</a>
-                <a href="#">Tiyatro</a>
-                <a href="#">Dizi</a>
-                <input type="text" placeholder="Bul...        &#x1F50D">
-            </div>
-            <button class="dropbtn" id="dropbtn">
-                <div class="droper" id="droper"></i>
-                    <div class="liner"></div>
-                    <div class="liner"></div>
-                    <div class="liner"></div>
-                </div>
-            </button>
-            <div class="dropdown-content" id="myDropdown">
-                <input class="searcher" type="text" placeholder="Bul... &#x1F50D">
-                <a href="/kimiz">Biz Kimiz?</a>
-                <a href="/kilavuz">Kılavuz</a>
-                <a href="#">İletişim</a>
-                <a href="/ekle">İçerik Ekle</a>
-                <a href="#">Düz Yazı</a>
-                <a href="#">Şiir</a>
-                <a href="#">Fotoğraf</a>
-                <a href="#">Sinema</a>
-                <a href="#">Tiyatro</a>
-                <a href="#">Dizi</a>
-            </div>
-        </div>
-
-    </div>
-</div>
-
+{% block content %}
 
 <div class="texter_container"></div>
 <div class="text_view" style="white-space:normal;">
     <h3>Yazı göndermek isteyen arkadaşlar için;</h3>
     <ol>
-        <li>Hiçbir şahsı, zümreyi, topluluğu doğrudan hedef alan hakaret içerikli yazılar kabul edilmeyecektir.
-            (Yazacağınız eleştiri niteliğindeki metinlerde özgürsünüz; hayal gücünüze ve anlatım kabiliyetinize
-            güveniyoruz. :) )
+        <li>İlk defa yazı gönderecekler kendilerine bir mahlas ve bu mahlasa ait bir şifre belirlemelidir. Bir sonraki
+            yazılarınızda bu mahlası kullanmak için ilk başta belirlediğiniz şifreyi girmeniz gerekmektedir. Mahlasınız
+            ve şifreniz sadece sizin tarafınızdan bilinecek olup, unutulması halinde sitenin bu konuda herhangi bir
+            sorumluluğu bulunmamaktadır.
         </li>
         <li>Yazılarımızda Türkçemizi güzel kullanmaya özen gösterelim. Paylaştıklarımızın yazım kuralları, noktalama
             işaretleri açısından doğru olmasına ve cümlelerimizde anlatım bozukluğu olmamasına dikkat edelim.
         </li>
-        <li>Yazı göndermek isteyen arkadaşlar, bir mahlas ve buna özel site tarafından sağlanan bir şifre ile paylaşım
-            yapabileceklerdir. Mahlasınız ve şifreniz sadece sizin tarafınızdan bilinecek olup, unutulması halinde
-            sitenin bu konuda bir sorumluluğu bulunmamaktadır.
+        <li>Hiçbir şahsı, zümreyi, topluluğu doğrudan hedef alan hakaret içerikli yazılar kabul edilmeyecektir.
+            (Yazacağınız eleştiri niteliğindeki metinlerde özgürsünüz; hayal gücünüze ve anlatım kabiliyetinize
+            güveniyoruz. :) )
         </li>
         <li>Yazılar altına yapılan yorumlarda da mahlas ve şifre gerekmektedir. Yorumlarınız yazılarımızda da geçerli
             olan kriterlere uygunluğuna bağlı olarak adminler tarafından değerlendirilecektir. Yorumlarımızdaki temel
@@ -104,6 +36,5 @@
 <br>
 
 <script src={{ url_for('static', filename='main.js') }} type="text/javascript"></script>
+{% endblock %}
 
-</body>
-</html>
