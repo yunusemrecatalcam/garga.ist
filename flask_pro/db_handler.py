@@ -109,6 +109,16 @@ class db_handler():
         self.cursor.execute(sql, (text_id,admin,vote,vote))
         self.db.commit()
         print(self.cursor.rowcount, " inserted")
+
+    def search(self, key):
+        sql = 'SELECT * FROM texts WHERE text LIKE %s'
+        args = [key + '%']
+        self.cursor.execute(sql, args)
+        #text_dict = self.turn2dict(self.cursor)
+        result = []
+        for res in self.cursor:
+            result.append(res)
+        return result
     @staticmethod
     def turn2dict(cursor):
         desc = cursor.description

@@ -129,5 +129,13 @@ def vote():
                 return (jsonify(success=False))
 
     return redirect(url_for('index'))
+
+@app.route('/search', methods=['GET'])
+def search():
+    search = request.args.get('key')
+    flowers = dber.search(search)
+    rend = render_template("index.html", texts=flowers)
+    return rend
+
 if __name__ == '__main__':
     app.run()
