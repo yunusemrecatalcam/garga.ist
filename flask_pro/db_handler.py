@@ -1,31 +1,63 @@
 import mysql.connector
-
-VOTE_THRESHOLD = 0
+from passlib.hash import pbkdf2_sha256
+import datetime, time
+VOTE_THRESHOLD = 4
 class db_handler():
 
     def __init__(self):
-        self.db= mysql.connector.connect(
+
+        self.start_conn()
+        self.cursor = self.db.cursor()
+        self.cursor.execute("SET NAMES 'utf8';")
+        self.cursor.execute("SET CHARACTER SET utf8;")
+        self.stop_conn()
+
+    def start_conn(self):
+        self.db = mysql.connector.connect(
             host="localhost",
             user="api",
             passwd="pass",
             database="garga")
-
         self.cursor = self.db.cursor()
-        self.cursor.execute("SET NAMES 'utf8';")
-        self.cursor.execute("SET CHARACTER SET utf8;")
-        self.cursor.execute("show tables")
 
-        for x in self.cursor:
-            print(x)
+    def stop_conn(self):
+        self.cursor.close()
+        self.db.close()
 
-    def insert_text(self,textname,text,mahlas):
-        sql = "INSERT INTO texts (textname, text, mahlas) VALUES (%s, %s, %s)"
-        val = (textname, text, mahlas)
-        self.cursor.execute(sql, val)
-        self.db.commit()
-        print(self.cursor.rowcount," inserted")
+    def insert_text(self,textname,text,mahlas,passkey):
+        #hash = pbkdf2_sha256.encrypt(str(passkey), rounds=200000, salt_size=16)
+        self.start_conn()
+        sql = "SELECT * FROM users WHERE mahlas='"+ str(mahlas) + "'"
+        self.cursor.execute(sql)
+        try:
+            result = self.turn2dict(self.cursor)[0]
+        except:
+            result = None
+        if result == None:    #new user
+            sql = "INSERT INTO texts (textname, text, mahlas) VALUES (%s, %s, %s)"
+            val = (textname, text, mahlas)
+            self.cursor.execute(sql, val)
+            print(self.cursor.rowcount, " inserted1")
 
+            sql = "INSERT INTO users (mahlas,passwords) VALUES (%s, %s)"
+            val = (mahlas, passkey)
+            self.cursor.execute(sql, val)
+            print(self.cursor.rowcount, " inserted2")
+
+            self.db.commit()
+            self.stop_conn()
+            return 1
+        elif result['mahlas']==mahlas and result['passwords']==passkey:
+            sql = "INSERT INTO texts (textname, text, mahlas) VALUES (%s, %s, %s)"
+            val = (textname, text, mahlas)
+            self.cursor.execute(sql, val)
+            self.db.commit()
+            self.stop_conn()
+            return 2
+        else:
+            return 0
     def get_waitings(self):
+        self.start_conn()
         sql = "SELECT * FROM texts WHERE id NOT IN \
                         (SELECT id FROM votes WHERE vote=1 GROUP BY id HAVING COUNT(id)>"+\
                         str(VOTE_THRESHOLD)+")"
@@ -33,9 +65,11 @@ class db_handler():
         result = []
         for waiter in self.cursor:
             result.append(waiter)
+        self.stop_conn()
         return result
 
     def get_votes(self,text_id):
+        self.start_conn()
         text_id = str(int(text_id))
         sql = "SELECT admin FROM admins"
         self.cursor.execute(sql)
@@ -49,24 +83,30 @@ class db_handler():
 
         for admin in admin_list:
             if votes_dict.get(admin) is None:
-                votes_dict[admin] = 'waiting'
+                votes_dict[admin] = 'bekliyoruz'
             elif votes_dict.get(admin) is 1:
-                votes_dict[admin] = 'good'
+                votes_dict[admin] = 'iyi'
             elif votes_dict.get(admin) is 0:
-                votes_dict[admin] = 'bad'
+                votes_dict[admin] = 'kötü'
 
+        self.stop_conn()
         return votes_dict
 
     def get_text_and_attr(self, text_id):
-        sql = "SELECT textname, text, mahlas, reg_date FROM texts" \
+        self.start_conn()
+        sql = "SELECT textname, text, mahlas, reg_date, img_path FROM texts" \
               " WHERE id =" + str(text_id)
         self.cursor.execute(sql)
         text_dict = self.turn2dict(self.cursor)
         if len(text_dict) == 0:
             return {}        #if text not exists, its none
+
+        self.stop_conn()
         return text_dict[0]
 
     def get_flow(self):
+
+        self.start_conn()
         sql = "SELECT * FROM texts WHERE id IN \
                 (SELECT id FROM votes WHERE vote=1 GROUP BY id HAVING COUNT(id)>"+\
                 str(VOTE_THRESHOLD)+ ")"
@@ -74,20 +114,44 @@ class db_handler():
         result = []
         for res in self.cursor:
             result.append(res)
+        self.stop_conn()
         return result
 
     def admin_login(self, usr, passwd):
+        self.start_conn()
         sql = "SELECT * FROM admins WHERE admin ='" + str(usr) + "' AND password ='" + str(passwd) + "'"
         self.cursor.execute(sql)
         text_dict = self.turn2dict(self.cursor)
-        print(len(text_dict))
+        self.stop_conn()
         return False if len(text_dict)==0 else True
 
     def insert_vote(self, text_id, admin, vote):
+        self.start_conn()
         sql = "INSERT INTO votes values(%s, %s, %s) ON DUPLICATE KEY UPDATE vote=%s"
         self.cursor.execute(sql, (text_id,admin,vote,vote))
         self.db.commit()
-        print(self.cursor.rowcount, " inserted")
+        sql = "SELECT * FROM votes WHERE id=" + str(text_id)
+        self.cursor.execute(sql)
+        text_dict = self.turn2dict(self.cursor)
+        if len(text_id) > VOTE_THRESHOLD:
+            ts = time.time()
+            timestamp = datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
+            sql = "UPDATE texts SET confirm_date='" + str(timestamp)+ "'" + "WHERE id="+ str(text_id)
+            self.cursor.execute(sql)
+            self.db.commit()
+        self.stop_conn()
+
+    def search(self, key):
+        self.start_conn()
+        sql = 'SELECT * FROM texts WHERE text LIKE %s'
+        args = [key + '%']
+        self.cursor.execute(sql, args)
+        #text_dict = self.turn2dict(self.cursor)
+        result = []
+        for res in self.cursor:
+            result.append(res)
+        self.stop_conn()
+        return result
     @staticmethod
     def turn2dict(cursor):
         desc = cursor.description

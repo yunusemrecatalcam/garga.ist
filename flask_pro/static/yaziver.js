@@ -31,8 +31,14 @@ $('#post_form').click(function () {
             console.log(data);
             console.log(status);
             if(data.success == true) {
-                alert("Yazınızı aldık, sizi ana sayfaya yönlendiriyoruz.");
-                window.location.replace("http://garga.ist");
+                if(data.status == 1)
+                    alert("Görüyoruz ki ilk yazınızı" +
+                        " eklediniz, Garga'ya hoşgeldiniz. Sizi ana sayfaya yönlendiriyoruz.");
+                else if(data.status == 2)
+                    alert("Tanışıyoruz galiba :) Yazınızı aldık. Sizi ana sayfaya yönlendiriyoruz.");
+                else if(data.status == 0)
+                    alert("Şifreyi tutturamadın!");
+                window.location.replace("/");
             }else{
                 alert("Bir hata oluştu ve sistemde loglandı, hata devam ederse" +
                     "lütfen iletişime geçin.");

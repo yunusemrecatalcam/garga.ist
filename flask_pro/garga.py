@@ -2,7 +2,7 @@ from flask import Flask,render_template,\
     request,jsonify,session,redirect,url_for, \
     send_from_directory
 import os
-from flask_pro.db_handler import db_handler
+from db_handler import db_handler
 
 dber = db_handler()
 
@@ -21,6 +21,11 @@ def index():
         return rend
     except Exception as e:
         return (str(e)+ ERR_TEXT)
+
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory(os.path.join(app.root_path, 'static'),
+                               'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
 @app.route("/ekle")
 def ekle():
@@ -53,9 +58,9 @@ def content_get():
         texty = request.form.get('text')
         mahlas= request.form.get('mahlas')
         passy = request.form.get('password')
-        print(namy,texty,mahlas,passy)
-        dber.insert_text(namy,texty,mahlas)
-        return (jsonify(success=True))
+        insert_stat = dber.insert_text(namy,texty,mahlas,passy)
+        return (jsonify(success=True,
+                        status=insert_stat))
     except Exception as err:
         print(err)
         return(jsonify(success=False))
@@ -66,6 +71,7 @@ def content_view(content_id):
     fetched_title = fetchy.get('textname')
     fetched_text = fetchy.get('text')
     fetched_mahlas = fetchy.get('mahlas')
+    fetched_img = fetchy.get('img_path')
     if 'username' in session: #check for admin session
         fetched_votes = dber.get_votes(content_id)
         return render_template("textview.html",
@@ -74,12 +80,14 @@ def content_view(content_id):
                                mahlas=fetched_mahlas,
                                votes=fetched_votes,
                                username=session['username'],
-                               text_id=content_id)
+                               text_id=content_id,
+                               img_path=fetched_img)
     else:
         return render_template("textview.html",
                                text_name=fetched_title,
                                text=fetched_text,
-                               mahlas=fetched_mahlas)
+                               mahlas=fetched_mahlas,
+                               img_path=fetched_img)
 
 @app.route('/admin/waitlist')
 def waitlist():
@@ -116,9 +124,18 @@ def vote():
                 print(usr, text_id, vote)
                 dber.insert_vote(text_id,usr,vote)
                 return (jsonify(success=True))
-            except:
+            except Exception as e:
+                print(e)
                 return (jsonify(success=False))
 
     return redirect(url_for('index'))
+
+@app.route('/search', methods=['GET'])
+def search():
+    search = request.args.get('key')
+    flowers = dber.search(search)
+    rend = render_template("index.html", texts=flowers)
+    return rend
+
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)

@@ -4,6 +4,10 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <div class="texter_container"></div>
     <div class="text_view">
+        {% if img_path %}
+        <img src={{ img_path }}>
+        {% endif %}
+
         {% if text_name %}
         <h3>{{ text_name }}</h3>
         {% else %}
@@ -28,9 +32,9 @@
         <div class="text_view">
             {% if votes %}
                 {% for vote in votes.keys() %}
-                    {% if votes[vote] == 'bad' %}
+                    {% if votes[vote] == 'kötü' %}
                         <a style="color:red"> {{ vote }} ::: {{ votes[vote] }}</a>
-                    {% elif votes[vote] == 'good' %}
+                    {% elif votes[vote] == 'iyi' %}
                         <a style="color:green"> {{ vote }} ::: {{ votes[vote] }}</a>
                     {% else %}
                         <a> {{ vote }} ::: {{ votes[vote] }}</a>
