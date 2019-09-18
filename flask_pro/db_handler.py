@@ -1,7 +1,7 @@
 import mysql.connector
 from passlib.hash import pbkdf2_sha256
 import datetime, time
-VOTE_THRESHOLD = 0
+VOTE_THRESHOLD = 4
 class db_handler():
 
     def __init__(self):
@@ -83,11 +83,11 @@ class db_handler():
 
         for admin in admin_list:
             if votes_dict.get(admin) is None:
-                votes_dict[admin] = 'waiting'
+                votes_dict[admin] = 'bekliyoruz'
             elif votes_dict.get(admin) is 1:
-                votes_dict[admin] = 'good'
+                votes_dict[admin] = 'iyi'
             elif votes_dict.get(admin) is 0:
-                votes_dict[admin] = 'bad'
+                votes_dict[admin] = 'kötü'
 
         self.stop_conn()
         return votes_dict

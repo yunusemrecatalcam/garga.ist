@@ -32,9 +32,9 @@
         <div class="text_view">
             {% if votes %}
                 {% for vote in votes.keys() %}
-                    {% if votes[vote] == 'bad' %}
+                    {% if votes[vote] == 'kötü' %}
                         <a style="color:red"> {{ vote }} ::: {{ votes[vote] }}</a>
-                    {% elif votes[vote] == 'good' %}
+                    {% elif votes[vote] == 'iyi' %}
                         <a style="color:green"> {{ vote }} ::: {{ votes[vote] }}</a>
                     {% else %}
                         <a> {{ vote }} ::: {{ votes[vote] }}</a>
