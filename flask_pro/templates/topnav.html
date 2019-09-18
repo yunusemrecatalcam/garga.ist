@@ -41,7 +41,7 @@
                     <a href="/kimiz">Biz Kimiz?</a>
                     <a href="/kilavuz">Kılavuz</a>
                     <a href="/ekle">İçerik Ekle</a>
-                    <input type="text" placeholder="Bul...        &#x1F50D">
+                    <input id="search" type="text" placeholder="Bul...        &#x1F50D">
                 </div>
                 <div class="droper" id="droper"></i>
                     <div class="liner"></div>
@@ -49,7 +49,7 @@
                     <div class="liner"></div>
                 </div>
                 <div class="dropdown-content" id="myDropdown">
-                    <input class="searcher" type="text" placeholder="Bul... &#x1F50D">
+                    <input id="search1" class="searcher" type="text" placeholder="Bul... &#x1F50D">
                     <a href="/kimiz">Biz Kimiz?</a>
                     <a href="/kilavuz">Kılavuz</a>
                     <a href="/ekle">İçerik Ekle</a>
@@ -65,6 +65,31 @@
         function toHome() {
             window.location.replace("/");
         }
+
+        $('#droper').click(function () {
+            document.getElementById('myDropdown').classList.toggle("show");
+            console.log("halseyy!")
+        });
+        $('#liner').click(function () {
+            document.getElementById('myDropdown').classList.toggle("show");
+            console.log("halseyy!")
+        });
+        $("#search").keyup(function (event) {
+            if (event.keyCode === 13) {
+                console.log("that nice!!!");
+                var searchkey = document.getElementById("search").value;
+                console.log(searchkey);
+                window.location.replace('/search?key='.concat(searchkey));
+            }
+        });
+        $("#search1").keyup(function (event) {
+            if (event.keyCode === 13) {
+                console.log("that nice!!!");
+                var searchkey = document.getElementById("search1").value;
+                console.log("asdf0");
+                window.location.href = '/search?key='.concat(searchkey);
+            }
+        });
     </script>
 {% endblock %}
     <div id="content">{% block content %}{% endblock %}</div>
