@@ -2,7 +2,7 @@ from flask import Flask,render_template,\
     request,jsonify,session,redirect,url_for, \
     send_from_directory
 import os
-from flask_pro.db_handler import db_handler
+from db_handler import db_handler
 
 dber = db_handler()
 
@@ -58,7 +58,6 @@ def content_get():
         texty = request.form.get('text')
         mahlas= request.form.get('mahlas')
         passy = request.form.get('password')
-        print(namy,texty,mahlas,passy)
         insert_stat = dber.insert_text(namy,texty,mahlas,passy)
         return (jsonify(success=True,
                         status=insert_stat))
@@ -125,7 +124,8 @@ def vote():
                 print(usr, text_id, vote)
                 dber.insert_vote(text_id,usr,vote)
                 return (jsonify(success=True))
-            except:
+            except Exception as e:
+                print(e)
                 return (jsonify(success=False))
 
     return redirect(url_for('index'))
@@ -138,4 +138,4 @@ def search():
     return rend
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
