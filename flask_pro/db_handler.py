@@ -107,6 +107,15 @@ class db_handler():
         self.stop_conn()
         return text_dict[0]
 
+    def is_published(self, text_id):
+        sql = "SELECT * FROM votes WHERE id=" + str(text_id)
+        self.start_conn()
+        self.cursor.execute(sql)
+        text_dict = self.turn2dict(self.cursor)
+        if len(text_dict) >= VOTE_THRESHOLD:
+            return True
+        else:
+            return False
     def get_flow(self):
 
         self.start_conn()
