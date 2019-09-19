@@ -26,6 +26,9 @@ class db_handler():
 
     def insert_text(self,textname,text,mahlas,passkey):
         #hash = pbkdf2_sha256.encrypt(str(passkey), rounds=200000, salt_size=16)
+        if mahlas == '' or textname == '' or \
+            mahlas == '' or passkey == '':
+            return 3
         self.start_conn()
         sql = "SELECT * FROM users WHERE mahlas='"+ str(mahlas) + "'"
         self.cursor.execute(sql)
