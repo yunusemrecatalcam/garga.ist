@@ -2,6 +2,7 @@ import mysql.connector
 from passlib.hash import pbkdf2_sha256
 import datetime, time
 VOTE_THRESHOLD = 4
+FLOW_CHAR_LIM  = 500
 class db_handler():
 
     def __init__(self):
@@ -125,7 +126,8 @@ class db_handler():
         self.cursor.execute(sql)
         result = []
         for res in self.cursor:
-            result.append(res)
+            trimmed = self.trim_text(res)
+            result.append(trimmed)
         self.stop_conn()
         return result
 
@@ -171,3 +173,8 @@ class db_handler():
         data = [dict(zip(column_names, row))
                 for row in cursor.fetchall()]
         return data
+    @staticmethod
+    def trim_text(content_tuple):
+        content = list(content_tuple)
+        content[2] = str(content[2][:FLOW_CHAR_LIM]) + '...'
+        return tuple(content)
