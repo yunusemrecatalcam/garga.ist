@@ -8,7 +8,7 @@
         {% for text in texts %}
 
             <div class="text_view" onclick="go2text({{ text[0] }})">
-                <img src="/static/images/headless_guy.jpg">
+                <img src={{ text[5] }}>
                 <h3>{{ text[1] }}</h3>
                 <p>{{ text[2] }}</p>
                 <p class="mahlas">{{ text[3] }}</p>
