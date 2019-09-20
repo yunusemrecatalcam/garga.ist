@@ -147,7 +147,7 @@ class db_handler():
         sql = "SELECT * FROM votes WHERE id=" + str(text_id)
         self.cursor.execute(sql)
         text_dict = self.turn2dict(self.cursor)
-        if len(text_id) > VOTE_THRESHOLD:
+        if len(text_dict) > VOTE_THRESHOLD:
             ts = time.time()
             timestamp = datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
             sql = "UPDATE texts SET confirm_date='" + str(timestamp)+ "'" + "WHERE id="+ str(text_id)
