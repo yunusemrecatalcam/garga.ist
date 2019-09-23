@@ -122,7 +122,7 @@ class db_handler():
         self.start_conn()
         sql = "SELECT * FROM texts WHERE id IN \
                 (SELECT id FROM votes WHERE vote=1 GROUP BY id HAVING COUNT(id)>"+\
-                str(VOTE_THRESHOLD)+ ")"
+                str(VOTE_THRESHOLD)+ ")" + "ORDER BY id DESC"
         self.cursor.execute(sql)
         result = []
         for res in self.cursor:
