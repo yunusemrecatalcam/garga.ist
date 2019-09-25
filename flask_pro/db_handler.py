@@ -63,8 +63,11 @@ class db_handler():
     def get_waitings(self):
         self.start_conn()
         sql = "SELECT * FROM texts WHERE id NOT IN \
-                        (SELECT id FROM votes WHERE vote=1 GROUP BY id HAVING COUNT(id)>"+\
-                        str(VOTE_THRESHOLD)+")"
+                (SELECT id FROM votes WHERE vote=1 GROUP BY id HAVING COUNT(id)>" + \
+              str(VOTE_THRESHOLD) + ")" + "AND id NOT IN" + \
+                "(SELECT id FROM votes WHERE vote=0 GROUP BY id HAVING COUNT(id)>" + \
+              str(VOTE_THRESHOLD) + ")"
+
         self.cursor.execute(sql)
         result = []
         for waiter in self.cursor:
@@ -122,7 +125,7 @@ class db_handler():
         self.start_conn()
         sql = "SELECT * FROM texts WHERE id IN \
                 (SELECT id FROM votes WHERE vote=1 GROUP BY id HAVING COUNT(id)>"+\
-                str(VOTE_THRESHOLD)+ ")" + "ORDER BY id DESC"
+                str(VOTE_THRESHOLD)+ ")" + "ORDER BY confirm_date DESC"
         self.cursor.execute(sql)
         result = []
         for res in self.cursor:
