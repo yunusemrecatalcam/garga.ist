@@ -123,7 +123,7 @@ class db_handler():
     def get_flow(self):
 
         self.start_conn()
-        sql = "SELECT * FROM texts WHERE id IN \
+        sql = "SELECT * FROM texts WHERE img_path!='' AND id IN \
                 (SELECT id FROM votes WHERE vote=1 GROUP BY id HAVING COUNT(id)>"+\
                 str(VOTE_THRESHOLD)+ ")" + "ORDER BY confirm_date DESC"
         self.cursor.execute(sql)
