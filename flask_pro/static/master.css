@@ -305,6 +305,8 @@ ol li::before {
 img {
     width: 100%;
     height: auto;
+    max-height: 25rem;
+    object-fit: cover;
 }
 
 @media only screen and (min-device-aspect-ratio: 1/1) {

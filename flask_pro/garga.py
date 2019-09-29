@@ -27,10 +27,15 @@ def favicon():
     return send_from_directory(os.path.join(app.root_path, 'static'),
                                'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
+@app.route('/sitemap.xml')
+def sitemap():
+    return send_from_directory(os.path.join(app.root_path, 'static'),
+                               'sitemap.xml')
+
 @app.route("/ekle")
 def ekle():
     try:
-        rend = render_template("ekle.html")
+        rend = render_template("ekle.html", text_name="İçerik Ekle")
         return rend
     except Exception as e:
         return (str(e)+ ERR_TEXT)
@@ -38,7 +43,7 @@ def ekle():
 @app.route("/kilavuz")
 def kilavuz():
     try:
-        rend = render_template("kilavuz.html")
+        rend = render_template("kilavuz.html", text_name="Kılavuz")
         return rend
     except Exception as e:
         return (str(e)+ ERR_TEXT)
@@ -46,7 +51,7 @@ def kilavuz():
 @app.route("/kimiz")
 def kimiz():
     try:
-        rend = render_template("kimiz.html")
+        rend = render_template("kimiz.html", text_name="Biz Kimiz?")
         return rend
     except Exception as e:
         return (str(e)+ ERR_TEXT)
@@ -72,6 +77,7 @@ def content_view(content_id):
     fetched_text = fetchy.get('text')
     fetched_mahlas = fetchy.get('mahlas')
     fetched_img = fetchy.get('img_path')
+    pub_stat = dber.is_published(content_id)
     if 'username' in session: #check for admin session
         fetched_votes = dber.get_votes(content_id)
         return render_template("textview.html",
@@ -82,13 +88,14 @@ def content_view(content_id):
                                username=session['username'],
                                text_id=content_id,
                                img_path=fetched_img)
-    else:
+    elif pub_stat is True:
         return render_template("textview.html",
                                text_name=fetched_title,
                                text=fetched_text,
                                mahlas=fetched_mahlas,
                                img_path=fetched_img)
-
+    else:
+        return render_template("textview.html")
 @app.route('/admin/waitlist')
 def waitlist():
     if 'username' in session:

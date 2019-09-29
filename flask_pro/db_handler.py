@@ -2,6 +2,7 @@ import mysql.connector
 from passlib.hash import pbkdf2_sha256
 import datetime, time
 VOTE_THRESHOLD = 4
+FLOW_CHAR_LIM  = 500
 class db_handler():
 
     def __init__(self):
@@ -26,6 +27,9 @@ class db_handler():
 
     def insert_text(self,textname,text,mahlas,passkey):
         #hash = pbkdf2_sha256.encrypt(str(passkey), rounds=200000, salt_size=16)
+        if mahlas == '' or textname == '' or \
+            mahlas == '' or passkey == '':
+            return 3
         self.start_conn()
         sql = "SELECT * FROM users WHERE mahlas='"+ str(mahlas) + "'"
         self.cursor.execute(sql)
@@ -59,8 +63,11 @@ class db_handler():
     def get_waitings(self):
         self.start_conn()
         sql = "SELECT * FROM texts WHERE id NOT IN \
-                        (SELECT id FROM votes WHERE vote=1 GROUP BY id HAVING COUNT(id)>"+\
-                        str(VOTE_THRESHOLD)+")"
+                (SELECT id FROM votes WHERE vote=1 GROUP BY id HAVING COUNT(id)>" + \
+              str(VOTE_THRESHOLD) + ")" + "AND id NOT IN" + \
+                "(SELECT id FROM votes WHERE vote=0 GROUP BY id HAVING COUNT(id)>" + \
+              str(VOTE_THRESHOLD) + ")"
+
         self.cursor.execute(sql)
         result = []
         for waiter in self.cursor:
@@ -104,16 +111,26 @@ class db_handler():
         self.stop_conn()
         return text_dict[0]
 
+    def is_published(self, text_id):
+        sql = "SELECT * FROM votes WHERE id=" + str(text_id)
+        self.start_conn()
+        self.cursor.execute(sql)
+        text_dict = self.turn2dict(self.cursor)
+        if len(text_dict) >= VOTE_THRESHOLD:
+            return True
+        else:
+            return False
     def get_flow(self):
 
         self.start_conn()
-        sql = "SELECT * FROM texts WHERE id IN \
+        sql = "SELECT * FROM texts WHERE img_path!='' AND id IN \
                 (SELECT id FROM votes WHERE vote=1 GROUP BY id HAVING COUNT(id)>"+\
-                str(VOTE_THRESHOLD)+ ")"
+                str(VOTE_THRESHOLD)+ ")" + "ORDER BY confirm_date DESC"
         self.cursor.execute(sql)
         result = []
         for res in self.cursor:
-            result.append(res)
+            trimmed = self.trim_text(res)
+            result.append(trimmed)
         self.stop_conn()
         return result
 
@@ -133,7 +150,7 @@ class db_handler():
         sql = "SELECT * FROM votes WHERE id=" + str(text_id)
         self.cursor.execute(sql)
         text_dict = self.turn2dict(self.cursor)
-        if len(text_id) > VOTE_THRESHOLD:
+        if len(text_dict) > VOTE_THRESHOLD:
             ts = time.time()
             timestamp = datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
             sql = "UPDATE texts SET confirm_date='" + str(timestamp)+ "'" + "WHERE id="+ str(text_id)
@@ -144,7 +161,7 @@ class db_handler():
     def search(self, key):
         self.start_conn()
         sql = 'SELECT * FROM texts WHERE text LIKE %s'
-        args = [key + '%']
+        args = ['%' + key + '%']
         self.cursor.execute(sql, args)
         #text_dict = self.turn2dict(self.cursor)
         result = []
@@ -159,3 +176,8 @@ class db_handler():
         data = [dict(zip(column_names, row))
                 for row in cursor.fetchall()]
         return data
+    @staticmethod
+    def trim_text(content_tuple):
+        content = list(content_tuple)
+        content[2] = str(content[2][:FLOW_CHAR_LIM]) + '...'
+        return tuple(content)
