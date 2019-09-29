@@ -104,6 +104,10 @@ def waitlist():
                                , username=session['username'])
     else:
         return redirect(url_for('index'))
+@app.route('/admin/waiting_for_image')
+def wait_for_it():
+    url_list = dber.get_waiting_for_img()
+    return render_template("waitlist.html", urls=url_list)
 
 @app.route('/admin/login',methods=['GET','POST'])
 def login():

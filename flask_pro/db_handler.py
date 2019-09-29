@@ -1,7 +1,7 @@
 import mysql.connector
 from passlib.hash import pbkdf2_sha256
 import datetime, time
-VOTE_THRESHOLD = 4
+VOTE_THRESHOLD = 3
 FLOW_CHAR_LIM  = 500
 class db_handler():
 
@@ -126,6 +126,20 @@ class db_handler():
         sql = "SELECT * FROM texts WHERE img_path!='' AND id IN \
                 (SELECT id FROM votes WHERE vote=1 GROUP BY id HAVING COUNT(id)>"+\
                 str(VOTE_THRESHOLD)+ ")" + "ORDER BY confirm_date DESC"
+        self.cursor.execute(sql)
+        result = []
+        for res in self.cursor:
+            trimmed = self.trim_text(res)
+            result.append(trimmed)
+        self.stop_conn()
+        return result
+
+    def get_waiting_for_img(self):
+
+        self.start_conn()
+        sql = "SELECT * FROM texts WHERE img_path is NULL AND id IN \
+                (SELECT id FROM votes WHERE vote=1 GROUP BY id HAVING COUNT(id)>"+\
+                str(VOTE_THRESHOLD)+ ")" + "ORDER BY id"
         self.cursor.execute(sql)
         result = []
         for res in self.cursor:
