@@ -174,7 +174,7 @@ class db_handler():
 
     def search(self, key):
         self.start_conn()
-        sql = 'SELECT * FROM texts WHERE text LIKE %s'
+        sql = "SELECT * FROM texts WHERE text LIKE %s AND img_path!='' "
         args = ['%' + key + '%']
         self.cursor.execute(sql, args)
         #text_dict = self.turn2dict(self.cursor)
