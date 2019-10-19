@@ -8,7 +8,9 @@
         {% for text in texts %}
 
             <div class="text_view" onclick="go2text({{ text[0] }})">
-                <img src="/static/images/headless_guy.jpg" data-defer-src={{ text[5] }}>
+                {% set head_and_tail = text[5].split('.') %}
+                {% set min_version = head_and_tail[0] + '-min.' + head_and_tail[1]%}
+                <img src={{min_version}} data-defer-src={{ text[5] }}>
                 <h3>{{ text[1] }}</h3>
                 <p>{{ text[2] }}</p>
                 <p class="mahlas">{{ text[3] }}</p>
