@@ -305,7 +305,7 @@ ol li::before {
 img {
     width: 100%;
     height: auto;
-    max-height: 25rem;
+    max-height: 30rem;
     object-fit: cover;
 }
 
