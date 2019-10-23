@@ -1,5 +1,4 @@
 import mysql.connector
-from passlib.hash import pbkdf2_sha256
 import datetime, time
 VOTE_THRESHOLD = 3
 FLOW_CHAR_LIM  = 500
