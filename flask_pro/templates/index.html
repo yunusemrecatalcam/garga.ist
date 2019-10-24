@@ -20,6 +20,20 @@
         {% endfor %}
     {% endif %}
 
+    <div class="pagination-wrapper">
+        <div class="pagination">
+            <a class="prev page-numbers" href="/?p={{ prev }}">önce</a>
+            {% for page_idx in pages %}
+                {% if page_idx == current %}
+                    <span aria-current="page" class="page-numbers current">{{ page_idx }}</span>
+                {% else %}
+                    <a class="page-numbers" href="/?p={{ page_idx }}">{{page_idx}}</a>
+                {% endif %}
+            {% endfor %}
+
+            <a class="next page-numbers" href="/?p={{ next }}">sonra</a>
+        </div>
+    </div>
     <script>
         function go2text(id) {
             console.log(id);
@@ -27,6 +41,7 @@
             window.open(link, '_blank');
         }
     </script>
+
 {% endblock %}
 
 <script src={{ url_for('static', filename='main.js') }} type="text/javascript"></script>
