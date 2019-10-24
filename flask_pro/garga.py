@@ -17,8 +17,10 @@ ERR_TEXT = " //Booom, looks like I failed, please send an email about error yunu
 def index():
     try:
         page = request.args.get('p')
-        flowers = dber.get_flow(page)
-        rend = render_template("index.html", texts= flowers)
+        flowers, current_page = dber.get_flow(page)
+        page_indexes = dber.get_page_indexes()
+        rend = render_template("index.html", texts= flowers,
+                               pages = page_indexes, current= current_page)
         return rend
     except Exception as e:
         return (str(e)+ ERR_TEXT)
