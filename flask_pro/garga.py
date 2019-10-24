@@ -13,10 +13,11 @@ app.secret_key = 'any random string'
 
 ERR_TEXT = " //Booom, looks like I failed, please send an email about error yunusemrecatalcam@gmail.com "
 
-@app.route("/")
+@app.route("/", methods=['GET'])
 def index():
     try:
-        flowers = dber.get_flow()
+        page = request.args.get('p')
+        flowers = dber.get_flow(page)
         rend = render_template("index.html", texts= flowers)
         return rend
     except Exception as e:
