@@ -22,16 +22,16 @@
 
     <div class="pagination-wrapper">
         <div class="pagination">
-            <a class="prev page-numbers" href="javascript:;">önce</a>
+            <a class="prev page-numbers" href="/?p={{ prev }}">önce</a>
             {% for page_idx in pages %}
                 {% if page_idx == current %}
                     <span aria-current="page" class="page-numbers current">{{ page_idx }}</span>
                 {% else %}
-                    <a class="page-numbers" href="javascript:;">{{page_idx}}</a>
+                    <a class="page-numbers" href="/?p={{ page_idx }}">{{page_idx}}</a>
                 {% endif %}
             {% endfor %}
 
-            <a class="next page-numbers" href="javascript:;">sonra</a>
+            <a class="next page-numbers" href="/?p={{ next }}">sonra</a>
         </div>
     </div>
     <script>

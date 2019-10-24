@@ -19,8 +19,11 @@ def index():
         page = request.args.get('p')
         flowers, current_page = dber.get_flow(page)
         page_indexes = dber.get_page_indexes()
+        next_idx = (current_page+1) if current_page+1 < len(page_indexes) else current_page
+        prev_idx = (current_page-1) if current_page>0 else current_page
         rend = render_template("index.html", texts= flowers,
-                               pages = page_indexes, current= current_page)
+                               pages = page_indexes, current= current_page,
+                               next = next_idx, prev= prev_idx)
         return rend
     except Exception as e:
         return (str(e)+ ERR_TEXT)
