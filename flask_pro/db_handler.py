@@ -2,7 +2,7 @@ import mysql.connector
 import datetime, time
 VOTE_THRESHOLD = 3
 FLOW_CHAR_LIM  = 500
-TEXT_CNT_ON_PAGE = 10
+TEXT_PER_PAGE = 10
 class db_handler():
 
     def __init__(self):
@@ -127,16 +127,28 @@ class db_handler():
             page_idx = 0
         self.start_conn()
         sql = "SELECT * FROM texts WHERE img_path!='' AND id IN \
-                (SELECT id FROM votes WHERE vote=1 GROUP BY id HAVING COUNT(id)>"+ \
+                (SELECT id FROM votes WHERE vote=1 GROUP BY id HAVING COUNT(id)>" + \
               str(VOTE_THRESHOLD) + ")" + "ORDER BY confirm_date DESC " + \
-              "LIMIT " + str(TEXT_CNT_ON_PAGE * page_idx) + ',' + str(TEXT_CNT_ON_PAGE)
+              "LIMIT " + str(TEXT_PER_PAGE * page_idx) + ',' + str(TEXT_PER_PAGE)
         self.cursor.execute(sql)
         result = []
         for res in self.cursor:
             trimmed = self.trim_text(res)
             result.append(trimmed)
         self.stop_conn()
-        return result
+        return result, page_idx
+
+    def get_page_indexes(self):
+        self.start_conn()
+        sql_text_count = "SELECT COUNT(*) FROM(SELECT textname FROM texts WHERE img_path!='' AND id IN \
+                        (SELECT id FROM votes WHERE vote=1 GROUP BY id HAVING COUNT(id)>" + \
+                         str(VOTE_THRESHOLD) + ")) src"
+        self.cursor.execute(sql_text_count)
+        texts_count = int(self.turn2dict(self.cursor)[0].get('COUNT(*)'))
+        pages_count = int(texts_count / TEXT_PER_PAGE) + 1
+        page_idx_arr = [i for i in range(pages_count)]
+        self.stop_conn()
+        return page_idx_arr
 
     def get_waiting_for_img(self):
 
