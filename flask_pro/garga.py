@@ -17,13 +17,14 @@ ERR_TEXT = " //Booom, looks like I failed, please send an email about error yunu
 def index():
     try:
         page = request.args.get('p')
-        flowers, current_page = dber.get_flow(page)
+        flowers, current_page, comment_cnt = dber.get_flow(page)
         page_indexes = dber.get_page_indexes()
         next_idx = (current_page+1) if current_page+1 < len(page_indexes) else current_page
         prev_idx = (current_page-1) if current_page>0 else current_page
         rend = render_template("index.html", texts= flowers,
                                pages = page_indexes, current= current_page,
-                               next = next_idx, prev= prev_idx)
+                               next = next_idx, prev= prev_idx,
+                               comment_count = comment_cnt)
         return rend
     except Exception as e:
         return (str(e)+ ERR_TEXT)
@@ -62,6 +63,15 @@ def kimiz():
     except Exception as e:
         return (str(e)+ ERR_TEXT)
 
+@app.route("/comment",methods=['POST'])
+def comment():
+    comment = request.form.get('text')
+    mahlas = request.form.get('mahlas')
+    passy = request.form.get('password')
+    text_id = request.form.get('text_id')
+    insert_stat = dber.insert_comment(comment, mahlas, passy, text_id)
+    return jsonify(success= True,
+                   status=insert_stat)
 @app.route("/content_get",methods=['POST'])
 def content_get():
     try:
@@ -79,6 +89,7 @@ def content_get():
 @app.route('/content_view/<content_id>')
 def content_view(content_id):
     fetchy = dber.get_text_and_attr(content_id)
+    comments = dber.get_comments(content_id)
     fetched_title = fetchy.get('textname')
     fetched_text = fetchy.get('text')
     fetched_mahlas = fetchy.get('mahlas')
@@ -93,13 +104,16 @@ def content_view(content_id):
                                votes=fetched_votes,
                                username=session['username'],
                                text_id=content_id,
-                               img_path=fetched_img)
+                               img_path=fetched_img,
+                               comments=comments)
     elif pub_stat is True:
         return render_template("textview.html",
                                text_name=fetched_title,
                                text=fetched_text,
                                mahlas=fetched_mahlas,
-                               img_path=fetched_img)
+                               img_path=fetched_img,
+                               text_id=content_id,
+                               comments=comments)
     else:
         return render_template("textview.html")
 @app.route('/admin/waitlist')
@@ -146,6 +160,13 @@ def vote():
                 return (jsonify(success=False))
 
     return redirect(url_for('index'))
+
+@app.route('/admin/comments')
+def show_comments():
+    if 'username' in session:
+        comments = dber.get_all_published_comments()
+        return render_template("comments.html", urls=comments)
+    return "0"
 
 @app.route('/search', methods=['GET'])
 def search():

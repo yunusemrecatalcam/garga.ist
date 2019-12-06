@@ -1,0 +1,37 @@
+{% extends "topnav.html" %}
+
+{% block content %}
+
+    <div class="texter_container"></div>
+    <div class="text_view">
+    {% if username %}
+        <p>Yazıları incelemek ve onaylamak için yanlarındaki bağlantıları kullanabilirsin <b>{{ username }}</b>.</p>
+    {% endif %}
+    </div>
+    <div class="table_view">
+        <table>
+            <tr>
+                <th>içerik_id</th>
+                <th>yorum_id</th>
+                <th>Mahlas</th>
+                <th>Yorum</th>
+                <th>Tarih</th>
+            </tr>
+            {% if urls %}
+                {% for url in urls %}
+                    <tr>
+                        <td>{{ url['text_id'] }}</td>
+                        <td>{{ url['id'] }}</td>
+                        <td>{{ url['mahlas'] }}</td>
+                        <td>{{ url['text'] }}</td>
+                        <td>{{ url['date'] }}</td>
+                        <td><a href="/content_view/{{ url[0] }}" target="_blank"> Yorumu kaldır </a></td>
+                    </tr>
+                {% endfor %}
+            {% endif %}
+        </table>
+    </div>
+    <br>
+{% endblock %}
+<script src={{ url_for('static', filename='main.js') }} type="text/javascript"></script>
+

@@ -1,16 +1,20 @@
 import mysql.connector
 import datetime, time
-VOTE_THRESHOLD = 3
+VOTE_THRESHOLD = 2
 FLOW_CHAR_LIM  = 500
 TEXT_PER_PAGE = 10
+
+INSERT_NEW_USER = 1
+INSERT_PASS_CORRECT = 2
+INSERT_FAIL = 0
 class db_handler():
 
     def __init__(self):
 
         self.start_conn()
         self.cursor = self.db.cursor()
-        self.cursor.execute("SET NAMES 'utf8';")
-        self.cursor.execute("SET CHARACTER SET utf8;")
+        self.cursor.execute("SET NAMES 'utf8mb4'")
+        self.cursor.execute("SET CHARACTER SET 'utf8mb4'")
         self.stop_conn()
 
     def start_conn(self):
@@ -18,9 +22,13 @@ class db_handler():
             host="localhost",
             user="api",
             passwd="pass",
-            database="garga")
+            database="garga",
+            auth_plugin='mysql_native_password'
+        )
         self.cursor = self.db.cursor()
-
+        self.cursor.execute("SET NAMES 'utf8'")
+        self.cursor.execute("SET CHARACTER SET 'utf8'")
+        self.db.set_charset_collation('utf8mb4')
     def stop_conn(self):
         self.cursor.close()
         self.db.close()
@@ -60,6 +68,44 @@ class db_handler():
             return 2
         else:
             return 0
+
+    def insert_comment(self, comment, mahlas, passkey, text_id):
+        if mahlas == ''  or mahlas == '' \
+                or passkey == '' or text_id == '':
+            return 3
+        self.start_conn()
+        user = self.get_user(mahlas)
+        if user is None:    # new user
+            sql = "INSERT INTO users (mahlas,passwords) VALUES (%s, %s)"
+            val = (mahlas, passkey)
+            self.cursor.execute(sql, val)
+
+            sql = "INSERT INTO comments(mahlas, text, text_id) VALUES (%s, %s, %s)"
+            val = (mahlas, comment, text_id)
+            self.cursor.execute(sql, val)
+            self.db.commit()
+            self.stop_conn()
+            return INSERT_NEW_USER
+        elif user['mahlas']==mahlas and user['passwords']==passkey:
+
+            sql = "INSERT INTO comments(mahlas, text, text_id) VALUES (%s, %s, %s)"
+            val = (mahlas, comment, text_id)
+            self.cursor.execute(sql, val)
+            self.db.commit()
+            self.stop_conn()
+            return INSERT_PASS_CORRECT
+        else:
+            return INSERT_FAIL
+
+    def get_user(self, mahlas):
+        sql = "SELECT * FROM users WHERE mahlas='" + str(mahlas) + "'"
+        self.cursor.execute(sql)
+        try:
+            result = self.turn2dict(self.cursor)[0]
+        except:
+            result = None
+        return result
+
     def get_waitings(self):
         self.start_conn()
         sql = "SELECT * FROM texts WHERE id NOT IN \
@@ -120,6 +166,23 @@ class db_handler():
             return True
         else:
             return False
+
+    def get_comments(self, text_id):
+        sql = "SELECT * FROM comments WHERE status=1 AND text_id=" + str(text_id)
+        self.start_conn()
+        self.cursor.execute(sql)
+        text_dict = self.turn2dict(self.cursor)
+        self.stop_conn()
+        return text_dict
+
+    def get_all_published_comments(self):
+        sql = "SELECT * FROM comments WHERE status=1 ORDER BY id DESC"
+        self.start_conn()
+        self.cursor.execute(sql)
+        text_dict = self.turn2dict(self.cursor)
+        self.stop_conn()
+        return text_dict
+
     def get_flow(self, page_idx):
         try:
             page_idx = int(page_idx)
@@ -132,11 +195,20 @@ class db_handler():
               "LIMIT " + str(TEXT_PER_PAGE * page_idx) + ',' + str(TEXT_PER_PAGE)
         self.cursor.execute(sql)
         result = []
+
         for res in self.cursor:
             trimmed = self.trim_text(res)
             result.append(trimmed)
+
+        comment_count = {}
+        for text in result:
+            sql = "SELECT COUNT(id) from comments where status=1 and text_id=" + str(text[0])
+            self.cursor.execute(sql)
+            count = self.turn2dict(self.cursor)[0]
+            comment_count[str(text[0])] = str(count.get('COUNT(id)'))
+
         self.stop_conn()
-        return result, page_idx
+        return result, page_idx, comment_count
 
     def get_page_indexes(self):
         self.start_conn()

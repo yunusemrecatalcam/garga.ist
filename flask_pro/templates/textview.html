@@ -84,6 +84,55 @@
             });
         </script>
     {% endif %}
+
+    <div class="collider">
+        {% if comments %}
+            {% for comment in comments %}
+                <div class="comment_view">
+                    <a class="comment_text"> {{ comment['text'] }}</a><br>
+                    <p class="comment_mahlas"> {{ comment['mahlas'] }}</p><br>
+                </div>
+            {% endfor %}
+        {% endif %}
+        <input type="text" name="mahlas" id="mahlas" placeholder="Mahlas" class="comment"><br>
+        <input type="password" name="password" id="password" class="comment" placeholder="Şifre"><br>
+        <textarea class="comment_box" id="comment"></textarea>
+        <input type="submit" id="post_comment" value="Yorum yap" class="comment_button">
+    </div>
+    <script>
+        $('#post_comment').click(function () {
+            $.post("/comment",
+                {
+                    mahlas: $('#mahlas').val(),
+                    text: $('#comment').val(),
+                    password: $('#password').val(),
+                    text_id: {{ text_id }}
+                },
+                function (data, status) {
+                    console.log(data);
+                    console.log(status);
+                    if (data.success == true) {
+                        if (data.status == 1) {
+                            alert("Görüyoruz ki ilk yorumunuzu" +
+                                " eklediniz, Garga'ya hoşgeldiniz.");
+                            location.reload();
+                        } else if (data.status == 2) {
+                            alert("Tanışıyoruz galiba :) yorumunuzu aldık.");
+                            location.reload();
+                        } else if (data.status == 0) {
+                            alert("Mahlas kullanımda ve şifreyi tutturamadın!");
+                        } else if (data.status == 3) {
+                            alert("Tüm alanları doldurmalısın.");
+                        }
+                    } else {
+                        alert("Bir hata oluştu ve sistemde loglandı, hata devam ederse" +
+                            "lütfen iletişime geçin.");
+                    }
+
+                })
+
+        });
+    </script>
 {% endblock %}
 <script src={{ url_for('static', filename='main.js') }} type="text/javascript"></script>
 

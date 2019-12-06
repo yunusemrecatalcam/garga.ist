@@ -13,7 +13,12 @@
                 <img src={{min_version}} data-defer-src={{ text[5] }}>
                 <h3>{{ text[1] }}</h3>
                 <p>{{ text[2] }}</p>
-                <p class="mahlas">{{ text[3] }}</p>
+                <div class="one">
+                    <img class="comment_img" src="/static/comment.png">
+                    <p class="com_count"> {{ comment_count.get(text[0]|string) }}</p>
+                    <p class="mahlas">{{ text[3] }}</p>
+
+                </div>
             </div>
             <br>
 

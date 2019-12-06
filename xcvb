@@ -14,4 +14,9 @@ CREATE DATABASE garga
 mysqldump -u root -p --no-data garga > garga_schema.sql
 mysql -u root -p garga < garga_schema.sql
 
-mysqldump -u root -p garga > garga_schema.sql
+mysqldump -u root -p garga > garga_2019Nov5.sql
+
+CREATE USER 'api'@'localhost' IDENTIFIED BY 'pass';
+GRANT ALL PRIVILEGES ON * . * TO 'api'@'localhost';
+FLUSH PRIVILEGES;
+GRANT insert,update,select ON garga TO ‘api’@'localhost’;
