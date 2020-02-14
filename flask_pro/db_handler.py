@@ -269,8 +269,16 @@ class db_handler():
         result = []
         for res in self.cursor:
             result.append(res)
+
+        comment_count = {}
+        for text in result:
+            sql = "SELECT COUNT(id) from comments where status=1 and text_id=" + str(text[0])
+            self.cursor.execute(sql)
+            count = self.turn2dict(self.cursor)[0]
+            comment_count[str(text[0])] = str(count.get('COUNT(id)'))
+
         self.stop_conn()
-        return result
+        return result, comment_count
     @staticmethod
     def turn2dict(cursor):
         desc = cursor.description

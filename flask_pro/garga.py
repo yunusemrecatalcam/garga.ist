@@ -19,6 +19,9 @@ def index():
         page = request.args.get('p')
         flowers, current_page, comment_cnt = dber.get_flow(page)
         page_indexes = dber.get_page_indexes()
+        min_thresh = 0 if current_page-2<0 else current_page-2
+        max_thresh = page_indexes[len(page_indexes)-1] if page_indexes[len(page_indexes)-1]<current_page+2 else current_page+2
+        page_indexes = page_indexes[min_thresh:current_page+2]
         next_idx = (current_page+1) if current_page+1 < len(page_indexes) else current_page
         prev_idx = (current_page-1) if current_page>0 else current_page
         rend = render_template("index.html", texts= flowers,
@@ -171,8 +174,8 @@ def show_comments():
 @app.route('/search', methods=['GET'])
 def search():
     search = request.args.get('key')
-    flowers = dber.search(search)
-    rend = render_template("index.html", texts=flowers)
+    flowers, comment_cnt = dber.search(search)
+    rend = render_template("index.html", texts=flowers, comment_count= comment_cnt)
     return rend
 
 if __name__ == '__main__':
