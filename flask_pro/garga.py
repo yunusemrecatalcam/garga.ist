@@ -174,7 +174,8 @@ def show_comments():
 @app.route('/search', methods=['GET'])
 def search():
     search = request.args.get('key')
-    flowers, comment_cnt = dber.search(search)
+    search_in = request.args.get('search_in')
+    flowers, comment_cnt = dber.search(search, search_in)
     rend = render_template("index.html", texts=flowers, comment_count= comment_cnt)
     return rend
 

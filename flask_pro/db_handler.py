@@ -260,9 +260,11 @@ class db_handler():
             self.db.commit()
         self.stop_conn()
 
-    def search(self, key):
+    def search(self, key, search_in):
         self.start_conn()
-        sql = "SELECT * FROM texts WHERE text LIKE %s AND img_path!='' "
+        if search_in not in ['text', 'textname', 'mahlas']:
+            search_in = 'text'
+        sql = "SELECT * FROM texts WHERE " + search_in + " LIKE %s AND img_path!='' "
         args = ['%' + key + '%']
         self.cursor.execute(sql, args)
         #text_dict = self.turn2dict(self.cursor)

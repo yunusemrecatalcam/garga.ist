@@ -83,7 +83,7 @@
                 console.log("that nice!!!");
                 var searchkey = document.getElementById("search").value;
                 console.log(searchkey);
-                window.location.replace('/search?key='.concat(searchkey));
+                window.location.replace('/search?key='.concat(searchkey,'&search_in=text'));
             }
         });
         $("#search1").keyup(function (event) {
