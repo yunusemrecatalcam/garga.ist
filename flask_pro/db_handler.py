@@ -127,7 +127,7 @@ class db_handler():
         sql = "SELECT admin FROM admins"
         self.cursor.execute(sql)
         admin_dicts = self.turn2dict(self.cursor)
-        admin_list  = [admin['admin'] for admin in admin_dicts]
+        admin_list = [admin['admin'] for admin in admin_dicts]
 
         sql = "SELECT admin,vote FROM votes WHERE EXISTS" \
               "(SELECT admin from admins WHERE admins.admin = votes.admin AND votes.id = " + text_id + ')'# votes for text
@@ -158,7 +158,7 @@ class db_handler():
         return text_dict[0]
 
     def is_published(self, text_id):
-        sql = "SELECT * FROM votes WHERE id=" + str(text_id)
+        sql = "SELECT * FROM votes WHERE vote=1 AND id=" + str(text_id)
         self.start_conn()
         self.cursor.execute(sql)
         text_dict = self.turn2dict(self.cursor)
