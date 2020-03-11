@@ -261,6 +261,8 @@ class db_handler():
         self.stop_conn()
 
     def search(self, key, search_in):
+        if key is None:
+            return [], {}
         self.start_conn()
         if search_in not in ['text', 'textname', 'mahlas']:
             search_in = 'text'
