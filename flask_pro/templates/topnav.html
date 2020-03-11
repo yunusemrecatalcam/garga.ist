@@ -53,7 +53,6 @@
                     <div class="liner"></div>
                 </div>
                 <div class="dropdown-content" id="myDropdown">
-                    <input id="search1" class="searcher" type="text" placeholder="Bul... &#x1F50D">
                     <a href="/kimiz">Biz Kimiz?</a>
                     <a href="/kilavuz">Kılavuz</a>
                     <a href="/ekle">İçerik Ekle</a>
@@ -84,14 +83,6 @@
                 var searchkey = document.getElementById("search").value;
                 console.log(searchkey);
                 window.location.replace('/search?key='.concat(searchkey,'&search_in=text'));
-            }
-        });
-        $("#search1").keyup(function (event) {
-            if (event.keyCode === 13) {
-                console.log("that nice!!!");
-                var searchkey = document.getElementById("search1").value;
-                console.log("asdf0");
-                window.location.href = '/search?key='.concat(searchkey);
             }
         });
     </script>
