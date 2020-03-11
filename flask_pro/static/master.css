@@ -441,8 +441,9 @@ htm, body {
     border-bottom: 2px solid #262624;
     font-family: 'Quicksand', sans-serif;
     font-weight: bold;
-    margin: 10px;
+    margin: 0.5rem;
     padding: 5px;
+    max-width: 8rem;
 }
 @media only screen and (min-device-aspect-ratio: 1/1) {
     #myDropdown, #dropbtn {
