@@ -127,7 +127,7 @@ class db_handler():
         sql = "SELECT admin FROM admins"
         self.cursor.execute(sql)
         admin_dicts = self.turn2dict(self.cursor)
-        admin_list  = [admin['admin'] for admin in admin_dicts]
+        admin_list = [admin['admin'] for admin in admin_dicts]
 
         sql = "SELECT admin,vote FROM votes WHERE EXISTS" \
               "(SELECT admin from admins WHERE admins.admin = votes.admin AND votes.id = " + text_id + ')'# votes for text
@@ -158,7 +158,7 @@ class db_handler():
         return text_dict[0]
 
     def is_published(self, text_id):
-        sql = "SELECT * FROM votes WHERE id=" + str(text_id)
+        sql = "SELECT * FROM votes WHERE vote=1 AND id=" + str(text_id)
         self.start_conn()
         self.cursor.execute(sql)
         text_dict = self.turn2dict(self.cursor)
@@ -260,12 +260,15 @@ class db_handler():
             self.db.commit()
         self.stop_conn()
 
-    def search(self, key):
+    def search(self, key, search_in):
+        if key is None:
+            return [], {}
         self.start_conn()
-        sql = "SELECT * FROM texts WHERE text LIKE %s AND img_path!='' "
+        if search_in not in ['text', 'textname', 'mahlas']:
+            search_in = 'text'
+        sql = "SELECT * FROM texts WHERE {} LIKE %s AND img_path!='' ".format(search_in)
         args = ['%' + key + '%']
         self.cursor.execute(sql, args)
-        #text_dict = self.turn2dict(self.cursor)
         result = []
         for res in self.cursor:
             result.append(res)

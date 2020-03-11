@@ -3,7 +3,27 @@
 {% block content %}
 
 <div class="texter_container"></div>
-
+    {% if search %}
+        <div class="search_area" style="display: flex; flex-direction: column; justify-content: center; margin-bottom: 30px;">
+            {% if search_word==None %}
+                <input id="search1" type="text" placeholder="Metinde ara &#x1F50D">
+                <input id="search2" type="text" placeholder="Yazar ara &#x1F50D">
+                <input id="search3" type="text" placeholder="Başlıkta ara &#x1F50D">
+            {% elif key=="text" %}
+                <input id="search1" type="text" placeholder="Metinde ara &#x1F50D" value={{ search_word }}>
+                <input id="search2" type="text" placeholder="Yazar ara &#x1F50D">
+                <input id="search3" type="text" placeholder="Başlıkta ara &#x1F50D">
+            {% elif key=="textname" %}
+                <input id="search1" type="text" placeholder="Metinde ara &#x1F50D">
+                <input id="search2" type="text" placeholder="Yazar ara &#x1F50D">
+                <input id="search3" type="text" placeholder="Başlıkta ara &#x1F50D" value={{ search_word }}>
+            {% elif key=="mahlas" %}
+                <input id="search1" type="text" placeholder="Metinde ara &#x1F50D">
+                <input id="search2" type="text" placeholder="Yazar ara &#x1F50D" value={{ search_word }}>
+                <input id="search3" type="text" placeholder="Başlıkta ara &#x1F50D">
+            {% endif %}
+        </div>
+    {% endif %}
     {% if texts %}
         {% for text in texts %}
 
@@ -45,6 +65,38 @@
             link = 'content_view/'.concat(id);
             window.open(link, '_blank');
         }
+        {% if search %}
+        $(function () {
+            console.log('Search text');
+            $("#search1").keyup(function (event) {
+                if (event.keyCode === 13) {
+                    var searchkey = document.getElementById("search1").value;
+                    console.log(searchkey);
+                    window.location.replace('/search?key='.concat(searchkey, '&search_in=text'));
+                }
+            });
+        });
+        $(function () {
+            console.log('Search mahlas');
+            $("#search2").keyup(function (event) {
+                if (event.keyCode === 13) {
+                    var searchkey = document.getElementById("search2").value;
+                    console.log(searchkey);
+                    window.location.replace('/search?key='.concat(searchkey, '&search_in=mahlas'));
+                }
+            });
+        });
+        $(function () {
+            console.log('Search textname');
+            $("#search3").keyup(function (event) {
+                if (event.keyCode === 13) {
+                    var searchkey = document.getElementById("search3").value;
+                    console.log(searchkey);
+                    window.location.replace('/search?key='.concat(searchkey, '&search_in=textname'));
+                }
+            });
+        });
+        {% endif %}
     </script>
 
 {% endblock %}
