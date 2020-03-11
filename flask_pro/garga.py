@@ -176,7 +176,8 @@ def search():
     search = request.args.get('key')
     search_in = request.args.get('search_in')
     flowers, comment_cnt = dber.search(search, search_in)
-    rend = render_template("index.html", texts=flowers, comment_count= comment_cnt)
+    rend = render_template("index.html", texts=flowers, comment_count=comment_cnt,
+                           search=True)
     return rend
 
 if __name__ == '__main__':

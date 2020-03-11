@@ -264,10 +264,9 @@ class db_handler():
         self.start_conn()
         if search_in not in ['text', 'textname', 'mahlas']:
             search_in = 'text'
-        sql = "SELECT * FROM texts WHERE " + search_in + " LIKE %s AND img_path!='' "
+        sql = "SELECT * FROM texts WHERE {} LIKE %s AND img_path!='' ".format(search_in)
         args = ['%' + key + '%']
         self.cursor.execute(sql, args)
-        #text_dict = self.turn2dict(self.cursor)
         result = []
         for res in self.cursor:
             result.append(res)
