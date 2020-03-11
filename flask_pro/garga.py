@@ -173,11 +173,13 @@ def show_comments():
 
 @app.route('/search', methods=['GET'])
 def search():
-    search = request.args.get('key')
+    search_word = request.args.get('key')
     search_in = request.args.get('search_in')
-    flowers, comment_cnt = dber.search(search, search_in)
+    if search_in not in ['text', 'textname', 'mahlas']:
+        search_in = 'text'
+    flowers, comment_cnt = dber.search(search_word, search_in)
     rend = render_template("index.html", texts=flowers, comment_count=comment_cnt,
-                           search=True)
+                           search=search_word, key=search_in)
     return rend
 
 if __name__ == '__main__':

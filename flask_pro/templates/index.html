@@ -5,9 +5,19 @@
 <div class="texter_container"></div>
     {% if search %}
         <div class="search_area" style="display: flex; flex-direction: row; justify-content: center; margin-bottom: 30px;">
-            <input id="search1" type="text" placeholder="Metinde ara &#x1F50D">
-            <input id="search2" type="text" placeholder="Yazar ara &#x1F50D">
-            <input id="search3" type="text" placeholder="Başlıkta ara &#x1F50D">
+            {% if key=="text" %}
+                <input id="search1" type="text" placeholder="Metinde ara &#x1F50D" value={{ search }}>
+                <input id="search2" type="text" placeholder="Yazar ara &#x1F50D">
+                <input id="search3" type="text" placeholder="Başlıkta ara &#x1F50D">
+            {% elif key=="textname" %}
+                <input id="search1" type="text" placeholder="Metinde ara &#x1F50D">
+                <input id="search2" type="text" placeholder="Yazar ara &#x1F50D">
+                <input id="search3" type="text" placeholder="Başlıkta ara &#x1F50D" value={{ search }}>
+            {% else %}
+                <input id="search1" type="text" placeholder="Metinde ara &#x1F50D">
+                <input id="search2" type="text" placeholder="Yazar ara &#x1F50D" value={{ search }}>
+                <input id="search3" type="text" placeholder="Başlıkta ara &#x1F50D">
+            {% endif %}
         </div>
     {% endif %}
     {% if texts %}
