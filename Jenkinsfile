@@ -5,22 +5,13 @@ node {
 
     sh "printenv"
     echo "The build number is ${env.BUILD_NUMBER}"
+    if(env.BRANCH_NAME == "master"){
+        echo "hell yeah diry bass"
+    }else if(env.BRANCH_NAME == "dev"){
+        echo "oh no clean base"
+    }
+
   }
 
-  stage('Deliver for development') {
-    when {
-        branch 'dev'
-    }
-    steps {
-        echo "Dev branch"
-    }
-  }
-  stage('Deploy for production') {
-      when {
-          branch 'master'
-      }
-      steps {
-          echo "Master branch"
-      }
-  }
+
 }
