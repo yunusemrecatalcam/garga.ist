@@ -21,9 +21,10 @@ def index():
         page_indexes = dber.get_page_indexes()
         min_thresh = 0 if current_page-2<0 else current_page-2
         max_thresh = page_indexes[len(page_indexes)-1] if page_indexes[len(page_indexes)-1]<current_page+2 else current_page+2
-        page_indexes = page_indexes[min_thresh:max_thresh]
-        next_idx = (current_page+1) if current_page+1 < len(page_indexes) else current_page
+        page_indexes = page_indexes[min_thresh:max_thresh+1]
+        next_idx = (current_page+1) if current_page+1 <= page_indexes[-1] else current_page
         prev_idx = (current_page-1) if current_page>0 else current_page
+        page_indexes = list(range(prev_idx, next_idx+1))
         rend = render_template("index.html", texts=flowers,
                                pages=page_indexes, current=current_page,
                                next=next_idx, prev=prev_idx,
