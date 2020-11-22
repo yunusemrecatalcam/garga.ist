@@ -183,5 +183,12 @@ def search():
                            search=True, search_word=search_word, key=search_in)
     return rend
 
+@app.route("/dergi")
+def dergi():
+    try:
+        return render_template("dergi.html")
+    except Exception as e:
+        return (str(e)+ ERR_TEXT)
+
 if __name__ == '__main__':
     app.run(debug=True)
