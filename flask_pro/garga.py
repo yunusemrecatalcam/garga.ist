@@ -185,10 +185,23 @@ def search():
 
 @app.route("/dergi")
 def dergi():
+    return redirect("https://online.fliphtml5.com/yscwl/tuyt/", code=302)
     try:
         return render_template("dergi.html")
     except Exception as e:
         return (str(e)+ ERR_TEXT)
+
+@app.route('/dergipdf')
+def send_pdf():
+    return send_from_directory(os.path.join(app.root_path, 'static'), 'Garga_Sayi_1.pdf')
+
+@app.route("/dergi2")
+def dergi2():
+    return redirect("https://online.fliphtml5.com/olrtq/yrbt/", code=302)
+
+@app.route('/dergipdf2')
+def send_pdf2():
+    return send_from_directory(os.path.join(app.root_path, 'static'), 'Garga_Sayi_2.pdf')
 
 if __name__ == '__main__':
     app.run(debug=True)

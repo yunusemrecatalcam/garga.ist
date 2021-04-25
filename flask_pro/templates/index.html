@@ -25,6 +25,19 @@
         </div>
     {% endif %}
     {% if texts %}
+        <div class="pagination-wrapper">
+        <h1>İkinci sayı çıktı!</h1>
+        <div class="pagination">
+            <a class="prev page-numbers" href="/dergi2">Görüntüleyin!</a>
+            <a class="next page-numbers" href="/dergipdf2">İndirin!</a>
+        </div></div>
+        <div class="pagination-wrapper">
+        <h1>Dergimiz çıktı!</h1>
+        <div class="pagination">
+            <a class="prev page-numbers" href="/dergi2">Görüntüleyin!</a>
+            <a class="next page-numbers" href="/dergipdf2">İndirin!</a>
+        </div></div>
+        <br><br>
         {% for text in texts %}
 
             <div class="text_view" onclick="go2text({{ text[0] }})">
